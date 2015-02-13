@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -14,8 +16,24 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Check connection status
+        ConnectionStatus connected = new ConnectionStatus(this);
+        //If not connected to the internet, display error and app reload button
+        if (!connected.isConnected()) {
+            //Get text view and buttons to show/hide
+            TextView msg = (TextView) findViewById(R.id.welcomeMessage);
+            Button btnEnt = (Button) findViewById(R.id.welcomeEnter);
+            Button btnRst = (Button) findViewById(R.id.welcomeReload);
+
+            //Display error message, hide continue button and show reload button
+            msg.setText("Sorry, an internet connection is required to use the app.");
+            btnEnt.setVisibility(View.INVISIBLE);
+            btnRst.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -41,8 +59,16 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Start login activity
     public void enterApp(View view) {
         Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+    }
+
+    //Reload app
+    public void restartApp(View view) {
+        Intent i = getIntent();
+        finish();
         startActivity(i);
     }
 }

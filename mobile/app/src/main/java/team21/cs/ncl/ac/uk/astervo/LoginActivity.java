@@ -1,5 +1,6 @@
 package team21.cs.ncl.ac.uk.astervo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,22 +9,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
 public class LoginActivity extends ActionBarActivity {
 
+    ConnectionStatus connectionStatus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        connectionStatus = new ConnectionStatus(this);
     }
 
 
@@ -57,42 +64,62 @@ public class LoginActivity extends ActionBarActivity {
         String email = emailIn.getText().toString();
         String pass = passIn.getText().toString();
 
-        final Intent i = new Intent(this, DashActivity.class);
+        if(email.equals("") || pass.equals("")) {
+            Context context = getApplicationContext();
+            CharSequence text = "Please enter username and password.";
+            int duration = Toast.LENGTH_LONG;
 
-        final TextView alert = (TextView) findViewById(R.id.loginAlert);
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+        else {
 
-        RequestParams params = new RequestParams();
-        params.put(PrivateFields.TAG_EMAIL, email);
-        params.put(PrivateFields.TAG_PASS, pass);
-        params.put(PrivateFields.TAG_REMEMBER, 1);
-        params.put(PrivateFields.TAG_COMMIT, "Log in");
+            if(connectionStatus.isConnected()) {
 
-        HttpClient.post("/users", params, new AsyncHttpResponseHandler() {
+                final Intent i = new Intent(this, DashActivity.class);
 
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                alert.setText(String.valueOf(statusCode));
-                if(statusCode == 200) {
+                final TextView alert = (TextView) findViewById(R.id.loginAlert);
 
-                    if(response!=null) {
-                        try {
-                            String decodedData = new String(response, "UTF-8");
-                            alert.setText(String.valueOf(statusCode) + decodedData);
-                        } catch(Exception e) {
-                            e.printStackTrace();
+                RequestParams params = new RequestParams();
+                params.put(PrivateFields.TAG_EMAIL, email);
+                params.put(PrivateFields.TAG_PASS, pass);
+                params.put(PrivateFields.TAG_REMEMBER, 1);
+                params.put(PrivateFields.TAG_COMMIT, "Log in");
+
+                HttpClient.post("/users", params, new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                        alert.setText(String.valueOf(statusCode));
+                        if (statusCode == 200) {
+
+                            if (response != null) {
+                                try {
+                                    alert.setText(String.valueOf(statusCode) + response.toString());
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        } else {
+                            alert.setText("Please try again.");
                         }
                     }
 
-                }
+                    public void onFailure(int statusCode, Header[] headers, byte[] response, Throwable thrown) {
+                        alert.setText("ERROR");
+                    }
+
+                });
             }
+            else {
+                Context context = getApplicationContext();
+                CharSequence text = "Login requires an internet connection.";
+                int duration = Toast.LENGTH_LONG;
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] response, Throwable thrown) {
-                alert.setText(String.valueOf(statusCode) + "Failed");
-
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
-
-        });
+        }
 
     }
 
@@ -102,4 +129,5 @@ public class LoginActivity extends ActionBarActivity {
         startActivity(i);
 
     }
+
 }
