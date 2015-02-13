@@ -9,7 +9,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/loginUser"
+        android:id="@+id/loginEmail"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="65dp"
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/loginPass"
-        android:layout_below="@+id/loginUser"
+        android:layout_below="@+id/loginEmail"
         android:layout_centerHorizontal="true"
         android:hint="Enter your password"
         android:minWidth="300dp"
@@ -45,4 +45,13 @@
         android:layout_below="@+id/initiateLogin"
         android:layout_centerHorizontal="true"
         android:onClick="signUp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="ALERT"
+        android:id="@+id/loginAlert"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

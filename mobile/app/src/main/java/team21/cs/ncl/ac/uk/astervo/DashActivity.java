@@ -21,7 +21,7 @@ public class DashActivity extends ActionBarActivity {
             TextView displayUser = (TextView) findViewById(R.id.dashUser);
             TextView displayPass = (TextView) findViewById(R.id.dashPass);
 
-            displayUser.setText("Username: " + extras.getString(PrivateFields.TAG_USER));
+            displayUser.setText("Username: " + extras.getString(PrivateFields.TAG_EMAIL));
             displayPass.setText("Password: " + extras.getString(PrivateFields.TAG_PASS));
 
         }

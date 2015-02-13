@@ -7,6 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -42,18 +51,34 @@ public class LoginActivity extends ActionBarActivity {
 
     public void login(View view) {
 
-        EditText userIn =  (EditText) findViewById(R.id.loginUser);
+        EditText emailIn =  (EditText) findViewById(R.id.loginEmail);
         EditText passIn = (EditText) findViewById(R.id.loginPass);
 
-        String user = userIn.getText().toString();
+        String email = emailIn.getText().toString();
         String pass = passIn.getText().toString();
 
-        Intent i = new Intent(this, DashActivity.class);
+        final Intent i = new Intent(this, DashActivity.class);
 
-        i.putExtra(PrivateFields.TAG_USER, user);
-        i.putExtra(PrivateFields.TAG_PASS, pass);
+        final TextView alert = (TextView) findViewById(R.id.loginAlert);
 
-        startActivity(i);
+        RequestParams params = new RequestParams();
+        params.put(PrivateFields.TAG_EMAIL, email);
+        params.put(PrivateFields.TAG_PASS, pass);
+
+        HttpClient.post("/login", params, new AsyncHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] bytes) {
+                alert.setText(String.valueOf(statusCode));
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] bytes, Throwable throwable) {
+                alert.setText(String.valueOf(statusCode));
+            }
+
+        });
+
     }
 
     public void signUp(View view) {
