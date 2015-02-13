@@ -64,17 +64,32 @@ public class LoginActivity extends ActionBarActivity {
         RequestParams params = new RequestParams();
         params.put(PrivateFields.TAG_EMAIL, email);
         params.put(PrivateFields.TAG_PASS, pass);
+        params.put(PrivateFields.TAG_REMEMBER, 1);
+        params.put(PrivateFields.TAG_COMMIT, "Log in");
 
-        HttpClient.post("/login", params, new AsyncHttpResponseHandler() {
+        HttpClient.post("/users", params, new AsyncHttpResponseHandler() {
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] bytes) {
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 alert.setText(String.valueOf(statusCode));
+                if(statusCode == 200) {
+
+                    if(response!=null) {
+                        try {
+                            String decodedData = new String(response, "UTF-8");
+                            alert.setText(String.valueOf(statusCode) + decodedData);
+                        } catch(Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] bytes, Throwable throwable) {
-                alert.setText(String.valueOf(statusCode));
+            public void onFailure(int statusCode, Header[] headers, byte[] response, Throwable thrown) {
+                alert.setText(String.valueOf(statusCode) + "Failed");
+
             }
 
         });
