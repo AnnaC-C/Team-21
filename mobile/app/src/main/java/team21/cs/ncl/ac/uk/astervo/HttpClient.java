@@ -21,16 +21,9 @@ public class HttpClient {
         client.get(getAbsoluteUrl(url), params, responseHandler);
     }
 
-    public static void post(Context context, String url, Header[] headers, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        client.post(context, getAbsoluteUrl(url), headers, params, "applications/json", responseHandler);
-    }
-
-    public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        client.post(getAbsoluteUrl(url), params, responseHandler);
-    }
-
     public static void post(Context context, String url, JSONObject params, AsyncHttpResponseHandler responseHandler) throws UnsupportedEncodingException {
         StringEntity entity = new StringEntity(params.toString());
+        entity.setContentType(new BasicHeader("Content-Type", "application/json"));
         client.addHeader("Accept", "application/json");
         client.addHeader("Content-Type", "application/json");
         client.post(context, getAbsoluteUrl(url), entity, "application/json", responseHandler);

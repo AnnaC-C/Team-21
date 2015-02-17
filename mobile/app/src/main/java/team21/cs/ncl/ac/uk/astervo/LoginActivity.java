@@ -85,12 +85,11 @@ public class LoginActivity extends ActionBarActivity {
                 final TextView alert = (TextView) findViewById(R.id.loginAlert);
 
                 JSONObject params = new JSONObject();
-//                params.put(PrivateFields.TAG_EMAIL, email);
-//                params.put(PrivateFields.TAG_PASS, pass);
-
+                JSONObject jsonUser = new JSONObject();
                 try {
-                    params.put(PrivateFields.TAG_PASS, pass);
-                    params.put(PrivateFields.TAG_EMAIL, email);
+                    jsonUser.put(PrivateFields.TAG_EMAIL, email);
+                    jsonUser.put(PrivateFields.TAG_PASS, pass);
+                    params.put(PrivateFields.TAG_USER, jsonUser);
                 } catch(JSONException e) {
                     e.printStackTrace();
                 }
@@ -108,7 +107,7 @@ public class LoginActivity extends ActionBarActivity {
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             alert.setText(String.valueOf(statusCode));
-                            if (statusCode == 200 || statusCode == 401) {
+                            if (statusCode == 200) {
 
                                 if (response != null) {
                                     try {
