@@ -16,9 +16,13 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
+import org.apache.http.message.BasicHeader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -80,36 +84,48 @@ public class LoginActivity extends ActionBarActivity {
 
                 final TextView alert = (TextView) findViewById(R.id.loginAlert);
 
-                RequestParams params = new RequestParams();
-                params.put(PrivateFields.TAG_EMAIL, email);
-                params.put(PrivateFields.TAG_PASS, pass);
-                params.put(PrivateFields.TAG_REMEMBER, 1);
-                params.put(PrivateFields.TAG_COMMIT, "Log in");
+                JSONObject params = new JSONObject();
+//                params.put(PrivateFields.TAG_EMAIL, email);
+//                params.put(PrivateFields.TAG_PASS, pass);
 
-                HttpClient.post("/users", params, new AsyncHttpResponseHandler() {
+                try {
+                    params.put(PrivateFields.TAG_PASS, pass);
+                    params.put(PrivateFields.TAG_EMAIL, email);
+                } catch(JSONException e) {
+                    e.printStackTrace();
+                }
 
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                        alert.setText(String.valueOf(statusCode));
-                        if (statusCode == 200) {
+//                BasicHeader[] headers = new BasicHeader[2];
+//                headers[0] = new BasicHeader("Content-Type:","application/json");
+//                headers[1] = new BasicHeader("Accepts:", "application/json");
 
-                            if (response != null) {
-                                try {
-                                    alert.setText(String.valueOf(statusCode) + response.toString());
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+                alert.setText(params.toString());
+
+                try {
+
+                    HttpClient.post(this.getApplicationContext(), "/api/sessions", params, new JsonHttpResponseHandler() {
+
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            alert.setText(String.valueOf(statusCode));
+                            if (statusCode == 200 || statusCode == 401) {
+
+                                if (response != null) {
+                                    try {
+                                        alert.setText(String.valueOf(statusCode) + response.toString());
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
+                            } else {
+                                alert.setText("Please try again.");
                             }
-                        } else {
-                            alert.setText("Please try again.");
                         }
-                    }
 
-                    public void onFailure(int statusCode, Header[] headers, byte[] response, Throwable thrown) {
-                        alert.setText("ERROR");
-                    }
-
-                });
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             else {
                 Context context = getApplicationContext();
