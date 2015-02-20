@@ -30,8 +30,9 @@ public class LoginActivity extends ActionBarActivity {
 
     //Get connection status
     ConnectionStatus connectionStatus;
-    //Get global variables
-    Globals g = (Globals) getApplication();
+
+    //Create globals
+    Globals g;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,9 @@ public class LoginActivity extends ActionBarActivity {
 
         //Set the connection status
         connectionStatus = new ConnectionStatus(this);
+
+        //Get global variables
+        g = (Globals) getApplication();
     }
 
 
@@ -119,6 +123,7 @@ public class LoginActivity extends ActionBarActivity {
                                         //Set global variables
                                         g.setLoggedIn(true);
                                         g.setAuthKey(data.getString(PrivateFields.TAG_AUTH));
+
                                         i.putExtra(PrivateFields.TAG_SUCCESS, response.getString(PrivateFields.TAG_SUCCESS));
                                         i.putExtra(PrivateFields.TAG_INFO, response.getString(PrivateFields.TAG_INFO));
                                         startActivity(i);

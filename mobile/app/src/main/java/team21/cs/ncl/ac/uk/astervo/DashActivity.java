@@ -9,20 +9,29 @@ import android.widget.TextView;
 
 public class DashActivity extends ActionBarActivity {
 
+    //Get global variables
+    Globals g;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash);
 
+        //Get globals
+        g = (Globals) getApplication();
+
+        //Get bundled extras from previous activity
         Bundle extras = getIntent().getExtras();
 
+        //Display global variables
+        TextView displayAuth = (TextView) findViewById(R.id.dashAuth);
+        displayAuth.setText("Authorization: " + g.getAuthKey());
+
+        //If there are extras, then display them
         if(extras != null) {
 
-            TextView displayAuth = (TextView) findViewById(R.id.dashAuth);
             TextView displaySuccess = (TextView) findViewById(R.id.dashSuccess);
             TextView displayInfo = (TextView) findViewById(R.id.dashInfo);
-
-            displayAuth.setText("Authorization: " + extras.getString(PrivateFields.TAG_AUTH));
             displaySuccess.setText("Success: " + extras.getString(PrivateFields.TAG_SUCCESS));
             displayInfo.setText("Info: " + extras.getString(PrivateFields.TAG_INFO));
 

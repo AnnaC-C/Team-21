@@ -4,8 +4,8 @@ import android.app.Application;
 
 public class Globals extends Application {
 
-    private boolean loggedIn;
-    private String authKey;
+    private boolean loggedIn = false;
+    private String authKey = null;
 
     public boolean isLoggedIn() {
         return loggedIn;

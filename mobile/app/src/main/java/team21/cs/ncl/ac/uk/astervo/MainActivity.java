@@ -12,13 +12,17 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
-    //Initial commit comment for main Activity
+    //Get global variables
+    Globals g;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Setup global variables
+        g = (Globals) getApplication();
 
         //Check connection status
         ConnectionStatus connected = new ConnectionStatus(this);
@@ -36,6 +40,18 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    //On resume, check if someone is already logged in
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //Check if already logged in
+        if(g.isLoggedIn()) {
+            //If logged in, start Dash activity
+            Intent i = new Intent(this, DashActivity.class);
+            startActivity(i);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
