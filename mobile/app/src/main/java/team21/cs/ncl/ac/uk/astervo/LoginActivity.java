@@ -28,17 +28,21 @@ import java.util.Map;
 
 public class LoginActivity extends ActionBarActivity {
 
+    //Get connection status
     ConnectionStatus connectionStatus;
+    //Get global variables
+    Globals g = (Globals) getApplication();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //Set the connection status
         connectionStatus = new ConnectionStatus(this);
     }
 
 
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_login, menu);
@@ -61,6 +65,7 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     public void login(View view) {
+        //Create an intent to open the Dashboard
         final Intent i = new Intent(this, DashActivity.class);
 
         //Get the text in for email field and password as Strings
@@ -69,7 +74,7 @@ public class LoginActivity extends ActionBarActivity {
         String email = emailIn.getText().toString();
         String pass = passIn.getText().toString();
 
-        //If email or password is not entered, prompt user
+        //If email or password is not entered, prompt user with a toast
         if(email.equals("") || pass.equals("")) {
             Context context = getApplicationContext();
             CharSequence text = "Please enter username and password.";
@@ -79,12 +84,16 @@ public class LoginActivity extends ActionBarActivity {
             toast.show();
         }
 
+        //Otherwise check the connection status
         else {
 
+            //If phone has data, then attempt login
             if(connectionStatus.isConnected()) {
 
+                //Create a new JSON object to store the params
                 JSONObject params = new JSONObject();
                 JSONObject jsonUser = new JSONObject();
+                //Try to add the email and password text in as params
                 try {
                     jsonUser.put(PrivateFields.TAG_EMAIL, email);
                     jsonUser.put(PrivateFields.TAG_PASS, pass);
@@ -93,17 +102,23 @@ public class LoginActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
 
+                //Attempt login
                 try {
 
+                    //Send the HTTP post request and get JSON object back
                     HttpClient.post(this.getApplicationContext(), "/api/sessions", params, new JsonHttpResponseHandler() {
 
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            //If successful parse JSON data and create dashboard activity
                             if (statusCode == 200) {
                                 if (response != null) {
                                     try {
+                                        //Parse the data object
                                         JSONObject data = (JSONObject) response.get(PrivateFields.TAG_DATA);
-                                        i.putExtra(PrivateFields.TAG_AUTH, data.getString(PrivateFields.TAG_AUTH));
+                                        //Set global variables
+                                        g.setLoggedIn(true);
+                                        g.setAuthKey(data.getString(PrivateFields.TAG_AUTH));
                                         i.putExtra(PrivateFields.TAG_SUCCESS, response.getString(PrivateFields.TAG_SUCCESS));
                                         i.putExtra(PrivateFields.TAG_INFO, response.getString(PrivateFields.TAG_INFO));
                                         startActivity(i);
@@ -112,7 +127,18 @@ public class LoginActivity extends ActionBarActivity {
                                         e.printStackTrace();
                                     }
                                 }
-                            } else {
+                            }
+                            //If authorization error, prompt user to check details
+                            else if(statusCode == 401) {
+                                Context context = getApplicationContext();
+                                CharSequence text = "Login failed. Check your details and try again.";
+                                int duration = Toast.LENGTH_LONG;
+
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                            }
+                            //Otherwise tell user to try again later
+                            else {
                                 Context context = getApplicationContext();
                                 CharSequence text = "Something went wrong. Please try again later.";
                                 int duration = Toast.LENGTH_LONG;
@@ -122,8 +148,10 @@ public class LoginActivity extends ActionBarActivity {
                             }
                         }
 
+                        //If post request fails, check status code
                         @Override
                         public void onFailure(int statusCode, org.apache.http.Header[] headers, java.lang.Throwable throwable, org.json.JSONObject errorResponse) {
+                            //If authorization error, prompt user ot check details
                             if(statusCode == 401) {
                                 Context context = getApplicationContext();
                                 CharSequence text = "Login failed. Check your details and try again.";
@@ -132,6 +160,7 @@ public class LoginActivity extends ActionBarActivity {
                                 Toast toast = Toast.makeText(context, text, duration);
                                 toast.show();
                             }
+                            //Otherwise prompt user to try again later
                             else {
                                 Context context = getApplicationContext();
                                 CharSequence text = "Something went wrong. Please try again later.";
@@ -147,6 +176,7 @@ public class LoginActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
             }
+            //If no internet connection, prompt user to check connection
             else {
                 Context context = getApplicationContext();
                 CharSequence text = "Login requires an internet connection.";
@@ -159,6 +189,7 @@ public class LoginActivity extends ActionBarActivity {
 
     }
 
+    //If user wishes to sign up for an account, prompt them and take them to the online sign up page
     public void signUp(View view) {
 
         Context context = getApplicationContext();

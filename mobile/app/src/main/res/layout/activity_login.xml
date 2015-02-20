@@ -15,7 +15,8 @@
         android:layout_marginTop="65dp"
         android:hint="Enter your email"
         android:minWidth="300dp"
-        android:maxWidth="300dp" />
+        android:maxWidth="300dp"
+        android:singleLine="true"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -26,7 +27,8 @@
         android:hint="Enter your password"
         android:minWidth="300dp"
         android:maxWidth="300dp"
-        android:password="true" />
+        android:password="true"
+        android:singleLine="true" />
 
     <Button
         android:layout_width="wrap_content"
