@@ -33,7 +33,6 @@ public class LoginActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         connectionStatus = new ConnectionStatus(this);
     }
 
@@ -61,13 +60,15 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     public void login(View view) {
+        final Intent i = new Intent(this, DashActivity.class);
 
+        //Get the text in for email field and password as Strings
         EditText emailIn =  (EditText) findViewById(R.id.loginEmail);
         EditText passIn = (EditText) findViewById(R.id.loginPass);
-
         String email = emailIn.getText().toString();
         String pass = passIn.getText().toString();
 
+        //If email or password is not entered, prompt user
         if(email.equals("") || pass.equals("")) {
             Context context = getApplicationContext();
             CharSequence text = "Please enter username and password.";
@@ -76,11 +77,10 @@ public class LoginActivity extends ActionBarActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+
         else {
 
             if(connectionStatus.isConnected()) {
-
-                final Intent i = new Intent(this, DashActivity.class);
 
                 final TextView alert = (TextView) findViewById(R.id.loginAlert);
 
@@ -94,10 +94,6 @@ public class LoginActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
 
-//                BasicHeader[] headers = new BasicHeader[2];
-//                headers[0] = new BasicHeader("Content-Type:","application/json");
-//                headers[1] = new BasicHeader("Accepts:", "application/json");
-
                 alert.setText(params.toString());
 
                 try {
@@ -106,18 +102,42 @@ public class LoginActivity extends ActionBarActivity {
 
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                            alert.setText(String.valueOf(statusCode));
                             if (statusCode == 200) {
-
                                 if (response != null) {
                                     try {
-                                        alert.setText(String.valueOf(statusCode) + response.toString());
+                                        alert.setText(response.toString());
+                                        JSONObject data = (JSONObject) response.get(PrivateFields.TAG_DATA);
+                                        i.putExtra(PrivateFields.TAG_AUTH, data.getString(PrivateFields.TAG_AUTH));
+                                        i.putExtra(PrivateFields.TAG_SUCCESS, response.getString(PrivateFields.TAG_SUCCESS));
+                                        i.putExtra(PrivateFields.TAG_INFO, response.getString(PrivateFields.TAG_INFO));
+                                        startActivity(i);
+                                        finish();
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
                                 }
                             } else {
                                 alert.setText("Please try again.");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, org.apache.http.Header[] headers, java.lang.Throwable throwable, org.json.JSONObject errorResponse) {
+                            if(statusCode == 401) {
+                                Context context = getApplicationContext();
+                                CharSequence text = "Login failed. Check your details and try again.";
+                                int duration = Toast.LENGTH_LONG;
+
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                            }
+                            else {
+                                Context context = getApplicationContext();
+                                CharSequence text = "Something went wrong. Please try again later.";
+                                int duration = Toast.LENGTH_LONG;
+
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
                             }
                         }
 

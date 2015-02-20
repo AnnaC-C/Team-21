@@ -68,7 +68,7 @@ public class MainActivity extends ActionBarActivity {
     //Reload app
     public void restartApp(View view) {
         Intent i = getIntent();
-        finish();
         startActivity(i);
+        finish();
     }
 }

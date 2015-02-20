@@ -18,11 +18,13 @@ public class DashActivity extends ActionBarActivity {
 
         if(extras != null) {
 
-            TextView displayUser = (TextView) findViewById(R.id.dashUser);
-            TextView displayPass = (TextView) findViewById(R.id.dashPass);
+            TextView displayAuth = (TextView) findViewById(R.id.dashAuth);
+            TextView displaySuccess = (TextView) findViewById(R.id.dashSuccess);
+            TextView displayInfo = (TextView) findViewById(R.id.dashInfo);
 
-            displayUser.setText("Username: " + extras.getString(PrivateFields.TAG_EMAIL));
-            displayPass.setText("Password: " + extras.getString(PrivateFields.TAG_PASS));
+            displayAuth.setText("Authorization: " + extras.getString(PrivateFields.TAG_AUTH));
+            displaySuccess.setText("Success: " + extras.getString(PrivateFields.TAG_SUCCESS));
+            displayInfo.setText("Info: " + extras.getString(PrivateFields.TAG_INFO));
 
         }
 
