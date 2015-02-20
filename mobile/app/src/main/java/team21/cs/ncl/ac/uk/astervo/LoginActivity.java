@@ -2,6 +2,7 @@ package team21.cs.ncl.ac.uk.astervo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -82,8 +83,6 @@ public class LoginActivity extends ActionBarActivity {
 
             if(connectionStatus.isConnected()) {
 
-                final TextView alert = (TextView) findViewById(R.id.loginAlert);
-
                 JSONObject params = new JSONObject();
                 JSONObject jsonUser = new JSONObject();
                 try {
@@ -94,8 +93,6 @@ public class LoginActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
 
-                alert.setText(params.toString());
-
                 try {
 
                     HttpClient.post(this.getApplicationContext(), "/api/sessions", params, new JsonHttpResponseHandler() {
@@ -105,7 +102,6 @@ public class LoginActivity extends ActionBarActivity {
                             if (statusCode == 200) {
                                 if (response != null) {
                                     try {
-                                        alert.setText(response.toString());
                                         JSONObject data = (JSONObject) response.get(PrivateFields.TAG_DATA);
                                         i.putExtra(PrivateFields.TAG_AUTH, data.getString(PrivateFields.TAG_AUTH));
                                         i.putExtra(PrivateFields.TAG_SUCCESS, response.getString(PrivateFields.TAG_SUCCESS));
@@ -117,7 +113,12 @@ public class LoginActivity extends ActionBarActivity {
                                     }
                                 }
                             } else {
-                                alert.setText("Please try again.");
+                                Context context = getApplicationContext();
+                                CharSequence text = "Something went wrong. Please try again later.";
+                                int duration = Toast.LENGTH_LONG;
+
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
                             }
                         }
 
@@ -160,8 +161,15 @@ public class LoginActivity extends ActionBarActivity {
 
     public void signUp(View view) {
 
-        Intent i = new Intent(this, SignUpActivity.class);
-        startActivity(i);
+        Context context = getApplicationContext();
+        CharSequence text = "Please sign up using your PC or Mobile browser.";
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://astervo.herokuapp.com/users/sign_up"));
+        startActivity(browserIntent);
 
     }
 
