@@ -21,9 +21,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Setup global variables
-        g = (Globals) getApplication();
-
         //Check connection status
         ConnectionStatus connected = new ConnectionStatus(this);
         //If not connected to the internet, display error and app reload button
@@ -44,6 +41,9 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        //Setup global variables
+        g = (Globals) getApplication();
 
         //Check if already logged in
         if(g.isLoggedIn()) {

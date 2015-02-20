@@ -29,6 +29,13 @@ public class HttpClient {
         client.post(context, getAbsoluteUrl(url), entity, "application/json", responseHandler);
     }
 
+    public static void delete(String auth_key, String url, AsyncHttpResponseHandler responseHandler) {
+        client.addHeader("Accept", "application/json");
+        client.addHeader("Content-Type", "application/json");
+        client.delete(getAbsoluteUrl(url + "?" + auth_key + "="), responseHandler);
+
+    }
+
     private static String getAbsoluteUrl(String relativeUrl) {
         return PrivateFields.BASE_URL + relativeUrl;
     }
