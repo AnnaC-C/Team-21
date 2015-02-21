@@ -14,10 +14,11 @@
 ActiveRecord::Schema.define(version: 20150220150936) do
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "type"
+    t.string   "description"
     t.integer  "balance"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float    "interest_rate"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.string   "user_id"
   end
 
