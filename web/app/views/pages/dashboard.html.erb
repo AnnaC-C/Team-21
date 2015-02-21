@@ -1,3 +1,9 @@
 <h1>DASHBOARD</h1>
-
 <h2>Accounts:</h2>
+<ul>
+<%= current_user.accounts.each do |a| %>
+  <li><b>  Balance:</b> <%= a.balance %></li>
+<% end %>
+</ul>
+
+<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>

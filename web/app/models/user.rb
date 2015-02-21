@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
          :token_authenticatable
 
   before_save :ensure_authentication_token
+  
 end
