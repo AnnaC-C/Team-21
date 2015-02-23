@@ -135,7 +135,6 @@ public class LoginActivity extends ActionBarActivity {
                                         g.setLoggedIn(true);
                                         g.setAuthKey(data.getString(PrivateFields.TAG_AUTH));
 
-                                        i.putExtra(PrivateFields.TAG_AUTH, data.getString(PrivateFields.TAG_AUTH));
                                         i.putExtra(PrivateFields.TAG_SUCCESS, response.getString(PrivateFields.TAG_SUCCESS));
                                         i.putExtra(PrivateFields.TAG_INFO, response.getString(PrivateFields.TAG_INFO));
                                         startActivity(i);

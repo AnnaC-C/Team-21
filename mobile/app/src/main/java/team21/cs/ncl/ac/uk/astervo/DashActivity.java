@@ -117,7 +117,7 @@ public class DashActivity extends ActionBarActivity {
 
         //Display global variables
         TextView displayAuth = (TextView) findViewById(R.id.dashAuth);
-        displayAuth.setText("Authorization: " + extras.getString(PrivateFields.TAG_AUTH));
+        displayAuth.setText("Authorization: " + g.getAuthKey());
 
         //If there are extras, then display them
         if(extras != null) {

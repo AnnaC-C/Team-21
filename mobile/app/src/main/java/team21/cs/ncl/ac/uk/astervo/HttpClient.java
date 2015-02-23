@@ -15,13 +15,15 @@ import java.io.UnsupportedEncodingException;
 
 public class HttpClient {
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
+    private static AsyncHttpClient client;
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        reset();
         client.get(getAbsoluteUrl(url), params, responseHandler);
     }
 
     public static void post(Context context, String url, JSONObject params, AsyncHttpResponseHandler responseHandler) throws UnsupportedEncodingException {
+        reset();
         StringEntity entity = new StringEntity(params.toString());
         entity.setContentType(new BasicHeader("Content-Type", "application/json"));
         client.addHeader("Accept", "application/json");
@@ -30,14 +32,18 @@ public class HttpClient {
     }
 
     public static void delete(String auth_key, String url, AsyncHttpResponseHandler responseHandler) {
+        reset();
         client.addHeader("Accept", "application/json");
         client.addHeader("Content-Type", "application/json");
         client.delete(getAbsoluteUrl(url + "/?auth_token=" + auth_key), responseHandler);
-
     }
 
     private static String getAbsoluteUrl(String relativeUrl) {
         return PrivateFields.BASE_URL + relativeUrl;
+    }
+
+    private static void reset() {
+        client = new AsyncHttpClient();
     }
 
 }

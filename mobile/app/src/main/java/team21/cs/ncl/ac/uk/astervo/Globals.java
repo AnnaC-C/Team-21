@@ -7,7 +7,7 @@ import org.json.JSONObject;
 public class Globals extends Application {
 
     private boolean loggedIn = false;
-    private String authKey = null;
+    private String authKey = "";
 
     public boolean isLoggedIn() {
         return loggedIn;
