@@ -60,12 +60,19 @@ public class DashActivity extends ActionBarActivity {
 
     public void logout() {
 
+        final ProgressDialog prgDialog;
+        prgDialog = new ProgressDialog(DashActivity.this);
+        prgDialog.setMessage("Logging out...");
+        prgDialog.setCancelable(false);
+        prgDialog.show();
+
         final Intent i = new Intent(this, MainActivity.class);
 
         HttpClient.delete(g.getAuthKey(), "/api/sessions", new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, org.apache.http.Header[] headers, org.json.JSONObject response) {
+                prgDialog.dismiss();
                 try {
                     if (statusCode == 200 && response.getString(PrivateFields.TAG_INFO).equals("Logged out")) {
 
@@ -96,8 +103,9 @@ public class DashActivity extends ActionBarActivity {
 
             @Override
             public void onFailure(int statusCode, org.apache.http.Header[] headers, java.lang.Throwable throwable, org.json.JSONObject errorResponse) {
+                prgDialog.dismiss();
                 Context context = getApplicationContext();
-                CharSequence text = "Please try again.";
+                CharSequence text = "Logout failed. Please try again.";
                 int duration = Toast.LENGTH_LONG;
 
                 Toast toast = Toast.makeText(context, text, duration);
