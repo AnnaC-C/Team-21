@@ -29,12 +29,12 @@ package team21.cs.ncl.ac.uk.astervo;
 
 public class LoginActivity extends ActionBarActivity {
 
+
     //Get connection status
     ConnectionStatus connectionStatus;
 
     //Create globals
     Globals g;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -211,15 +211,18 @@ public class LoginActivity extends ActionBarActivity {
     //If user wishes to sign up for an account, prompt them and take them to the online sign up page
     public void signUp(View view) {
 
-        Context context = getApplicationContext();
-        CharSequence text = "Please sign up using your PC or Mobile browser.";
-        int duration = Toast.LENGTH_LONG;
+//        Context context = getApplicationContext();
+//        CharSequence text = "Please sign up using your PC or Mobile browser.";
+//        int duration = Toast.LENGTH_LONG;
+//
+//        Toast toast = Toast.makeText(context, text, duration);
+//        toast.show();
+//
+//        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://astervo.herokuapp.com/users/sign_up"));
+//        startActivity(browserIntent);
 
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://astervo.herokuapp.com/users/sign_up"));
-        startActivity(browserIntent);
+        Intent i = new Intent(this, SignUpActivity.class);
+        startActivity(i);
 
     }
 
