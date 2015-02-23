@@ -2,6 +2,8 @@ package team21.cs.ncl.ac.uk.astervo;
 
 import android.app.Application;
 
+import org.json.JSONObject;
+
 public class Globals extends Application {
 
     private boolean loggedIn = false;

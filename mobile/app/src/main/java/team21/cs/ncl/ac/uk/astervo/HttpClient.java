@@ -32,7 +32,7 @@ public class HttpClient {
     public static void delete(String auth_key, String url, AsyncHttpResponseHandler responseHandler) {
         client.addHeader("Accept", "application/json");
         client.addHeader("Content-Type", "application/json");
-        client.delete(getAbsoluteUrl(url + "?" + auth_key + "="), responseHandler);
+        client.delete(getAbsoluteUrl(url + "/?auth_token=" + auth_key), responseHandler);
 
     }
 

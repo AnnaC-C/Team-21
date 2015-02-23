@@ -1,29 +1,30 @@
 package team21.cs.ncl.ac.uk.astervo;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.app.ProgressDialog;
+        import android.content.Context;
+        import android.content.Intent;
+        import android.net.Uri;
+        import android.support.v7.app.ActionBarActivity;
+        import android.os.Bundle;
+        import android.view.Menu;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.widget.EditText;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+        import com.loopj.android.http.AsyncHttpResponseHandler;
+        import com.loopj.android.http.JsonHttpResponseHandler;
+        import com.loopj.android.http.RequestParams;
 
-import org.apache.http.Header;
-import org.apache.http.message.BasicHeader;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+        import org.apache.http.Header;
+        import org.apache.http.message.BasicHeader;
+        import org.json.JSONArray;
+        import org.json.JSONException;
+        import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+        import java.util.HashMap;
+        import java.util.Map;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -69,6 +70,13 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     public void login(View view) {
+
+        final ProgressDialog prgDialog;
+        prgDialog = new ProgressDialog(LoginActivity.this);
+        prgDialog.setMessage("Logging in...");
+        prgDialog.setCancelable(false);
+        prgDialog.show();
+
         //Create an intent to open the Dashboard
         final Intent i = new Intent(this, DashActivity.class);
 
@@ -114,6 +122,9 @@ public class LoginActivity extends ActionBarActivity {
 
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+
+                            prgDialog.dismiss();
+
                             //If successful parse JSON data and create dashboard activity
                             if (statusCode == 200) {
                                 if (response != null) {
@@ -124,6 +135,7 @@ public class LoginActivity extends ActionBarActivity {
                                         g.setLoggedIn(true);
                                         g.setAuthKey(data.getString(PrivateFields.TAG_AUTH));
 
+                                        i.putExtra(PrivateFields.TAG_AUTH, data.getString(PrivateFields.TAG_AUTH));
                                         i.putExtra(PrivateFields.TAG_SUCCESS, response.getString(PrivateFields.TAG_SUCCESS));
                                         i.putExtra(PrivateFields.TAG_INFO, response.getString(PrivateFields.TAG_INFO));
                                         startActivity(i);
@@ -156,6 +168,9 @@ public class LoginActivity extends ActionBarActivity {
                         //If post request fails, check status code
                         @Override
                         public void onFailure(int statusCode, org.apache.http.Header[] headers, java.lang.Throwable throwable, org.json.JSONObject errorResponse) {
+
+                            prgDialog.dismiss();
+
                             //If authorization error, prompt user ot check details
                             if(statusCode == 401) {
                                 Context context = getApplicationContext();

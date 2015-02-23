@@ -1,5 +1,6 @@
 package team21.cs.ncl.ac.uk.astervo;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -25,28 +26,17 @@ public class DashActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash);
 
-        //Get globals
-        g = (Globals) getApplication();
-
-        //Get bundled extras from previous activity
-        Bundle extras = getIntent().getExtras();
-
-        //Display global variables
-        TextView displayAuth = (TextView) findViewById(R.id.dashAuth);
-        displayAuth.setText("Authorization: " + g.getAuthKey() + g.isLoggedIn());
-
-        //If there are extras, then display them
-        if(extras != null) {
-
-            TextView displaySuccess = (TextView) findViewById(R.id.dashSuccess);
-            TextView displayInfo = (TextView) findViewById(R.id.dashInfo);
-            displaySuccess.setText("Success: " + extras.getString(PrivateFields.TAG_SUCCESS));
-            displayInfo.setText("Info: " + extras.getString(PrivateFields.TAG_INFO));
-
-        }
+        update();
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        update();
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,10 +67,10 @@ public class DashActivity extends ActionBarActivity {
             @Override
             public void onSuccess(int statusCode, org.apache.http.Header[] headers, org.json.JSONObject response) {
                 try {
-                    if (statusCode == 200 && response.getString(PrivateFields.TAG_SUCCESS).equals("true")) {
+                    if (statusCode == 200 && response.getString(PrivateFields.TAG_INFO).equals("Logged out")) {
 
                         Context context = getApplicationContext();
-                        CharSequence text = "Logged out.";
+                        CharSequence text = response.getString(PrivateFields.TAG_INFO);
                         int duration = Toast.LENGTH_LONG;
 
                         Toast toast = Toast.makeText(context, text, duration);
@@ -116,6 +106,28 @@ public class DashActivity extends ActionBarActivity {
 
         });
 
+    }
+
+    public void update() {
+        //Get globals
+        g = (Globals) getApplication();
+
+        //Get bundled extras from previous activity
+        Bundle extras = getIntent().getExtras();
+
+        //Display global variables
+        TextView displayAuth = (TextView) findViewById(R.id.dashAuth);
+        displayAuth.setText("Authorization: " + extras.getString(PrivateFields.TAG_AUTH));
+
+        //If there are extras, then display them
+        if(extras != null) {
+
+            TextView displaySuccess = (TextView) findViewById(R.id.dashSuccess);
+            TextView displayInfo = (TextView) findViewById(R.id.dashInfo);
+            displaySuccess.setText("Success: " + extras.getString(PrivateFields.TAG_SUCCESS));
+            displayInfo.setText("Info: " + extras.getString(PrivateFields.TAG_INFO));
+
+        }
     }
 
 }
