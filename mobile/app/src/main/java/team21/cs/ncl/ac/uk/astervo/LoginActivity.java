@@ -129,16 +129,26 @@ public class LoginActivity extends ActionBarActivity {
                             if (statusCode == 200) {
                                 if (response != null) {
                                     try {
-                                        //Parse the data object
-                                        JSONObject data = (JSONObject) response.get(PrivateFields.TAG_DATA);
-                                        //Set global variables
-                                        g.setLoggedIn(true);
-                                        g.setAuthKey(data.getString(PrivateFields.TAG_AUTH));
+                                        //Check the return messages for success
+                                        if(response.getString(PrivateFields.TAG_SUCCESS).equals("true") && response.getString(PrivateFields.TAG_INFO).equals("Logged in")) {
+                                            //Parse the data object
+                                            JSONObject data = (JSONObject) response.get(PrivateFields.TAG_DATA);
+                                            //Set global variables
+                                            g.setLoggedIn(true);
+                                            g.setAuthKey(data.getString(PrivateFields.TAG_AUTH));
 
-                                        i.putExtra(PrivateFields.TAG_SUCCESS, response.getString(PrivateFields.TAG_SUCCESS));
-                                        i.putExtra(PrivateFields.TAG_INFO, response.getString(PrivateFields.TAG_INFO));
-                                        startActivity(i);
-                                        finish();
+                                            startActivity(i);
+                                            finish();
+                                        }
+                                        //If there was an error, tell user to try later
+                                        else {
+                                            Context context = getApplicationContext();
+                                            CharSequence text = "Something went wrong. Please try again later.";
+                                            int duration = Toast.LENGTH_LONG;
+
+                                            Toast toast = Toast.makeText(context, text, duration);
+                                            toast.show();
+                                        }
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -210,16 +220,6 @@ public class LoginActivity extends ActionBarActivity {
 
     //If user wishes to sign up for an account, prompt them and take them to the online sign up page
     public void signUp(View view) {
-
-//        Context context = getApplicationContext();
-//        CharSequence text = "Please sign up using your PC or Mobile browser.";
-//        int duration = Toast.LENGTH_LONG;
-//
-//        Toast toast = Toast.makeText(context, text, duration);
-//        toast.show();
-//
-//        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://astervo.herokuapp.com/users/sign_up"));
-//        startActivity(browserIntent);
 
         Intent i = new Intent(this, SignUpActivity.class);
         startActivity(i);
