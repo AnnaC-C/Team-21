@@ -4,5 +4,10 @@
     <string name="app_name">Astervo</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_logout">Log Out</string>
+    <string name="welcome">Welcome to the Lloyd\'s childrens banking app. To start using the app press Enter below.</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_dash">DashActivity</string>
 
 </resources>
