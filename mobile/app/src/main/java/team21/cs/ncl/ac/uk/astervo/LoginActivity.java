@@ -49,12 +49,6 @@ public class LoginActivity extends ActionBarActivity {
 
     public void login(View view) {
 
-        final ProgressDialog prgDialog;
-        prgDialog = new ProgressDialog(LoginActivity.this);
-        prgDialog.setMessage("Logging in...");
-        prgDialog.setCancelable(false);
-        prgDialog.show();
-
         //Create an intent to open the Dashboard
         final Intent i = new Intent(this, DashActivity.class);
 
@@ -91,6 +85,13 @@ public class LoginActivity extends ActionBarActivity {
                 } catch(JSONException e) {
                     e.printStackTrace();
                 }
+
+                //Start logging in dialog
+                final ProgressDialog prgDialog;
+                prgDialog = new ProgressDialog(LoginActivity.this);
+                prgDialog.setMessage("Logging in...");
+                prgDialog.setCancelable(false);
+                prgDialog.show();
 
                 //Attempt login
                 try {

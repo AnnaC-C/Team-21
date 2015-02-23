@@ -40,12 +40,6 @@ public class SignUpActivity extends ActionBarActivity {
 
     public void signUp(View view) {
 
-        final ProgressDialog prgDialog;
-        prgDialog = new ProgressDialog(SignUpActivity.this);
-        prgDialog.setMessage("Signing up...");
-        prgDialog.setCancelable(false);
-        prgDialog.show();
-
         //Create an intent to open the Dashboard
         final Intent i = new Intent(this, DashActivity.class);
 
@@ -70,7 +64,7 @@ public class SignUpActivity extends ActionBarActivity {
         }
 
         //If email or password is not entered, prompt user with a toast
-        if(!pass.equals(cPass)) {
+        else if(!pass.equals(cPass)) {
             Context context = getApplicationContext();
             CharSequence text = "Passwords don't match.";
             int duration = Toast.LENGTH_LONG;
@@ -97,6 +91,13 @@ public class SignUpActivity extends ActionBarActivity {
                 } catch(JSONException e) {
                     e.printStackTrace();
                 }
+
+                //Start logging in dialog
+                final ProgressDialog prgDialog;
+                prgDialog = new ProgressDialog(SignUpActivity.this);
+                prgDialog.setMessage("Signing up...");
+                prgDialog.setCancelable(false);
+                prgDialog.show();
 
                 //Attempt login
                 try {
@@ -126,15 +127,6 @@ public class SignUpActivity extends ActionBarActivity {
                                         e.printStackTrace();
                                     }
                                 }
-                            }
-                            //If authorization error, prompt user to check details
-                            else if(statusCode == 401) {
-                                Context context = getApplicationContext();
-                                CharSequence text = "Login failed. Check your details and try again.";
-                                int duration = Toast.LENGTH_LONG;
-
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
                             }
                             //Otherwise tell user to try again later
                             else {
