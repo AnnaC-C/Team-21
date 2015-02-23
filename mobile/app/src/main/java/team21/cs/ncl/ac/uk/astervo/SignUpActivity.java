@@ -38,29 +38,6 @@ public class SignUpActivity extends ActionBarActivity {
         g = (Globals) getApplication();
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_sign_up, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     public void signUp(View view) {
 
         final ProgressDialog prgDialog;
@@ -105,7 +82,7 @@ public class SignUpActivity extends ActionBarActivity {
         //Otherwise check the connection status
         else {
 
-            //If phone has data, then attempt login
+            //If phone has data, then attempt sign up
             if(connectionStatus.isConnected()) {
 
                 //Create a new JSON object to store the params
@@ -130,6 +107,7 @@ public class SignUpActivity extends ActionBarActivity {
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
 
+                            //Dismiss the progress dialog
                             prgDialog.dismiss();
 
                             //If successful parse JSON data and create dashboard activity
@@ -142,8 +120,6 @@ public class SignUpActivity extends ActionBarActivity {
                                         g.setLoggedIn(true);
                                         g.setAuthKey(data.getString(PrivateFields.TAG_AUTH));
 
-                                        i.putExtra(PrivateFields.TAG_SUCCESS, response.getString(PrivateFields.TAG_SUCCESS));
-                                        i.putExtra(PrivateFields.TAG_INFO, response.getString(PrivateFields.TAG_INFO));
                                         startActivity(i);
                                         finish();
                                     } catch (Exception e) {

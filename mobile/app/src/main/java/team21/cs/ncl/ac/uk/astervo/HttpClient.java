@@ -23,21 +23,28 @@ public class HttpClient {
     }
 
     public static void post(Context context, String url, JSONObject params, AsyncHttpResponseHandler responseHandler) throws UnsupportedEncodingException {
+        //Reset the client to avoid connection issues
         reset();
+        //Create an entity to send as parameters
         StringEntity entity = new StringEntity(params.toString());
-        entity.setContentType(new BasicHeader("Content-Type", "application/json"));
+        //Set header to JSON
         client.addHeader("Accept", "application/json");
         client.addHeader("Content-Type", "application/json");
+        //Post and receive response
         client.post(context, getAbsoluteUrl(url), entity, "application/json", responseHandler);
     }
 
     public static void delete(String auth_key, String url, AsyncHttpResponseHandler responseHandler) {
+        //Reset the client to avoid connection issues
         reset();
+        //Set content type to JSON
         client.addHeader("Accept", "application/json");
         client.addHeader("Content-Type", "application/json");
+        //Delete and receive response
         client.delete(getAbsoluteUrl(url + "/?auth_token=" + auth_key), responseHandler);
     }
 
+    //Get base URL plus string extension
     private static String getAbsoluteUrl(String relativeUrl) {
         return PrivateFields.BASE_URL + relativeUrl;
     }
