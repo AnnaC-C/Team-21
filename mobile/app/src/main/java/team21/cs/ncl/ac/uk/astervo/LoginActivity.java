@@ -1,11 +1,13 @@
 package team21.cs.ncl.ac.uk.astervo;
 
+        import android.app.AlertDialog;
         import android.app.ProgressDialog;
         import android.content.Context;
         import android.content.Intent;
         import android.net.Uri;
         import android.support.v7.app.ActionBarActivity;
         import android.os.Bundle;
+        import android.view.Gravity;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
@@ -159,24 +161,21 @@ public class LoginActivity extends ActionBarActivity {
 
                             prgDialog.dismiss();
 
-                            //If authorization error, prompt user ot check details
-                            if(statusCode == 401) {
-                                Context context = getApplicationContext();
-                                CharSequence text = "Login failed. Check your details and try again.";
-                                int duration = Toast.LENGTH_LONG;
+                            //Create error String
+                            String error = "";
 
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
+                            try {
+                                error = errorResponse.getString(PrivateFields.TAG_ERROR);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            //Otherwise prompt user to try again later
-                            else {
-                                Context context = getApplicationContext();
-                                CharSequence text = "Something went wrong. Please try again later.";
-                                int duration = Toast.LENGTH_LONG;
 
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
-                            }
+                            //Display alert
+                            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(LoginActivity.this);
+                            dlgAlert.setMessage(error);
+                            dlgAlert.setTitle("Something went wrong:");
+                            dlgAlert.setPositiveButton("OK", null);
+                            dlgAlert.create().show();
                         }
 
                     });

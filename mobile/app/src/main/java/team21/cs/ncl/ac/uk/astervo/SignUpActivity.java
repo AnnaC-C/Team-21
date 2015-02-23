@@ -1,5 +1,6 @@
 package team21.cs.ncl.ac.uk.astervo;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -131,7 +133,7 @@ public class SignUpActivity extends ActionBarActivity {
                             //Otherwise tell user to try again later
                             else {
                                 Context context = getApplicationContext();
-                                CharSequence text = "Something went wrong. Please try again later.";
+                                CharSequence text = "Something went wrong. Please try again.";
                                 int duration = Toast.LENGTH_LONG;
 
                                 Toast toast = Toast.makeText(context, text, duration);
@@ -145,25 +147,36 @@ public class SignUpActivity extends ActionBarActivity {
 
                             prgDialog.dismiss();
 
-                            //If authorization error, prompt user ot check details
-                            if(statusCode == 401) {
-                                Context context = getApplicationContext();
-                                CharSequence text = "Login failed. Check your details and try again.";
-                                int duration = Toast.LENGTH_LONG;
+                            //Create object to store info
+                            JSONArray info = new JSONArray();
 
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
+                            try {
+                                info = (JSONArray) errorResponse.get(PrivateFields.TAG_INFO);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            //Otherwise prompt user to try again later
-                            else {
-                                Context context = getApplicationContext();
-                                CharSequence text = "Something went wrong. Please try again later.";
-                                int duration = Toast.LENGTH_LONG;
 
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
+                            //Create error String
+                            String error = "";
+
+                            //Add each exception in one at a time
+                            for(int i = 0; i < info.length(); i++) {
+                                try {
+                                    error = error + "\u2022 " + info.getString(i) + ".\n";
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
-                        }
+
+                            //Display alert
+                            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(SignUpActivity.this);
+                            dlgAlert.setMessage(error);
+                            dlgAlert.setTitle("Something went wrong:");
+                            dlgAlert.setPositiveButton("OK", null);
+                            dlgAlert.create().show();
+
+                       }
+
 
                     });
                 } catch (Exception e) {

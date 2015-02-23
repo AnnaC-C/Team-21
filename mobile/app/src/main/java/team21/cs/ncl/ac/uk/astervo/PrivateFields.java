@@ -12,5 +12,6 @@ public class PrivateFields {
     public static final String TAG_AUTH = "auth_token";
     public static final String TAG_SUCCESS = "success";
     public static final String TAG_INFO = "info";
+    public static final String TAG_ERROR = "error";
 
 }
