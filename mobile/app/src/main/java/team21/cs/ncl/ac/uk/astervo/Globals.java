@@ -7,7 +7,7 @@ import org.json.JSONObject;
 public class Globals extends Application {
 
     private boolean loggedIn = false;
-    private String authKey = "";
+    private String authKey = null;
 
     public boolean isLoggedIn() {
         return loggedIn;
@@ -23,5 +23,10 @@ public class Globals extends Application {
 
     public void setAuthKey(String authKey) {
         this.authKey = authKey;
+    }
+
+    public void reset() {
+        setLoggedIn(false);
+        setAuthKey(null);
     }
 }

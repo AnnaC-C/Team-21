@@ -13,6 +13,7 @@ public class ConnectionStatus {
     }
 
     public boolean isConnected() {
+        //Check that phone is connected to the internet - if not, return false
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Activity.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected())
