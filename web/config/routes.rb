@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'transactions/transfer'
+
   devise_for :users
   resources :users
 
