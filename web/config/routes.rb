@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   resources :users
 
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     devise_scope :user do
+      post "transactions" => "transactions#transfer", :as => 'transfer'
       post 'registrations' => 'registrations#create', :as => 'register'
       post 'sessions' => 'sessions#create', :as => 'login'
       delete 'sessions' => 'sessions#destroy', :as => 'logout'
