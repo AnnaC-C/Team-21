@@ -9,5 +9,18 @@
   </ul>
 </div>
 <% end %>
+<br />
 
+<%= form_for :transaction do |f| %>
+  <%= f.label :from %>
+  <%= f.text_field :from %>
+  <br />
+  <%= f.label :to %>
+  <%= f.text_field :to %>
+  <br />
+  <%= f.label :amount %>
+  <%= f.text_field :amount %>
+
+  <%= f.submit "Transfer" %>
+<% end %>
 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
