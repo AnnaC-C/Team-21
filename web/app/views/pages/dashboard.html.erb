@@ -4,14 +4,14 @@
 <div style="margin: 5px; border: 3px solid #9EA900;">
   <ul>
     <li><b>Type:</b> <%= a.description %></li>
-    <li><b>Balance:</b> <%= a.balance %></li>
+    <li><b>Balance:</b> £<%= a.balance %></li>
     <li><b>Interest Rate:</b> <%= a.interest_rate %>%</li>
   </ul>
 </div>
 <% end %>
 <br />
 
-<%= form_for :transaction do |f| %>
+<%= form_for :transaction, :url => :transfer do |f| %>
   <%= f.label :from %>
   <%= f.text_field :from %>
   <br />

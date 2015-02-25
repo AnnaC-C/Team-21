@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'transactions/transfer'
-
   devise_for :users
   resources :users
   resources :transactions, path: 'pages'
@@ -9,6 +6,7 @@ Rails.application.routes.draw do
 
   root 'pages#dashboard'
   get 'pages/dashboard'
+  post 'transactions/transfer' => 'transactions#transfer', :as => :transfer
 
   devise_scope :user do
     get "/login" => "devise/sessions#new"
