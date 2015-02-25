@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users
-  resources :transactions, path: 'pages'
-
 
   root 'pages#dashboard'
   get 'pages/dashboard'

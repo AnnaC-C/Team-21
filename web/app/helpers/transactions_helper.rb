@@ -47,5 +47,8 @@ module TransactionsHelper
     # Add amount to receiver's account.
     @receiver_account.balance += amount.to_i
     @receiver_account.save
+
+    # TODO: Current User's ID will be different for API accesses.
+    Transaction.create("sender_id" => from, "receiver_id" => to, "amount" => amount, "user_id" => current_user.id)
   end
 end
