@@ -12,17 +12,17 @@
 <br />
 
 <h2>Transfer Money:</h2>
-<%= form_for :transaction, :url => :transfer do |f| %>
-  <%= f.label :from %>
-  <%= f.text_field :from %>
+<%= form_tag :transfer, :url => :transfer do %>
+  <%= label_tag :from %>
+  <%= collection_select(:transaction, :from, current_user.accounts.each, :id, :description)  %>
   <br />
-  <%= f.label :to %>
-  <%= f.text_field :to %>
+  <%= label_tag :to %>
+  <%= collection_select(:transaction, :to, current_user.accounts.each, :id, :description, {:selected => current_user.accounts.map(&:id)})  %>
   <br />
-  <%= f.label :amount %>
-  <%= f.text_field :amount %>
+  <%= label_tag :amount %>
+  <%= text_field_tag :amount %>
 
-  <%= f.submit "Transfer" %>
+  <%= submit_tag "Transfer" %>
 <% end %>
 
 <h2>Transactions:</h2>

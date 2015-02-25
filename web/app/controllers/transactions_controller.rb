@@ -7,9 +7,9 @@ class TransactionsController < ApplicationController
   def transfer
     to = params[:transaction][:to]
     from = params[:transaction][:from]
-    amount = params[:transaction][:amount]
+    amount = params[:amount]
 
-    if(validate_account_ownership(to, from) && transaction_possible?(from, amount))
+    if(validate_account_ownership(to, from) && transaction_possible?(from, amount) && amount.to_i >= 0)
       transfer_money(to, from, amount)
     else
       logger.info("TRANSFER FAILURE.")

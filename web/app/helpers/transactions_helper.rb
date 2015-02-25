@@ -38,6 +38,7 @@ module TransactionsHelper
     # Transfer money from one account to another.
     # TODO: Move both validation methods above into here.
     # TODO: API flag?
+    # TODO: ALWAYS amount >= 0
     @sender_account = Account.find(from)
     @receiver_account = Account.find(to)
     # Remove amount from the sender's account.
