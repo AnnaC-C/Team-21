@@ -9,7 +9,8 @@ class Api::AccountsController < ApplicationController
   def retrieve
     accounts = []
     current_user.accounts.each do |a|
-        accounts.push({:type => a.description,
+        accounts.push({:id => a.id,
+                       :type => a.description,
                        :balance => a.balance,
                        :interest => a.interest_rate})
 

@@ -1,5 +1,13 @@
 module TransactionsHelper
 
+  def validate_input(to, from, amount)
+    if(to.to_i != from.to_i && amount.to_i >= 0)
+      return true
+    else
+      return false
+    end
+  end
+
   def validate_account_ownership(to, from)
     # Validate that the User owns both the :from and :to Account.
 
