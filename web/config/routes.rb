@@ -13,10 +13,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     devise_scope :user do
-      post "transactions" => "transactions#transfer", :as => 'transfer'
       post 'registrations' => 'registrations#create', :as => 'register'
       post 'sessions' => 'sessions#create', :as => 'login'
       delete 'sessions' => 'sessions#destroy', :as => 'logout'
+      post "transfers" => "transfers#create", :as => 'transfer'
+      get "accounts" => "accounts#retrieve", :as => 'retrieve'
     end
   end
 end
