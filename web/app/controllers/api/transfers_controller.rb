@@ -1,5 +1,6 @@
 class Api::TransfersController < ApplicationController
   include TransactionsHelper
+  include ApiHelper
 
   skip_before_filter :verify_authenticity_token, :if => Proc.new { |c|
     c.request.format == 'application/json' }
@@ -14,7 +15,9 @@ class Api::TransfersController < ApplicationController
     if(validate_account_ownership(to, from) && transaction_possible?(from, amount) && validate_input(to, from, amount) && transfer_money(to, from, amount))
       render :status => 200,
              :json => { :success => true,
-                        :info => "Transfer complete."}
+                        :info => "Transfer complete.",
+                        :accounts => retrieve_accounts
+                      }
     else
       render :status => :unprocessable_entity,
              :json => { :success => false,

@@ -1,4 +1,6 @@
 class Api::RegistrationsController < Devise::RegistrationsController
+  include ApiHelper
+
   skip_before_filter :verify_authenticity_token, :if => Proc.new { |c|
     c.request.format == 'application/json'
   }
@@ -13,7 +15,8 @@ class Api::RegistrationsController < Devise::RegistrationsController
              :json => { :success => true,
                         :info => "Registered",
                         :data => {  :user => resource,
-                                    :auth_token => current_user.authentication_token }
+                                    :auth_token => current_user.authentication_token,
+                                 }
              }
     else
       render :status => :unprocessable_entity,

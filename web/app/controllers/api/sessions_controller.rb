@@ -1,4 +1,6 @@
 class Api::SessionsController < Devise::SessionsController
+  include ApiHelper
+  
   skip_before_filter :verify_authenticity_token, :verify_signed_out_user, :if => Proc.new { |c|
     c.request.format == 'application/json' }
 
@@ -11,7 +13,11 @@ class Api::SessionsController < Devise::SessionsController
       render :status => 200,
              :json => { :success => true,
                         :info => "Logged in",
-                        :data => { :auth_token => current_user.authentication_token} }
+                        :data => { :auth_token => current_user.authentication_token,
+                                   :accounts => retrieve_accounts
+                                 }
+
+                      }
     end
 
     def destroy
