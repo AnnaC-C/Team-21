@@ -1,7 +1,17 @@
 module TransfersHelper
   # Validate the transfer and if possible, transfer the money.
   def transfer_money(to, from, amount)
-    # TODO: Rails exception if fields are left blank, validate fields before calling this method.
+    # Validate the parameter types. The following three lines will set the
+    # variables to nil if they cannot be parsed as Integers/Float.
+    to = Integer(to) rescue nil
+    from = Integer(from) rescue nil
+    amount = Float(amount) rescue nil
+
+    # If any of the parameters ended up nil, they are invalid.
+    if(to.nil? || from.nil? || amount.nil?)
+      return {:success => false, :message => "Invalid input."}
+    end
+
     to_user_id = Account.find(to).user_id.to_i
     from_user_id = Account.find(from).user_id.to_i
     current_user_id = current_user.id.to_i
