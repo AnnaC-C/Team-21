@@ -1,4 +1,4 @@
-module TransactionsHelper
+module TransfersHelper
   # Validate the transfer and if possible, transfer the money.
   def transfer_money(to, from, amount)
     # TODO: Rails exception if fields are left blank, validate fields before calling this method.
@@ -34,7 +34,7 @@ module TransactionsHelper
       @receiver_account.save
 
       # Make a record of the transfer and return success.
-      Transaction.create("sender_id" => from, "receiver_id" => to, "amount" => amount, "user_id" => current_user.id)
+      Transfer.create("sender_id" => from, "receiver_id" => to, "amount" => amount, "user_id" => current_user.id)
       return {:status => 0, :message => "Transfer complete."}
     else
       return {:status => -1, :message => "Insufficient funds to complete the transfer."}
