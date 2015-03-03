@@ -1,63 +1,43 @@
 module TransactionsHelper
-
-  def validate_input(to, from, amount)
-    if(to.to_i != from.to_i && amount.to_i >= 0)
-      return true
-    else
-      return false
-    end
-  end
-
-  def validate_account_ownership(to, from)
-    # Validate that the User owns both the :from and :to Account.
-
+  # Validate the transfer and if possible, transfer the money.
+  def transfer_money(to, from, amount)
     # TODO: Rails exception if fields are left blank, validate fields before calling this method.
     to_user_id = Account.find(to).user_id.to_i
     from_user_id = Account.find(from).user_id.to_i
     current_user_id = current_user.id.to_i
 
-    logger.info("User ID of RECEIVING ACCOUNT: #{to_user_id}")
-    logger.info("User ID of SENDER ACCOUNT: #{from_user_id}")
-    logger.info("Current User ID: #{current_user_id}")
-
-    if(to_user_id == current_user_id && from_user_id == current_user_id)
-      logger.info("OWNERSHIP SUCCESS")
-      return true
-    else
-      logger.info("OWNERSHIP FAILURE")
-      return false
+    # Parameter validation and error handling.
+    if(to.to_i == from.to_i)
+      # Make sure the 'to' and 'from' Accounts are unique.
+      return {:status => -1, :message => "The account you're transferring from must not be the same as the
+              account you're transferring to."}
+    elsif(amount.to_i <= 0)
+      # The Amount must be greater than 0.
+      return {:status => -1, :message => "You can't transfer a null or negative amount of money."}
+    elsif(to_user_id =! current_user_id || from_user_id =! current_user_id)
+      # Both Accounts must be owned by the signed-in User.
+      return {:status => -1, :message => "The current User must own all Accounts involved in a transfer."}
     end
-  end
 
-  def transaction_possible?(from, amount)
-    # Ensure that the transaction can take place (i.e. sufficient balances in both accounts).
-
-    logger.info("AMOUNT: £ #{amount}")
-
-    sender_account_balance = Account.find(from).balance.to_i
-    logger.info("SENDER BALANCE: £ #{sender_account_balance}")
-
-    result = sender_account_balance >= amount.to_i
-    logger.info("POSSIBLE: #{result}")
-    return result
-  end
-
-  def transfer_money(to, from, amount)
-    # Transfer money from one account to another.
-    # TODO: Move both validation methods above into here.
-    # TODO: API flag?
-    # TODO: ALWAYS amount >= 0
+    # Validate that the transfer can occur.
     @sender_account = Account.find(from)
     @receiver_account = Account.find(to)
-    # Remove amount from the sender's account.
-    @sender_account.balance -= amount.to_i
-    @sender_account.save
 
-    # Add amount to receiver's account.
-    @receiver_account.balance += amount.to_i
-    @receiver_account.save
+    if(@sender_account.balance.to_i >= amount.to_i)
+      # If there are sufficient funds, make the transfer.
+      # Remove amount from the sender's account.
+      @sender_account.balance -= amount.to_i
+      @sender_account.save
 
-    # TODO: Current User's ID will be different for API accesses.
-    Transaction.create("sender_id" => from, "receiver_id" => to, "amount" => amount, "user_id" => current_user.id)
+      # Add amount to receiver's account.
+      @receiver_account.balance += amount.to_i
+      @receiver_account.save
+
+      # Make a record of the transfer and return success.
+      Transaction.create("sender_id" => from, "receiver_id" => to, "amount" => amount, "user_id" => current_user.id)
+      return {:status => 0, :message => "Transfer complete."}
+    else
+      return {:status => -1, :message => "Insufficient funds to complete the transfer."}
+    end
   end
 end
