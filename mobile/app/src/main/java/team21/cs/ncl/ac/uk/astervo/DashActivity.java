@@ -7,13 +7,19 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DashActivity extends ActionBarActivity {
@@ -26,6 +32,7 @@ public class DashActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash);
 
+        //Update fields every time activity is started
         update();
 
     }
@@ -34,6 +41,7 @@ public class DashActivity extends ActionBarActivity {
     public void onResume() {
         super.onResume();
 
+        //Update fields every time activity is resumed
         update();
 
     }
@@ -60,22 +68,29 @@ public class DashActivity extends ActionBarActivity {
 
     public void logout() {
 
+        //Create a progress dialog to show the app logging out
         final ProgressDialog prgDialog;
         prgDialog = new ProgressDialog(DashActivity.this);
         prgDialog.setMessage("Logging out...");
         prgDialog.setCancelable(false);
         prgDialog.show();
 
+        //Create an intent to return back to the initial activity
         final Intent i = new Intent(this, MainActivity.class);
 
+        //Send the logout request to the server
         HttpClient.delete(g.getAuthKey(), "/api/sessions", new JsonHttpResponseHandler() {
 
+            //If successful
             @Override
             public void onSuccess(int statusCode, org.apache.http.Header[] headers, org.json.JSONObject response) {
+                //Dismiss the loading dialog
                 prgDialog.dismiss();
                 try {
+                    //Check the status code
                     if (statusCode == 200 && response.getString(PrivateFields.TAG_INFO).equals("Logged out")) {
 
+                        //If logged out, show logged out toast
                         Context context = getApplicationContext();
                         CharSequence text = response.getString(PrivateFields.TAG_INFO);
                         int duration = Toast.LENGTH_LONG;
@@ -83,14 +98,18 @@ public class DashActivity extends ActionBarActivity {
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
 
-                        g.setLoggedIn(false);
-                        g.setAuthKey(null);
+                        //Set global variables to initial state
+                        g.reset();
 
+                        //Return to first activity
                         startActivity(i);
+                        //Finish this activity
                         finish();
-                    } else {
+                    }
+                    //Something went wrong, prompt user to try again.
+                    else {
                         Context context = getApplicationContext();
-                        CharSequence text = "Please try again.";
+                        CharSequence text = "Logout failed. Please try again.";
                         int duration = Toast.LENGTH_LONG;
 
                         Toast toast = Toast.makeText(context, text, duration);
@@ -101,6 +120,7 @@ public class DashActivity extends ActionBarActivity {
                 }
             }
 
+            //Something went wrong, prompt user to try again
             @Override
             public void onFailure(int statusCode, org.apache.http.Header[] headers, java.lang.Throwable throwable, org.json.JSONObject errorResponse) {
                 prgDialog.dismiss();
@@ -123,19 +143,31 @@ public class DashActivity extends ActionBarActivity {
         //Get bundled extras from previous activity
         Bundle extras = getIntent().getExtras();
 
-        //Display global variables
-        TextView displayAuth = (TextView) findViewById(R.id.dashAuth);
-        displayAuth.setText("Authorization: " + g.getAuthKey());
+        //Get the Array of accounts
+        JSONArray jsonAccounts = g.getAccounts();
 
-        //If there are extras, then display them
-        if(extras != null) {
+        //Create a String of type list to store the item Strings
+        List<String> accounts = new ArrayList<String>();
 
-            TextView displaySuccess = (TextView) findViewById(R.id.dashSuccess);
-            TextView displayInfo = (TextView) findViewById(R.id.dashInfo);
-            displaySuccess.setText("Success: " + extras.getString(PrivateFields.TAG_SUCCESS));
-            displayInfo.setText("Info: " + extras.getString(PrivateFields.TAG_INFO));
-
+        //Create a for loop to iterate through each account and pull out the relevant data
+        for(int i = 0; i < jsonAccounts.length(); i++) {
+            //Try to get account details from each JSON object
+            try {
+                JSONObject currentAcc = jsonAccounts.getJSONObject(i);
+                String details = "";
+                details += "Account Type: " + currentAcc.getString(PrivateFields.TAG_TYPE) + "\n";
+                details += "Balance: " + currentAcc.getString(PrivateFields.TAG_BAL) + "\n";
+                details += "Interest Rate: " + currentAcc.getString(PrivateFields.TAG_INTEREST) + "%";
+                accounts.add(details);
+            } catch(JSONException e) {
+                e.printStackTrace();
+            }
         }
+
+        //Create an array adapter to set the List view equal to the information of each account
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(((ListView)findViewById(R.id.accListView)).getContext(), android.R.layout.simple_list_item_1, accounts);
+        ((ListView) findViewById(R.id.accListView)).setAdapter(adapter);
+
     }
 
 }
