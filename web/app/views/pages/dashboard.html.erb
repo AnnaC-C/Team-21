@@ -1,5 +1,40 @@
 <h1>DASHBOARD</h1>
-<h2>Name: <%= current_user.name %></h2>
-<h2>Email: <%= current_user.email %></h2>
-<h2>Password: <%= current_user.password_digest %></h2>
-<%= link_to "Log out", logout_path, method: "delete"  %>
+<h2>Accounts:</h2>
+<% current_user.accounts.each do |a| %>
+<div style="margin: 5px; border: 3px solid #9EA900;">
+  <ul>
+    <li><b>Description:</b> <%= a.description %></li>
+    <li><b>Balance:</b> £<%= a.balance %></li>
+    <li><b>Interest Rate:</b> <%= a.interest_rate %>%</li>
+  </ul>
+</div>
+<% end %>
+<br />
+
+<h2>Transfer Money:</h2>
+<%= form_tag :transfer, :url => :transfer do %>
+  <%= label_tag :from %>
+  <%= collection_select(:transaction, :from, current_user.accounts.each, :id, :description)  %>
+  <br />
+  <%= label_tag :to %>
+  <%= collection_select(:transaction, :to, current_user.accounts.each, :id, :description, {:selected => current_user.accounts.map(&:id)})  %>
+  <br />
+  <%= label_tag :amount %>
+  <%= text_field_tag :amount %>
+
+  <%= submit_tag "Transfer" %>
+<% end %>
+
+<h2>Transactions:</h2>
+<% current_user.transactions.each do |t| %>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> <%= t.created_at %></li>
+    <li><b>Sending Account ID:</b> <%= t.sender_id %></li>
+    <li><b>Receiving Account ID:</b> <%= t.receiver_id %></li>
+    <li><b>Amount:</b> £<%= t.amount %></li>
+  </ul>
+</div>
+<% end %>
+
+<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
