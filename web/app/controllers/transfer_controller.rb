@@ -6,6 +6,7 @@ class TransferController < ApplicationController
     from = params[:transfer][:from]
     amount = params[:amount]
 
+    # TODO: Deliver error from this method to Dashboard.
     transfer_money(to, from, amount)
 
 

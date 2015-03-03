@@ -7,21 +7,25 @@ class Api::TransfersController < ApplicationController
 
   respond_to :json
 
+  # Create a new Transfer through the API.
   def create
+    # Extract the parameters.
     to = params[:transfer][:to]
     from = params[:transfer][:from]
     amount = params[:amount]
 
-    if(transfer_money(to, from, amount)
+    result = transfer_money(to, from, amount)
+
+    if(result[:success])
+      # If the transfer was successful, return the status and the new accounts.
       render :status => 200,
-             :json => { :success => true,
-                        :info => "Transfer complete.",
+             :json => { :result => result,
                         :accounts => retrieve_accounts
                       }
     else
+      # If it wasn't, return the error.
       render :status => :unprocessable_entity,
-             :json => { :success => false,
-                        :info => "Error. Transfer did not complete." }
+             :json => { :result => result }
     end
   end
 end

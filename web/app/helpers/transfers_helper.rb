@@ -9,14 +9,18 @@ module TransfersHelper
     # Parameter validation and error handling.
     if(to.to_i == from.to_i)
       # Make sure the 'to' and 'from' Accounts are unique.
-      return {:status => -1, :message => "The account you're transferring from must not be the same as the
+      return {:success => false, :message => "The account you're transferring from must not be the same as the
               account you're transferring to."}
-    elsif(amount.to_i <= 0)
+    end
+
+    if(amount.to_i <= 0)
       # The Amount must be greater than 0.
-      return {:status => -1, :message => "You can't transfer a null or negative amount of money."}
-    elsif(to_user_id =! current_user_id || from_user_id =! current_user_id)
+      return {:success => false, :message => "You can't transfer a null or negative amount of money."}
+    end
+
+    if(to_user_id != current_user_id || from_user_id != current_user_id)
       # Both Accounts must be owned by the signed-in User.
-      return {:status => -1, :message => "The current User must own all Accounts involved in a transfer."}
+      return {:success => false, :message => "The current User must own all Accounts involved in a transfer."}
     end
 
     # Validate that the transfer can occur.
@@ -35,9 +39,9 @@ module TransfersHelper
 
       # Make a record of the transfer and return success.
       Transfer.create("sender_id" => from, "receiver_id" => to, "amount" => amount, "user_id" => current_user.id)
-      return {:status => 0, :message => "Transfer complete."}
+      return {:success => true, :message => "Transfer complete."}
     else
-      return {:status => -1, :message => "Insufficient funds to complete the transfer."}
+      return {:success => false, :message => "Insufficient funds to complete the transfer."}
     end
   end
 end
