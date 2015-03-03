@@ -117,6 +117,7 @@ public class LoginActivity extends ActionBarActivity {
                                             //Set global variables
                                             g.setLoggedIn(true);
                                             g.setAuthKey(data.getString(PrivateFields.TAG_AUTH));
+                                            g.setAccounts(data.getJSONArray(PrivateFields.TAG_ACC));
 
                                             startActivity(i);
                                             finish();
@@ -165,7 +166,7 @@ public class LoginActivity extends ActionBarActivity {
                             String error = "";
 
                             try {
-                                error = errorResponse.getString(PrivateFields.TAG_ERROR);
+                                error = "\u2022 " + errorResponse.getString(PrivateFields.TAG_ERROR);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

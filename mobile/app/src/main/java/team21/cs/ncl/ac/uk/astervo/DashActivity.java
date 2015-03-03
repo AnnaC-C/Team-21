@@ -7,13 +7,19 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DashActivity extends ActionBarActivity {
@@ -137,9 +143,31 @@ public class DashActivity extends ActionBarActivity {
         //Get bundled extras from previous activity
         Bundle extras = getIntent().getExtras();
 
-        //Display global variables
-        TextView displayAuth = (TextView) findViewById(R.id.dashAuth);
-        displayAuth.setText("Authorization: " + g.getAuthKey());
+        //Get the Array of accounts
+        JSONArray jsonAccounts = g.getAccounts();
+
+        //Create a String of type list to store the item Strings
+        List<String> accounts = new ArrayList<String>();
+
+        //Create a for loop to iterate through each account and pull out the relevant data
+        for(int i = 0; i < jsonAccounts.length(); i++) {
+            //Try to get account details from each JSON object
+            try {
+                JSONObject currentAcc = jsonAccounts.getJSONObject(i);
+                String details = "";
+                details += "Account Type: " + currentAcc.getString(PrivateFields.TAG_TYPE) + "\n";
+                details += "Balance: " + currentAcc.getString(PrivateFields.TAG_BAL) + "\n";
+                details += "Interest Rate: " + currentAcc.getString(PrivateFields.TAG_INTEREST) + "%";
+                accounts.add(details);
+            } catch(JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //Create an array adapter to set the List view equal to the information of each account
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(((ListView)findViewById(R.id.accListView)).getContext(), android.R.layout.simple_list_item_1, accounts);
+        ((ListView) findViewById(R.id.accListView)).setAdapter(adapter);
+
     }
 
 }
