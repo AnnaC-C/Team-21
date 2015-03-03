@@ -1,5 +1,5 @@
 class Api::TransfersController < ApplicationController
-  include TransactionsHelper
+  include TransfersHelper
   include ApiHelper
 
   skip_before_filter :verify_authenticity_token, :if => Proc.new { |c|
@@ -7,21 +7,25 @@ class Api::TransfersController < ApplicationController
 
   respond_to :json
 
+  # Create a new Transfer through the API.
   def create
-    to = params[:transaction][:to]
-    from = params[:transaction][:from]
+    # Extract the parameters.
+    to = params[:transfer][:to]
+    from = params[:transfer][:from]
     amount = params[:amount]
 
-    if(validate_account_ownership(to, from) && transaction_possible?(from, amount) && validate_input(to, from, amount) && transfer_money(to, from, amount))
+    result = transfer_money(to, from, amount)
+
+    if(result[:success])
+      # If the transfer was successful, return the status and the new accounts.
       render :status => 200,
-             :json => { :success => true,
-                        :info => "Transfer complete.",
+             :json => { :result => result,
                         :accounts => retrieve_accounts
                       }
     else
+      # If it wasn't, return the error.
       render :status => :unprocessable_entity,
-             :json => { :success => false,
-                        :info => "Error. Transfer did not complete." }
+             :json => { :result => result }
     end
   end
 end

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :accounts
-  has_many :transactions
+  has_many :transfers
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

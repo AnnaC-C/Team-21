@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'pages#dashboard'
   get 'pages/dashboard'
-  post 'transactions/transfer' => 'transactions#transfer', :as => :transfer
+  post 'transfer/transfer' => 'transfer#transfer', :as => :transfers
 
   devise_scope :user do
     get "/login" => "devise/sessions#new"
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       post 'registrations' => 'registrations#create', :as => 'register'
       post 'sessions' => 'sessions#create', :as => 'login'
       delete 'sessions' => 'sessions#destroy', :as => 'logout'
-      post "transfers" => "transfers#create", :as => 'transfer'
+      post "transfers" => "transfers#create", :as => 'transfers'
     end
   end
 end
