@@ -7,7 +7,7 @@ module ApiHelper
                        :balance => a.balance,
                        :interest => a.interest_rate})
 
-      return accounts
     end
+    return accounts
   end
 end
