@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -115,7 +117,7 @@ public class DashActivity extends ActionBarActivity {
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
                     }
-                } catch(JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -156,7 +158,7 @@ public class DashActivity extends ActionBarActivity {
                 JSONObject currentAcc = jsonAccounts.getJSONObject(i);
                 String details = "";
                 details += "Account Type: " + currentAcc.getString(PrivateFields.TAG_TYPE) + "\n";
-                details += "Balance: " + currentAcc.getString(PrivateFields.TAG_BAL) + "\n";
+                details += "Balance: £" + currentAcc.getString(PrivateFields.TAG_BAL) + "\n";
                 details += "Interest Rate: " + currentAcc.getString(PrivateFields.TAG_INTEREST) + "%";
                 accounts.add(details);
             } catch(JSONException e) {
@@ -166,7 +168,17 @@ public class DashActivity extends ActionBarActivity {
 
         //Create an array adapter to set the List view equal to the information of each account
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(((ListView)findViewById(R.id.accListView)).getContext(), android.R.layout.simple_list_item_1, accounts);
-        ((ListView) findViewById(R.id.accListView)).setAdapter(adapter);
+        ListView displayAcc = (ListView) findViewById(R.id.accListView);
+        displayAcc.setAdapter(adapter);
+
+        //Set on click listener for each item
+        displayAcc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Toast.makeText(getBaseContext(), Integer.toString(position), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
