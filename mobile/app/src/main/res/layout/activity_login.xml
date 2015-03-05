@@ -16,7 +16,8 @@
         android:hint="Enter your email"
         android:minWidth="300dp"
         android:maxWidth="300dp"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:text="json@test.com" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -28,7 +29,8 @@
         android:minWidth="300dp"
         android:maxWidth="300dp"
         android:password="true"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:text="password" />
 
     <Button
         android:layout_width="wrap_content"

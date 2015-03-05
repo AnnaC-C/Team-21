@@ -1,32 +1,32 @@
 package team21.cs.ncl.ac.uk.astervo;
 
-        import android.app.AlertDialog;
-        import android.app.ProgressDialog;
-        import android.content.Context;
-        import android.content.Intent;
-        import android.net.Uri;
-        import android.support.v7.app.ActionBarActivity;
-        import android.os.Bundle;
-        import android.view.Gravity;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.EditText;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.loopj.android.http.AsyncHttpResponseHandler;
-        import com.loopj.android.http.JsonHttpResponseHandler;
-        import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
-        import org.apache.http.Header;
-        import org.apache.http.message.BasicHeader;
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import org.apache.http.Header;
+import org.apache.http.message.BasicHeader;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-        import java.util.HashMap;
-        import java.util.Map;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -167,8 +167,9 @@ public class LoginActivity extends ActionBarActivity {
 
                             try {
                                 error = "\u2022 " + errorResponse.getString(PrivateFields.TAG_ERROR);
-                            } catch (JSONException e) {
+                            } catch (Exception e) {
                                 e.printStackTrace();
+                                error = "Please Try Again.";
                             }
 
                             //Display alert
