@@ -75,4 +75,12 @@
         android:layout_below="@+id/transferTo"
         android:layout_centerHorizontal="true"
         android:onClick="submit"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/message"
+        android:layout_below="@+id/transferSubmit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp" />
 </RelativeLayout>

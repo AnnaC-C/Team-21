@@ -142,9 +142,6 @@ public class DashActivity extends ActionBarActivity {
         //Get globals
         g = (Globals) getApplication();
 
-        //Get bundled extras from previous activity
-        Bundle extras = getIntent().getExtras();
-
         //Get the Array of accounts
         final JSONArray jsonAccounts = g.getAccounts();
 

@@ -167,8 +167,9 @@ public class LoginActivity extends ActionBarActivity {
 
                             try {
                                 error = "\u2022 " + errorResponse.getString(PrivateFields.TAG_ERROR);
-                            } catch (JSONException e) {
+                            } catch (Exception e) {
                                 e.printStackTrace();
+                                error = "Please Try Again.";
                             }
 
                             //Display alert

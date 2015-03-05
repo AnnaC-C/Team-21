@@ -15,7 +15,7 @@ import java.io.UnsupportedEncodingException;
 
 public class HttpClient {
 
-    private static AsyncHttpClient client;
+    private static AsyncHttpClient client = new AsyncHttpClient();
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
         reset();
@@ -23,8 +23,6 @@ public class HttpClient {
     }
 
     public static void post(Context context, String url, JSONObject params, AsyncHttpResponseHandler responseHandler) throws UnsupportedEncodingException {
-        //Reset the client to avoid connection issues
-        reset();
         //Create an entity to send as parameters
         StringEntity entity = new StringEntity(params.toString());
         //Set header to JSON
