@@ -9,5 +9,6 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="title_activity_dash">DashActivity</string>
+    <string name="title_activity_single_account">SingleAccountActivity</string>
 
 </resources>
