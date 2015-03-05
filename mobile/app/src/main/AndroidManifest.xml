@@ -36,6 +36,10 @@
             android:name=".SingleAccountActivity"
             android:label="@string/title_activity_single_account" >
         </activity>
+        <activity
+            android:name=".TransferActivity"
+            android:label="@string/title_activity_transfer" >
+        </activity>
     </application>
 
 </manifest>

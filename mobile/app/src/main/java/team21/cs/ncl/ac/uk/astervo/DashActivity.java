@@ -188,4 +188,11 @@ public class DashActivity extends ActionBarActivity {
 
     }
 
+    public void transfer(View view) {
+
+        Intent i = new Intent(getApplicationContext(), TransferActivity.class);
+        startActivity(i);
+
+    }
+
 }
