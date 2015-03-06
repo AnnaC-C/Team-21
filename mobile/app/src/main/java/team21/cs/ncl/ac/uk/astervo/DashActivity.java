@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +39,10 @@ public class DashActivity extends ActionBarActivity {
         update();
 
     }
-
+    public void buttonOnClick1(View v) {
+        Button button=(Button) v;
+        startActivity(new Intent(getApplication(),TransferActivity.class));
+    }
     @Override
     public void onResume() {
         super.onResume();

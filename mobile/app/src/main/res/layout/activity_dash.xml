@@ -34,4 +34,59 @@
         android:layout_marginTop="35dp"
         android:onClick="transfer"/>
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:background="@drawable/abc_btn_radio_to_on_mtrl_000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:background="@drawable/abc_btn_radio_to_on_mtrl_000"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/button" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:background="@drawable/abc_btn_radio_to_on_mtrl_000"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/button4" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:background="@drawable/abc_btn_radio_to_on_mtrl_000"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/button2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button5"
+        android:background="@drawable/abc_btn_radio_to_on_mtrl_000"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/button3" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button6"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/button5"
+        android:background="@drawable/hoem"
+        android:onClick="buttonOnClick1" />
+
 </RelativeLayout>
