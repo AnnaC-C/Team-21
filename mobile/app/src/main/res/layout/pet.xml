@@ -7,9 +7,9 @@
     tools:context="team21.cs.ncl.ac.uk.astervo.pet">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -34,32 +34,6 @@
                 android:layout_height="fill_parent"
                 android:background="@drawable/border">
 
-                <ImageView
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:id="@+id/imageView"
-                    android:background="@drawable/peticon"
-                    android:layout_marginTop="31dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
-
-                <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/imageButton"
-                    android:layout_marginTop="37dp"
-                    android:src="@drawable/left1"
-                    android:layout_below="@+id/imageView"
-                    android:layout_toStartOf="@+id/imageView" />
-
-                <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/imageButton2"
-                    android:src="@drawable/right1"
-                    android:layout_alignTop="@+id/imageButton"
-                    android:layout_toEndOf="@+id/imageView" />
-
             </RelativeLayout>
         </LinearLayout>
 
@@ -69,17 +43,11 @@
             android:layout_height="29dp"></LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="55dp"
-            android:background="@drawable/border">
+            android:background="@drawable/border"
+            android:id="@+id/">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Give Food"
-                android:id="@+id/give_food" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,12 +56,6 @@
             android:layout_height="55dp"
             android:background="@drawable/border">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Go for a walk"
-                android:id="@+id/walk" />
         </LinearLayout>
 
         <LinearLayout
@@ -102,12 +64,6 @@
             android:layout_height="55dp"
             android:background="@drawable/border">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Give Food"
-                android:id="@+id/textView" />
         </LinearLayout>
 
         <LinearLayout
@@ -116,12 +72,6 @@
             android:layout_height="55dp"
             android:background="@drawable/border">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Go for a walk"
-                android:id="@+id/textView2" />
         </LinearLayout>
 
     </LinearLayout>
