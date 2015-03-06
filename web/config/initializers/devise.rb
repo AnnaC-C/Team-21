@@ -258,5 +258,5 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   # Defines the name of the authentication params key.
-  config.token_authentication_key = :auth_token
+  #config.token_authentication_key = :auth_token
 end
