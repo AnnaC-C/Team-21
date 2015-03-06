@@ -23,7 +23,7 @@ module TransfersHelper
               account you're transferring to."}
     end
 
-    if(amount.to_i <= 0)
+    if(amount.to_f <= 0.0)
       # The Amount must be greater than 0.
       return {:success => false, :message => "You can't transfer a null or negative amount of money."}
     end
@@ -37,14 +37,14 @@ module TransfersHelper
     @sender_account = Account.find(from)
     @receiver_account = Account.find(to)
 
-    if(@sender_account.balance.to_i >= amount.to_i)
+    if(@sender_account.balance.to_f >= amount.to_f)
       # If there are sufficient funds, make the transfer.
       # Remove amount from the sender's account.
-      @sender_account.balance -= amount.to_i
+      @sender_account.balance -= amount.to_f
       @sender_account.save
 
       # Add amount to receiver's account.
-      @receiver_account.balance += amount.to_i
+      @receiver_account.balance += amount.to_f
       @receiver_account.save
 
       # Make a record of the transfer and return success.
