@@ -34,14 +34,15 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:id="@+id/nameHold">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Account name"
-                android:id="@+id/textView5"
+                android:id="@+id/transferAccType"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
@@ -59,17 +60,26 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Interest Rate"
-                    android:id="@+id/textView6"
+                    android:id="@+id/transferAccInt"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton"
+                    android:id="@+id/transferAccClickRight"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
                     android:src="@android:drawable/ic_menu_send" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/transferAccClickLeft"
+                    android:src="@android:drawable/ic_menu_send"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:visibility="invisible"/>
             </RelativeLayout>
         </LinearLayout>
 
@@ -83,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="$5,125"
-                android:id="@+id/textView7"
+                android:id="@+id/transferAccBal"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
     </LinearLayout>

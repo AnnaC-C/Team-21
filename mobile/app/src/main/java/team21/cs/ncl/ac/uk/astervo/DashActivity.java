@@ -177,13 +177,9 @@ public class DashActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                try {
-                    g.setSingleAccount(jsonAccounts.getJSONObject(position));
-                    Intent i = new Intent(getApplicationContext(), SingleAccountActivity.class);
-                    startActivity(i);
-                } catch(JSONException e) {
-                    e.printStackTrace();
-                }
+                g.setSingleAccountLocation(position);
+                Intent i = new Intent(getApplicationContext(), TransferActivity.class);
+                startActivity(i);
             }
         });
 
@@ -191,6 +187,7 @@ public class DashActivity extends ActionBarActivity {
 
     public void transfer(View view) {
 
+        g.setSingleAccountLocation(0);
         Intent i = new Intent(getApplicationContext(), TransferActivity.class);
         startActivity(i);
 

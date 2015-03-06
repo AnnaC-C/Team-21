@@ -10,7 +10,7 @@ public class Globals extends Application {
     private boolean loggedIn = false;
     private String authKey = null;
     private JSONArray accounts = null;
-    private JSONObject singleAccount = null;
+    private int singleAccountLocation = 0;
 
     public boolean isLoggedIn() {
         return loggedIn;
@@ -36,18 +36,18 @@ public class Globals extends Application {
         this.accounts = accounts;
     }
 
-    public JSONObject getSingleAccount() {
-        return singleAccount;
+    public int getSingleAccountLocation() {
+        return singleAccountLocation;
     }
 
-    public void setSingleAccount(JSONObject singleAccount) {
-        this.singleAccount = singleAccount;
+    public void setSingleAccountLocation(int singleAccountLocation) {
+        this.singleAccountLocation = singleAccountLocation;
     }
 
     public void reset() {
         setLoggedIn(false);
         setAuthKey(null);
         setAccounts(null);
-        setSingleAccount(null);
+        setSingleAccountLocation(0);
     }
 }
