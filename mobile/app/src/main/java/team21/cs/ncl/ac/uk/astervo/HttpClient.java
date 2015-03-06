@@ -17,9 +17,12 @@ public class HttpClient {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
-    public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        reset();
-        client.get(getAbsoluteUrl(url), params, responseHandler);
+    public static void get(Context context, String url, AsyncHttpResponseHandler responseHandler) throws UnsupportedEncodingException {
+        //Set header to JSON
+        client.addHeader("Accept", "application/json");
+        client.addHeader("Content-Type", "application/json");
+        //Post and receive response
+        client.get(context, getAbsoluteUrl(url), responseHandler);
     }
 
     public static void post(Context context, String url, JSONObject params, AsyncHttpResponseHandler responseHandler) throws UnsupportedEncodingException {
