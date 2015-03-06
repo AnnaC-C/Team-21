@@ -36,6 +36,10 @@
             android:name=".TransferActivity"
             android:label="@string/title_activity_transfer" >
         </activity>
+        <activity
+            android:name=".pet"
+            android:label="@string/title_activity_pet" >
+        </activity>
     </application>
 
 </manifest>
