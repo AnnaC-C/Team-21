@@ -28,4 +28,9 @@ class Api::TransfersController < ApplicationController
              :json => { :result => result }
     end
   end
+
+  def retrieve
+  
+
+  end
 end

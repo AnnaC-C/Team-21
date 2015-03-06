@@ -13,4 +13,17 @@ module ApiHelper
     end
     return accounts
   end
+
+
+  def retrieve_transfers
+    transfers = []
+
+    # For each Transfer, push a JSON object with its sender ID, reciever ID,
+    # and balance to the array.
+    current_user.transfers.each.do |t|
+      transfers.push({:sender_id => t.from,
+                      :receiver_id => t.to,
+                      :amount => t.amount})
+    end
+  end
 end
