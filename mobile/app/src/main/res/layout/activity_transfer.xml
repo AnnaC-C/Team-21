@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -12,179 +12,184 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0000FF"
-        android:layout_weight="0.39" />
+        android:layout_weight="0.39"
+        >
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.29" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#BDBDBD"
-        android:clickable="false"
-        android:weightSum="1"
-        android:orientation="vertical"
-        android:layout_gravity="center_horizontal">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:background="#0000FF" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:background="#BDBDBD"
+            android:clickable="false"
+            android:weightSum="1"
             android:orientation="vertical"
-            android:id="@+id/nameHold">
+            android:layout_gravity="center_horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Account name"
-                android:id="@+id/transferAccType"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="54dp" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:id="@+id/nameHold">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Interest Rate"
-                    android:id="@+id/transferAccInt"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Account name"
+                    android:id="@+id/transferAccType"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
 
-                <ImageButton
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="54dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Interest Rate"
+                        android:id="@+id/transferAccInt"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/transferAccClickRight"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:src="@android:drawable/ic_menu_send" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/transferAccClickLeft"
+                        android:src="@android:drawable/ic_menu_send"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:visibility="invisible"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/transferAccClickRight"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:src="@android:drawable/ic_menu_send" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="$5,125"
+                    android:id="@+id/transferAccBal"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/transferAccClickLeft"
-                    android:src="@android:drawable/ic_menu_send"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"
-                    android:visibility="invisible"/>
-            </RelativeLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"></LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="247dp"
+            android:layout_gravity="center_horizontal" />
+
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="wrap_content"
+            android:background="#BDBDBD"
+            android:id="@+id/relativeLayout"
+            android:layout_alignParentStart="true">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="$5,125"
-                android:id="@+id/transferAccBal"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
+                android:text="Select account to transfer from:"
+                android:id="@+id/transferFromTitle"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/message" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/transferFrom"
+                android:spinnerMode="dropdown"
+                android:layout_below="@+id/transferFromTitle"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select an amount to transfer:"
+                android:id="@+id/transferAmountTitle"
+                android:layout_below="@+id/transferFrom"
+                android:layout_alignParentLeft="true" />
+
+            <SeekBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/transferAmount"
+                android:indeterminate="false"
+                android:maxWidth="200dp"
+                android:minWidth="200dp"
+                android:layout_below="@+id/transferAmountTitle"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="£0"
+                android:id="@+id/transferDisplayAmount"
+                android:layout_below="@+id/transferAmount"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select account to transfer to:"
+                android:id="@+id/transferToTitle"
+                android:layout_below="@+id/transferDisplayAmount"
+                android:layout_alignParentLeft="true" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/transferTo"
+                android:spinnerMode="dropdown"
+                android:layout_below="@+id/transferToTitle"
+                android:layout_toEndOf="@+id/message" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transfer"
+                android:id="@+id/transferSubmit"
+                android:onClick="submit"
+                android:layout_below="@+id/transferTo"
+                android:layout_toEndOf="@+id/transferAmount" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/message"
+                android:layout_below="@+id/transferSubmit"
+                android:layout_alignParentLeft="true" />
+        </RelativeLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.29" />
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#BDBDBD"
-        android:id="@+id/relativeLayout"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select account to transfer from:"
-            android:id="@+id/transferFromTitle"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/message" />
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/transferFrom"
-            android:spinnerMode="dropdown"
-            android:layout_below="@+id/transferFromTitle"
-            android:layout_alignParentLeft="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select an amount to transfer:"
-            android:id="@+id/transferAmountTitle"
-            android:layout_below="@+id/transferFrom"
-            android:layout_alignParentLeft="true" />
-
-        <SeekBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/transferAmount"
-            android:indeterminate="false"
-            android:maxWidth="200dp"
-            android:minWidth="200dp"
-            android:layout_below="@+id/transferAmountTitle"
-            android:layout_alignParentLeft="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="£0"
-            android:id="@+id/transferDisplayAmount"
-            android:layout_below="@+id/transferAmount"
-            android:layout_alignParentLeft="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select account to transfer to:"
-            android:id="@+id/transferToTitle"
-            android:layout_below="@+id/transferDisplayAmount"
-            android:layout_alignParentLeft="true" />
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/transferTo"
-            android:spinnerMode="dropdown"
-            android:layout_below="@+id/transferToTitle"
-            android:layout_toEndOf="@+id/message" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Transfer"
-            android:id="@+id/transferSubmit"
-            android:onClick="submit"
-            android:layout_below="@+id/transferTo"
-            android:layout_toEndOf="@+id/transferAmount" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/message"
-            android:layout_below="@+id/transferSubmit"
-            android:layout_alignParentLeft="true" />
-    </RelativeLayout>
-
-</LinearLayout>
+</ScrollView>
