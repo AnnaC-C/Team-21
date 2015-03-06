@@ -58,6 +58,7 @@ public class TransferActivity extends ActionBarActivity {
 
         updateShownAccount();
         createAccountSelectArrows();
+        updateTransferHistory();
 
         //Get the Array of accounts
         final JSONArray jsonAccounts = g.getAccounts();
@@ -500,6 +501,37 @@ public class TransferActivity extends ActionBarActivity {
         if(g.getSingleAccountLocation() < g.getAccounts().length() - 1) {
             clickRight.setVisibility(View.VISIBLE);
         }
+
+    }
+
+    public void updateTransferHistory() {
+
+        //Get the Array of accounts
+        final JSONArray jsonTransfers = g.getTransfers();
+
+        //Create a String of type list to store the item Strings
+        List<String> accounts = new ArrayList<String>();
+
+        //Create a for loop to iterate through each account and pull out the relevant data
+        for(int i = 0; i < jsonTransfers.length(); i++) {
+            //Try to get account details from each JSON object
+            try {
+                JSONObject currentTrans = jsonTransfers.getJSONObject(i);
+                String details = "";
+                details += "To: " + currentTrans.getString(PrivateFields.TAG_TRANS_SENDER) + "\n";
+                details += "From: " + currentTrans.getString(PrivateFields.TAG_TRANS_RECEIVER) + "\n";
+                details += "Amount: " + currentTrans.getString(PrivateFields.TAG_TRANS_AMOUNT) + "\n";
+                details += "Date: " + currentTrans.getString(PrivateFields.TAG_TRANS_DATE);
+                accounts.add(details);
+            } catch(JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //Create an array adapter to set the List view equal to the information of each account
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(((ListView)findViewById(R.id.transferHistoryList)).getContext(), android.R.layout.simple_list_item_1, accounts);
+        ListView displayTransHistory = (ListView) findViewById(R.id.transferHistoryList);
+        displayTransHistory.setAdapter(adapter);
 
     }
 }

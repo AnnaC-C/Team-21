@@ -36,4 +36,7 @@ public class PrivateFields {
 
     //TRANSFER LIST RESPONSE
     public static final String TAG_TRANS_ARRAY = "transfers";
+    public static final String TAG_TRANS_DATE = "date";
+    public static final String TAG_TRANS_SENDER = "sender";
+    public static final String TAG_TRANS_RECEIVER = "receiver";
 }
