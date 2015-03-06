@@ -16,7 +16,8 @@ Rails.application.routes.draw do
       post 'registrations' => 'registrations#create', :as => 'register'
       post 'sessions' => 'sessions#create', :as => 'login'
       delete 'sessions' => 'sessions#destroy', :as => 'logout'
-      post "transfers" => "transfers#create", :as => 'transfers'
+      post "transfers" => "transfers#create", :as => 'transfer'
+      get "transfers" => "transfers#retrieve", :as => 'retrieve'
     end
   end
 end
