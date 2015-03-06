@@ -30,7 +30,7 @@ class Api::TransfersController < ApplicationController
   end
 
   def retrieve
-  
-
+    render :status => 200,
+           :json => { :transfers => retrieve_transfers }
   end
 end
