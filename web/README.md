@@ -156,3 +156,51 @@ None.
     ]
 }
 ```
+
+### Get a list of all Transfers for a User.
+
+**ENDPOINT**: https://astervo.herokuapp.com/api/transfers
+
+**TYPE:** GET
+
+**HEADERS:** 
+
+* ` Content-Type: application/json`
+*  `Accept: application/json `
+
+**PAYLOAD:** 
+``` python
+None
+```
+
+**SAMPLE RETURN STRING:** 
+``` javascript
+{
+    "transfers": [
+        {
+            "sender_id": "2",
+            "receiver_id": "3",
+            "amount": 500,
+            "date": "2015-02-25T10:47:41.813Z"
+        },
+        {
+            "sender_id": "4",
+            "receiver_id": "3",
+            "amount": 100,
+            "date": "2015-02-27T13:29:29.691Z"
+        },
+        {
+            "sender_id": "2",
+            "receiver_id": "3",
+            "amount": 100,
+            "date": "2015-02-27T15:55:05.507Z"
+        },
+        {
+            "sender_id": "2",
+            "receiver_id": "3",
+            "amount": 100,
+            "date": "2015-02-27T15:55:20.197Z"
+        }
+    ]
+}
+```
