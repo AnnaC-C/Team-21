@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -36,6 +37,9 @@ public class TransferActivity extends ActionBarActivity {
 
     ConnectionStatus connectionStatus;
 
+    ImageButton clickLeft;
+    ImageButton clickRight;
+
     private int fromAccID = -1;
     private int transferAmount = -1;
     private int toAccID = -1;
@@ -48,6 +52,13 @@ public class TransferActivity extends ActionBarActivity {
         connectionStatus = new ConnectionStatus(this);
 
         g = (Globals) getApplication();
+
+        clickLeft = (ImageButton) findViewById(R.id.transferAccClickLeft);
+        clickRight = (ImageButton) findViewById(R.id.transferAccClickRight);
+
+        updateShownAccount();
+        createAccountSelectArrows();
+        updateTransferHistory();
 
         //Get the Array of accounts
         final JSONArray jsonAccounts = g.getAccounts();
@@ -428,5 +439,99 @@ public class TransferActivity extends ActionBarActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+    }
+
+    public void updateShownAccount() {
+
+        TextView type = (TextView) findViewById(R.id.transferAccType);
+        TextView interest = (TextView) findViewById(R.id.transferAccInt);
+        TextView balance = (TextView) findViewById(R.id.transferAccBal);
+
+        try {
+            JSONObject account = g.getAccounts().getJSONObject(g.getSingleAccountLocation());
+            type.setText("Account Type: " + account.getString(PrivateFields.TAG_TYPE));
+            interest.setText("Interest: " + account.getString(PrivateFields.TAG_INTEREST) + "%");
+            balance.setText("Balance: £" + account.getString(PrivateFields.TAG_BAL));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if(g.getSingleAccountLocation() > 0) {
+            clickLeft.setVisibility(View.VISIBLE);
+        }
+        if(g.getSingleAccountLocation() == 0) {
+            clickLeft.setVisibility(View.INVISIBLE);
+        }
+        if(g.getSingleAccountLocation() == g.getAccounts().length() - 1) {
+            clickRight.setVisibility(View.INVISIBLE);
+        }
+        if(g.getSingleAccountLocation() < g.getAccounts().length() - 1) {
+            clickRight.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    public void createAccountSelectArrows() {
+
+        clickLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                g.setSingleAccountLocation(g.getSingleAccountLocation()-1);
+                updateShownAccount();
+            }
+        });
+
+        clickRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                g.setSingleAccountLocation(g.getSingleAccountLocation()+1);
+                updateShownAccount();
+            }
+        });
+
+        if(g.getSingleAccountLocation() > 0) {
+            clickLeft.setVisibility(View.VISIBLE);
+        }
+        if(g.getSingleAccountLocation() == 0) {
+            clickLeft.setVisibility(View.INVISIBLE);
+        }
+        if(g.getSingleAccountLocation() == g.getAccounts().length() - 1) {
+            clickRight.setVisibility(View.INVISIBLE);
+        }
+        if(g.getSingleAccountLocation() < g.getAccounts().length() - 1) {
+            clickRight.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    public void updateTransferHistory() {
+
+        //Get the Array of accounts
+        final JSONArray jsonTransfers = g.getTransfers();
+
+        //Create a String of type list to store the item Strings
+        List<String> accounts = new ArrayList<String>();
+
+        //Create a for loop to iterate through each account and pull out the relevant data
+        for(int i = 0; i < jsonTransfers.length(); i++) {
+            //Try to get account details from each JSON object
+            try {
+                JSONObject currentTrans = jsonTransfers.getJSONObject(i);
+                String details = "";
+                details += "To: " + currentTrans.getString(PrivateFields.TAG_TRANS_SENDER) + "\n";
+                details += "From: " + currentTrans.getString(PrivateFields.TAG_TRANS_RECEIVER) + "\n";
+                details += "Amount: " + currentTrans.getString(PrivateFields.TAG_TRANS_AMOUNT) + "\n";
+                details += "Date: " + currentTrans.getString(PrivateFields.TAG_TRANS_DATE);
+                accounts.add(details);
+            } catch(JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //Create an array adapter to set the List view equal to the information of each account
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(((ListView)findViewById(R.id.transferHistoryList)).getContext(), android.R.layout.simple_list_item_1, accounts);
+        ListView displayTransHistory = (ListView) findViewById(R.id.transferHistoryList);
+        displayTransHistory.setAdapter(adapter);
+
     }
 }

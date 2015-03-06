@@ -1,4 +1,12 @@
 <h1>DASHBOARD</h1>
+
+<h2>Points: </h2>
+<div style="margin: 5px; border: 3px solid #F00;">
+  <ul>
+    <li><h3> CURRENT POINTS: <%= current_user.current_points %> </h2></li>
+    <li><h3> LIFETIME POINTS: <%= current_user.lifetime_points %> </h2></li>
+</div>
+
 <h2>Accounts:</h2>
 <% current_user.accounts.each do |a| %>
 <div style="margin: 5px; border: 3px solid #9EA900;">

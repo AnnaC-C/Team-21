@@ -21,8 +21,8 @@ module ApiHelper
     # For each Transfer, push a JSON object with its sender ID, reciever ID,
     # and balance to the array.
     current_user.transfers.each do |t|
-      transfers.push({:sender_id => t.sender_id,
-                      :receiver_id => t.receiver_id,
+      transfers.push({:sender => Account.find(t.sender_id).description,
+                      :receiver => Account.find(t.receiver_id).description,
                       :amount => t.amount,
                       :date => t.created_at})
     end
