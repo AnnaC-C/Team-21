@@ -28,4 +28,9 @@ class Api::TransfersController < ApplicationController
              :json => { :result => result }
     end
   end
+
+  def retrieve
+    render :status => 200,
+           :json => { :transfers => retrieve_transfers }
+  end
 end
