@@ -43,6 +43,7 @@ public class DashActivity extends ActionBarActivity {
         Button button=(Button) v;
         startActivity(new Intent(getApplication(),TransferActivity.class));
     }
+
     @Override
     public void onResume() {
         super.onResume();
