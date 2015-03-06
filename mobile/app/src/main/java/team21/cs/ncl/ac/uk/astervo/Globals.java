@@ -11,6 +11,7 @@ public class Globals extends Application {
     private String authKey = null;
     private JSONArray accounts = null;
     private int singleAccountLocation = 0;
+    private JSONArray transfers = null;
 
     public boolean isLoggedIn() {
         return loggedIn;
@@ -40,8 +41,17 @@ public class Globals extends Application {
         return singleAccountLocation;
     }
 
+    public JSONArray getTransfers() {
+        return transfers;
+    }
+
+    public void setTransfers(JSONArray transfers) {
+        this.transfers = transfers;
+    }
+
     public void setSingleAccountLocation(int singleAccountLocation) {
         this.singleAccountLocation = singleAccountLocation;
+
     }
 
     public void reset() {
@@ -49,5 +59,6 @@ public class Globals extends Application {
         setAuthKey(null);
         setAccounts(null);
         setSingleAccountLocation(0);
+        setTransfers(null);
     }
 }

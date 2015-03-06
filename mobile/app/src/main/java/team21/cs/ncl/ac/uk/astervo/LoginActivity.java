@@ -37,6 +37,7 @@ public class LoginActivity extends ActionBarActivity {
 
     //Create globals
     Globals g;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,17 +52,14 @@ public class LoginActivity extends ActionBarActivity {
 
     public void login(View view) {
 
-        //Create an intent to open the Dashboard
-        final Intent i = new Intent(this, DashActivity.class);
-
         //Get the text in for email field and password as Strings
-        EditText emailIn =  (EditText) findViewById(R.id.loginEmail);
+        EditText emailIn = (EditText) findViewById(R.id.loginEmail);
         EditText passIn = (EditText) findViewById(R.id.loginPass);
         String email = emailIn.getText().toString();
         String pass = passIn.getText().toString();
 
         //If email or password is not entered, prompt user with a toast
-        if(email.equals("") || pass.equals("")) {
+        if (email.equals("") || pass.equals("")) {
             Context context = getApplicationContext();
             CharSequence text = "Please enter username and password.";
             int duration = Toast.LENGTH_LONG;
@@ -74,7 +72,7 @@ public class LoginActivity extends ActionBarActivity {
         else {
 
             //If phone has data, then attempt login
-            if(connectionStatus.isConnected()) {
+            if (connectionStatus.isConnected()) {
 
                 //Create a new JSON object to store the params
                 JSONObject params = new JSONObject();
@@ -84,7 +82,7 @@ public class LoginActivity extends ActionBarActivity {
                     jsonUser.put(PrivateFields.TAG_EMAIL, email);
                     jsonUser.put(PrivateFields.TAG_PASS, pass);
                     params.put(PrivateFields.TAG_USER, jsonUser);
-                } catch(JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
@@ -111,7 +109,7 @@ public class LoginActivity extends ActionBarActivity {
                                 if (response != null) {
                                     try {
                                         //Check the return messages for success
-                                        if(response.getString(PrivateFields.TAG_SUCCESS).equals("true") && response.getString(PrivateFields.TAG_INFO).equals("Logged in")) {
+                                        if (response.getString(PrivateFields.TAG_SUCCESS).equals("true") && response.getString(PrivateFields.TAG_INFO).equals("Logged in")) {
                                             //Parse the data object
                                             JSONObject data = (JSONObject) response.get(PrivateFields.TAG_DATA);
                                             //Set global variables
@@ -119,8 +117,7 @@ public class LoginActivity extends ActionBarActivity {
                                             g.setAuthKey(data.getString(PrivateFields.TAG_AUTH));
                                             g.setAccounts(data.getJSONArray(PrivateFields.TAG_ACC));
 
-                                            startActivity(i);
-                                            finish();
+                                            getTransfers();
                                         }
                                         //If there was an error, tell user to try later
                                         else {
@@ -137,7 +134,7 @@ public class LoginActivity extends ActionBarActivity {
                                 }
                             }
                             //If authorization error, prompt user to check details
-                            else if(statusCode == 401) {
+                            else if (statusCode == 401) {
                                 Context context = getApplicationContext();
                                 CharSequence text = "Login failed. Check your details and try again.";
                                 int duration = Toast.LENGTH_LONG;
@@ -173,7 +170,7 @@ public class LoginActivity extends ActionBarActivity {
                             }
 
                             //Display alert
-                            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(LoginActivity.this);
+                            AlertDialog.Builder dlgAlert = new AlertDialog.Builder(LoginActivity.this);
                             dlgAlert.setMessage(error);
                             dlgAlert.setTitle("Something went wrong:");
                             dlgAlert.setPositiveButton("OK", null);
@@ -204,6 +201,67 @@ public class LoginActivity extends ActionBarActivity {
         Intent i = new Intent(this, SignUpActivity.class);
         startActivity(i);
 
+    }
+
+    public void getTransfers() {
+
+        //Create an intent to open the Dashboard
+        final Intent i = new Intent(this, DashActivity.class);
+
+        //Start fetching transfer history dialog
+        final ProgressDialog prgDialog;
+        prgDialog = new ProgressDialog(LoginActivity.this);
+        prgDialog.setMessage("Fetching account info...");
+        prgDialog.setCancelable(false);
+        prgDialog.show();
+
+        //Attempt to return array of transfers
+        try {
+
+            //Send the HTTP post request and get JSON object back
+            HttpClient.get(this.getApplicationContext(), "/api/transfers", new JsonHttpResponseHandler() {
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+
+                    prgDialog.dismiss();
+
+                    //If successful parse JSON data and create dashboard activity
+                    if (statusCode == 200) {
+                        if (response != null) {
+                            try {
+                                g.setTransfers(response.getJSONArray(PrivateFields.TAG_TRANS_ARRAY));
+                                startActivity(i);
+                                finish();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    //If authorization error, prompt user to check details
+                    else if (statusCode == 401) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Unable to fetch account. Please try again.";
+                        int duration = Toast.LENGTH_LONG;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                    //Otherwise tell user to try again later
+                    else {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Something went wrong. Please try again later.";
+                        int duration = Toast.LENGTH_LONG;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                }
+
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
