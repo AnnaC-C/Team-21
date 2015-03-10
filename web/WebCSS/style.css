@@ -1,0 +1,33 @@
+#container{
+ 
+    position: absolute;
+    text-align: center;
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 10%;
+    background-image: url(background.png);
+    border: 2px solid #006a4d;
+    border-radius: 40px;
+    
+}
+
+#inputs br {
+ 
+    display: block;
+    margin: 10px 0;
+    content: " ";
+    
+}
+
+p {
+ 
+    padding-bottom: 10px;
+    
+}
+
+body {
+    
+    background-image: url(tiledbackground.png);
+    background-size: 50% auto;
+    
+}

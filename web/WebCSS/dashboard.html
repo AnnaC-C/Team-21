@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web</title>
+  <link rel="stylesheet" media="all" href="/assets/application-c06dd6a542ea15147e6794e03643f87c.css" data-turbolinks-track="true" />
+  <script src="/assets/application-a85846e9b502d7ebfec74d91f03e41d0.js" data-turbolinks-track="true"></script>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="5pa2AOKdoiKGvXGwX3czwkp46WxPmSKplTffiWzNt0SsP9C3/dNv7exsK4tqfk0k2r+KSDSAjsl17l6fzBILtA==" />
+</head>
+<body>
+  <div class="container">
+      Signed in successfully.
+    <h1>DASHBOARD</h1>
+
+<h2>Points: </h2>
+<div style="margin: 5px; border: 3px solid #F00;">
+  <ul>
+    <li><h3> CURRENT POINTS: 1000 </h2></li>
+    <li><h3> LIFETIME POINTS: 1000 </h2></li>
+</div>
+
+<h2>Accounts:</h2>
+<div style="margin: 5px; border: 3px solid #9EA900;">
+  <ul>
+    <li><b>Description:</b> ISA</li>
+    <li><b>Balance:</b> £0.899999999999977</li>
+    <li><b>Interest Rate:</b> 9.0%</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #9EA900;">
+  <ul>
+    <li><b>Description:</b> ISA</li>
+    <li><b>Balance:</b> £2359.5</li>
+    <li><b>Interest Rate:</b> 7.5%</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #9EA900;">
+  <ul>
+    <li><b>Description:</b> Billy</li>
+    <li><b>Balance:</b> £1067.1</li>
+    <li><b>Interest Rate:</b> 9.0%</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #9EA900;">
+  <ul>
+    <li><b>Description:</b> DEBIT</li>
+    <li><b>Balance:</b> £970.5</li>
+    <li><b>Interest Rate:</b> 4.5%</li>
+  </ul>
+</div>
+<br />
+
+<h2>Transfer Money:</h2>
+<form url="transfers" action="/transfer/transfer" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="fMindChsKFd2vQ7hofDTmks563n+YMscWzis0yALtBM2YcHDNyLlmBxsVNqU+a182/6IXYV5Z3y74S3FgNQI4w==" />
+  <label for="from">From</label>
+  <select name="transfer[from]" id="transfer_from"><option value="4">ISA</option>
+<option value="2">ISA</option>
+<option value="5">Billy</option>
+<option value="3">DEBIT</option></select>
+  <br />
+  <label for="to">To</label>
+  <select name="transfer[to]" id="transfer_to"><option selected="selected" value="4">ISA</option>
+<option selected="selected" value="2">ISA</option>
+<option selected="selected" value="5">Billy</option>
+<option selected="selected" value="3">DEBIT</option></select>
+  <br />
+  <label for="amount">Amount</label>
+  <input type="text" name="amount" id="amount" />
+
+  <input type="submit" name="commit" value="Transfer" />
+</form>
+<h2>Transactions:</h2>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-02-25 10:47:41 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 3</li>
+    <li><b>Amount:</b> £500.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-02-27 13:29:29 UTC</li>
+    <li><b>Sending Account ID:</b> 4</li>
+    <li><b>Receiving Account ID:</b> 3</li>
+    <li><b>Amount:</b> £100.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-02-27 15:55:05 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 3</li>
+    <li><b>Amount:</b> £100.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-02-27 15:55:20 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 3</li>
+    <li><b>Amount:</b> £100.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-03 18:59:00 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 4</li>
+    <li><b>Amount:</b> £100.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-03 18:59:23 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 4</li>
+    <li><b>Amount:</b> £100.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-03 18:59:31 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 4</li>
+    <li><b>Amount:</b> £600.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-03 19:58:17 UTC</li>
+    <li><b>Sending Account ID:</b> 5</li>
+    <li><b>Receiving Account ID:</b> 3</li>
+    <li><b>Amount:</b> £100.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-04 20:38:38 UTC</li>
+    <li><b>Sending Account ID:</b> 4</li>
+    <li><b>Receiving Account ID:</b> 2</li>
+    <li><b>Amount:</b> £900.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-04 20:47:43 UTC</li>
+    <li><b>Sending Account ID:</b> 3</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £800.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-04 20:51:26 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 4</li>
+    <li><b>Amount:</b> £510.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-04 20:51:46 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 4</li>
+    <li><b>Amount:</b> £210.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-04 20:58:53 UTC</li>
+    <li><b>Sending Account ID:</b> 4</li>
+    <li><b>Receiving Account ID:</b> 2</li>
+    <li><b>Amount:</b> £856.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-04 21:00:29 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £200.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-04 21:00:57 UTC</li>
+    <li><b>Sending Account ID:</b> 4</li>
+    <li><b>Receiving Account ID:</b> 2</li>
+    <li><b>Amount:</b> £959.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-04 21:05:17 UTC</li>
+    <li><b>Sending Account ID:</b> 5</li>
+    <li><b>Receiving Account ID:</b> 3</li>
+    <li><b>Amount:</b> £592.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-04 21:21:02 UTC</li>
+    <li><b>Sending Account ID:</b> 4</li>
+    <li><b>Receiving Account ID:</b> 2</li>
+    <li><b>Amount:</b> £450.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-04 21:22:14 UTC</li>
+    <li><b>Sending Account ID:</b> 5</li>
+    <li><b>Receiving Account ID:</b> 3</li>
+    <li><b>Amount:</b> £608.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-04 21:42:24 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £1174.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-05 00:19:57 UTC</li>
+    <li><b>Sending Account ID:</b> 3</li>
+    <li><b>Receiving Account ID:</b> 4</li>
+    <li><b>Amount:</b> £741.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-05 01:25:18 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £540.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-05 01:25:47 UTC</li>
+    <li><b>Sending Account ID:</b> 3</li>
+    <li><b>Receiving Account ID:</b> 4</li>
+    <li><b>Amount:</b> £90.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 08:24:42 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 4</li>
+    <li><b>Amount:</b> £330.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 11:04:38 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 3</li>
+    <li><b>Amount:</b> £100.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 11:04:53 UTC</li>
+    <li><b>Sending Account ID:</b> 5</li>
+    <li><b>Receiving Account ID:</b> 2</li>
+    <li><b>Amount:</b> £815.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 11:58:49 UTC</li>
+    <li><b>Sending Account ID:</b> 4</li>
+    <li><b>Receiving Account ID:</b> 2</li>
+    <li><b>Amount:</b> £2.5</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 12:08:28 UTC</li>
+    <li><b>Sending Account ID:</b> 4</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £3.5</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 12:11:00 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £0.5</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 12:11:15 UTC</li>
+    <li><b>Sending Account ID:</b> 3</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £0.5</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 13:16:48 UTC</li>
+    <li><b>Sending Account ID:</b> 4</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £0.1</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 15:13:41 UTC</li>
+    <li><b>Sending Account ID:</b> 4</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £849.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 15:39:04 UTC</li>
+    <li><b>Sending Account ID:</b> 3</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £352.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 15:39:30 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 3</li>
+    <li><b>Amount:</b> £146.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 15:39:56 UTC</li>
+    <li><b>Sending Account ID:</b> 4</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £272.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 15:40:05 UTC</li>
+    <li><b>Sending Account ID:</b> 3</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £662.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 15:53:09 UTC</li>
+    <li><b>Sending Account ID:</b> 2</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £771.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 15:53:20 UTC</li>
+    <li><b>Sending Account ID:</b> 4</li>
+    <li><b>Receiving Account ID:</b> 5</li>
+    <li><b>Amount:</b> £587.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-06 16:01:37 UTC</li>
+    <li><b>Sending Account ID:</b> 5</li>
+    <li><b>Receiving Account ID:</b> 2</li>
+    <li><b>Amount:</b> £2359.0</li>
+  </ul>
+</div>
+<div style="margin: 5px; border: 3px solid #FFA500;">
+  <ul>
+    <li><b>Time:</b> 2015-03-09 15:12:31 UTC</li>
+    <li><b>Sending Account ID:</b> 5</li>
+    <li><b>Receiving Account ID:</b> 3</li>
+    <li><b>Amount:</b> £970.0</li>
+  </ul>
+</div>
+
+<a rel="nofollow" data-method="delete" href="/users/sign_out">Logout</a>
+
+  </div>
+</body>
+</html>
