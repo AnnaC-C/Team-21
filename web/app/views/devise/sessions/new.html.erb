@@ -1,0 +1,26 @@
+<div class="auth-box">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div>
+      <span id="input-img"><%= image_tag("email.png", width: '450', height: '200') %></span>
+      <%= f.label :email, id: "hide-me" %><br />
+      <%= f.email_field :email, autofocus: true, value: "Email", id: "email-input" %>
+    </div>
+
+    <div>
+      <span id="input-img" style="margin-top: -20px; margin-left: 65px;"><%= image_tag("password.png", width: '375', height: '100') %></span>
+      <%= f.label :password, id: "hide-me" %><br />
+      <%= f.password_field :password, autocomplete: "off",  placeholder: "Password", id: "pass-input" %>
+    </div>
+
+    <div id="submit-button">
+      <span class="login-text">Log In</span>
+      <%= f.submit "Log in", :type => :image, :src => image_url("login.png") %>
+    </div>
+
+    <div id="submit-button">
+      <span class="signup-text">Sign Up</span>
+      <%= link_to image_tag("signup.png", :border=>0), :signup %>
+    </div>
+  <% end %>
+<!--<%= render "devise/shared/links" %>-->
+</div>

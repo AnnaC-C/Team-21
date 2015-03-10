@@ -1,0 +1,183 @@
+#menu {
+ 
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    
+}
+
+#menu ul {
+ 
+    display: inline-block;
+    position: relative;
+    width: 80%;
+    left: 10%;
+    right: 0;
+    text-align: center;
+    
+}
+
+#menu li {
+ 
+    display: inline-block;
+    font-size: 20px;
+    padding: 20px;
+    background-color: #00FF00;
+    border: 2px solid #006a4d;
+    border-radius: 40px;
+    width: 10%;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    
+}
+
+#container {
+    
+    position: relative;
+    width: 80%;
+    left: 10%;
+    height: 60%;
+    top: 20px;
+    
+}
+
+#container li {
+    
+    padding: 5px;
+    
+}
+
+#points {
+ 
+    position: absolute;
+    right: 0;
+    width: 30%;
+    height: 250px;
+    background-color: #00FF00;
+    border: 2px solid #006a4d;
+    border-radius: 40px;
+    overflow-y: scroll;
+    
+}
+
+#accounts {
+ 
+    position: absolute;
+    left: 0;
+    width: 30%;
+    height: 250px;
+    overflow-y: scroll;
+    background-color: #00FF00;
+    border: 2px solid #006a4d;
+    border-radius: 40px;
+    
+}
+
+#accounts ul {
+ 
+    width: 60%;
+    display: inline-block;
+    background-color: #FFFFFF;
+    border: 2px solid #006a4d;
+    border-radius: 40px;
+    margin-left: 10%;
+    
+}
+
+#accounts li {
+    
+    display: block;
+    
+}
+
+#accounts h2 {
+    
+    padding: 10px;
+    
+}
+
+#transaction {
+ 
+    position: absolute;
+    top: 300px;
+    right: 0;
+    height: 200px;
+    background-color: #00FF00;
+    border: 2px solid #006a4d;
+    border-radius: 40px;
+    width: 30%;
+    
+}
+
+#transferHist {
+ 
+    position: absolute;
+    left: 35%;
+    overflow-y: scroll;
+    height: 250px;
+    background-color: #00FF00;
+    border: 2px solid #006a4d;
+    border-radius: 40px;
+    width: 30%;
+    
+}
+
+#transferHist ul {
+ 
+    width: 60%;
+    display: inline-block;
+    background-color: #FFFFFF;
+    border: 2px solid #006a4d;
+    border-radius: 40px;
+    margin-left: 10%;
+    
+}
+
+#transferHist li {
+    
+    display: block;
+    
+}
+
+#transferHist h2 {
+    
+    padding: 10px;
+    
+}
+
+#quiz{
+ 
+    top: 300px;
+    position: absolute;
+    left: 35%;
+    overflow-y: scroll;
+    height: 200px;
+    background-color: #00FF00;
+    border: 2px solid #006a4d;
+    border-radius: 40px;
+    width: 30%;
+    
+}
+
+
+
+#quiz h2 {
+    
+    padding: 10px;
+    
+}
+
+#pet {
+ 
+    top: 300px;
+    position: absolute;
+    left: 0;
+    width: 30%;
+    height: 200px;
+    overflow-y: scroll;
+    background-color: #00FF00;
+    border: 2px solid #006a4d;
+    border-radius: 40px;
+    
+}
