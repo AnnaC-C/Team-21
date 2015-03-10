@@ -3,6 +3,7 @@ package team21.cs.ncl.ac.uk.astervo;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,12 +54,14 @@ public class DashActivity extends ActionBarActivity {
         update();
 
     }
-
-    @Override
+      private ShareActionProvider mShareActionProvider;
+   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_dash, menu);
-        return true;
+
+       return true;
+
     }
 
     @Override
