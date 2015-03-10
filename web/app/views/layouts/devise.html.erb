@@ -7,11 +7,13 @@
 </head>
 <body>
   <div class="auth-container">
-    <% flash.each do |message_type, message| %>
-      <%= message %>
-    <% end %>
+    <div class="auth-box">
+      <% flash.each do |message_type, message| %>
+        <%= message %>
+      <% end %>
     <% debug(params) if Rails.env.development? %>
     <%= yield %>
+    </div>
   </div>
 </body>
 </html>
