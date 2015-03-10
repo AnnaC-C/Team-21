@@ -46,7 +46,7 @@
             android:layout_width="fill_parent"
             android:layout_height="55dp"
             android:background="@drawable/border"
-            android:id="@+id/answer">
+            android:id="@+id/">
 
         </LinearLayout>
 
