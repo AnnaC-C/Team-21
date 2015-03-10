@@ -16,11 +16,11 @@
 
 @font-face {
      font-family: 'journal';
-     src: url('fonts/journal-webfont.eot');
-     src: url('fonts/journal-webfont.eot?#iefix') format('embedded-opentype'),
-          url('fonts/journal-webfont.woff') format('woff'),
-          url('fonts/journal-webfont.ttf') format('truetype'),
-          url('fonts/journal-webfont.svg#journalregular') format('svg');
+     src: url('journal-webfont.eot');
+     src: url('journal-webfont.eot?#iefix') format('embedded-opentype'),
+          url('journal-webfont.woff') format('woff'),
+          url('journal-webfont.ttf') format('truetype'),
+          url('journal-webfont.svg#journalregular') format('svg');
      font-weight: normal;
      font-style: normal;
 
@@ -28,7 +28,7 @@
 
 /* LOGIN/SIGNUP PAGE STYLES. */
 body {
-     background-image: url(bg.png);
+     background-image: asset-data-url("bg.png");
      background-size: 50% auto;
 }
 
@@ -104,6 +104,7 @@ body {
 }
 
 .signup-text {
+  text-decoration: none !important;
   position: absolute;
   margin-top: 18px;
   margin-left: 70px;
