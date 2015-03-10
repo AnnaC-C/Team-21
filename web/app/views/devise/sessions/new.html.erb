@@ -12,11 +12,15 @@
       <%= f.password_field :password, autocomplete: "off",  placeholder: "Password", id: "pass-input" %>
     </div>
 
-    <% if devise_mapping.rememberable? -%>
-      <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-    <% end -%>
+    <div id="submit-button">
+      <span class="login-text">Log In</span>
+      <%= f.submit "Log in", :type => :image, :src => image_url("login.png") %>
+    </div>
 
-    <div><%= f.submit "Log in" %></div>
+    <div id="submit-button">
+      <span class="signup-text">Sign Up</span>
+      <%= link_to image_tag("signup.png", :border=>0), :signup %>
+    </div>
   <% end %>
 <!--<%= render "devise/shared/links" %>-->
 </div>
