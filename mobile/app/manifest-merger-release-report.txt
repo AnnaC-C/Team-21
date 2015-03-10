@@ -69,13 +69,13 @@ ADDED from AndroidManifest.xml:31:9
 		ADDED from AndroidManifest.xml:33:13
 	android:name
 		ADDED from AndroidManifest.xml:32:13
-activity#team21.cs.ncl.ac.uk.astervo.SingleAccountActivity
+activity#team21.cs.ncl.ac.uk.astervo.TransferActivity
 ADDED from AndroidManifest.xml:35:9
 	android:label
 		ADDED from AndroidManifest.xml:37:13
 	android:name
 		ADDED from AndroidManifest.xml:36:13
-activity#team21.cs.ncl.ac.uk.astervo.TransferActivity
+activity#team21.cs.ncl.ac.uk.astervo.pet
 ADDED from AndroidManifest.xml:39:9
 	android:label
 		ADDED from AndroidManifest.xml:41:13
