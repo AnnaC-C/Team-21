@@ -48,7 +48,7 @@ body {
      #position: absolute;
      text-align: center;
      width: 400px;
-     height: 580px;
+     height: 680px;
      background-color: rgba(255,255,255,0.90);
      border: 10px solid #006a4d;
      border-radius: 40px;
@@ -121,7 +121,8 @@ body {
   font-size: 50px;
 }
 
-.test {
-  border: none;
-  background-color: #FFF;
+#logo {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 10px;
 }

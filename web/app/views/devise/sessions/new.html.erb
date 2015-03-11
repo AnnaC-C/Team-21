@@ -1,3 +1,7 @@
+<div id="logo">
+  <%= image_tag "banner_logo.png", height: "100", width: "470" %>
+</div>
+
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div>
       <span id="input-img"><%= image_tag("email.png", width: '450', height: '200') %></span>
@@ -12,11 +16,11 @@
     </div>
 
     <div id="submit-button">
-      <%= submit_tag "Log In", class: "login-text" %>
+      <!-- TODO REMOVE: <%= submit_tag "Log In", class: "login-text" %> -->
       <%= f.submit "Log in", :type => :image, :src => image_url("login.png") %>
     </div>
     <div id="submit-button">
-      <%= link_to "Sign Up", :signup, class: "signup-text" %>
+      <!-- TODO REMOVE: <%= link_to "Sign Up", :signup, class: "signup-text" %> -->
       <%= link_to image_tag("signup.png", :border=>0, id: "signup-button"), :signup %>
     </div>
   <% end %>
