@@ -11,6 +11,9 @@
     <string name="title_activity_dash">DashActivity</string>
     <string name="title_activity_single_account">SingleAccountActivity</string>
     <string name="title_activity_transfer">TransferActivity</string>
-    <string name="title_activity_pet">pet</string>
+    <string name="title_activity_pet">PetActivity</string>
+    <string name="title_activity_quiz">QuizActivity</string>
+    <string name="title_activity_shop">ShopActivity</string>
+    <string name="title_activity_rewards">RewardsActivity</string>
 
 </resources>

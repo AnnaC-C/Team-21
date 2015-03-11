@@ -116,7 +116,7 @@ public class TransferActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_transfer, menu);
+        getMenuInflater().inflate(R.menu.menu_dash, menu);
         return true;
     }
 
@@ -128,6 +128,37 @@ public class TransferActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.action_logout:
                 logout();
+                return true;
+            case R.id.action_home:
+                Intent dashIntent = new Intent(this, DashActivity.class);
+                startActivity(dashIntent);
+                finish();
+                return true;
+            case R.id.action_accounts:
+                Intent accountIntent = new Intent(this, TransferActivity.class);
+                startActivity(accountIntent);
+                finish();
+                return true;
+            case R.id.action_quiz:
+                Intent quizIntent = new Intent(this, QuizActivity.class);
+                startActivity(quizIntent);
+                finish();
+                return true;
+            case R.id.action_pet:
+                Intent petIntent = new Intent(this, PetActivity.class);
+                startActivity(petIntent);
+                finish();
+                return true;
+            case R.id.action_shop:
+                Intent shopIntent = new Intent(this, ShopActivity.class);
+                startActivity(shopIntent);
+                finish();
+                return true;
+            case R.id.action_rewards:
+                Intent rewardIntent = new Intent(this, RewardsActivity.class);
+                startActivity(rewardIntent);
+                finish();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
