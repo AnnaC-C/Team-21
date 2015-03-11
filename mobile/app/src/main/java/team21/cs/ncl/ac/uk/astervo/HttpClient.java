@@ -50,7 +50,7 @@ public class HttpClient {
         return PrivateFields.BASE_URL + relativeUrl;
     }
 
-    private static void reset() {
+    public static void reset() {
         client = new AsyncHttpClient();
     }
 
