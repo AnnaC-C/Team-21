@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DashActivity extends ActionBarActivity {
+public class DashActivity extends BaseActivity {
 
     //Get global variables
     Globals g;
@@ -48,11 +48,8 @@ public class DashActivity extends ActionBarActivity {
     public void onResume() {
         super.onResume();
 
-        //Update fields every time activity is resumed
-        update();
-
     }
-      private ShareActionProvider mShareActionProvider;
+
    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
