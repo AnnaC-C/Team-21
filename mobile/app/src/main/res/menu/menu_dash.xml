@@ -2,6 +2,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="team21.cs.ncl.ac.uk.astervo.DashActivity">
-    <item android:id="@+id/action_logout" android:title="@string/action_logout"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/profile" android:icon="@drawable/profile"
+        android:orderInCategory="2" app:showAsAction="always">
+        <menu>
+            <item android:id="@+id/action_logout" android:title="@string/action_logout" />
+            <item android:id="@+id/action_settings" android:title="Settings" />
+        </menu>/>
+
+    </item>
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:orderInCategory="3"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/accounts"
+        android:icon="@drawable/pound"
+        android:orderInCategory="4"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/quiz"
+        android:icon="@drawable/quizicon"
+        android:orderInCategory="5"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/pet"
+        android:icon="@drawable/dog"
+        android:orderInCategory="6"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/shop"
+        android:icon="@drawable/shop"
+        android:orderInCategory="7"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/rewards"
+        android:icon="@drawable/rewards"
+        android:orderInCategory="8"
+        app:showAsAction="always"/>
+
 </menu>

@@ -4,7 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="team21.cs.ncl.ac.uk.astervo.pet">
+    tools:context="team21.cs.ncl.ac.uk.astervo.pet"
+    android:background="@drawable/wood">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -14,8 +15,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="39dp"
-            android:background="#0000FF">
+            android:layout_height="39dp">
 
         </LinearLayout>
 
@@ -34,6 +34,23 @@
                 android:layout_height="fill_parent"
                 android:background="@drawable/border">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:id="@+id/imageView"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/city2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Points: 100"
+                    android:id="@+id/textView7"
+                    android:layout_above="@+id/imageView"
+                    android:layout_alignParentStart="true" />
+
             </RelativeLayout>
         </LinearLayout>
 
@@ -42,37 +59,135 @@
             android:layout_width="fill_parent"
             android:layout_height="29dp"></LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="55dp"
-            android:background="@drawable/border"
-            android:id="@+id/">
+            android:layout_height="244dp">
 
-        </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/border"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="55dp"
-            android:background="@drawable/border">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Give food"
+                        android:id="@+id/textView"
+                        android:layout_gravity="left|top" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="55dp"
-            android:background="@drawable/border">
+                    <ImageButton
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButton"
+                        android:layout_gravity="left|center_vertical"
+                        android:background="@drawable/fish"
+                        android:layout_below="@+id/textView"
+                        android:layout_alignParentStart="true" />
 
-        </LinearLayout>
+                    <ImageButton
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:id="@+id/imageButton2"
+                        android:background="@drawable/bowl"
+                        android:layout_below="@+id/textView"
+                        android:layout_centerHorizontal="true" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="55dp"
-            android:background="@drawable/border">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="x2"
+                        android:id="@+id/textView2"
+                        android:layout_alignBottom="@+id/imageButton2"
+                        android:layout_toEndOf="@+id/imageButton" />
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="x1"
+                        android:id="@+id/textView3"
+                        android:layout_alignBottom="@+id/textView2"
+                        android:layout_toEndOf="@+id/imageButton2" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/border"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/linearLayout">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Play with cat"
+                        android:id="@+id/textView4"
+                        android:layout_gravity="left|top" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Scissors-paper-rock"
+                        android:id="@+id/button8"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Win 2 times"
+                        android:id="@+id/textView6"
+                        android:textColor="#000000"
+                        android:layout_alignBaseline="@+id/textView4"
+                        android:layout_alignBottom="@+id/textView4"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/border"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Go for a walk"
+                        android:id="@+id/textView5"
+                        android:layout_gravity="left|top" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 </ScrollView>
