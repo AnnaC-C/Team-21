@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="team21.cs.ncl.ac.uk.astervo.pet"
+    tools:context="team21.cs.ncl.ac.uk.astervo.PetActivity"
     android:background="@drawable/wood">
 
     <LinearLayout
@@ -39,8 +39,9 @@
                     android:layout_height="200dp"
                     android:id="@+id/imageView"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"
-                    android:background="@drawable/city2" />
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/city" />
 
                 <TextView
                     android:layout_width="wrap_content"

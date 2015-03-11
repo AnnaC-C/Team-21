@@ -12,34 +12,34 @@
 
     </item>
     <item
-        android:id="@+id/home"
+        android:id="@+id/action_home"
         android:icon="@drawable/home"
         android:orderInCategory="3"
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/accounts"
+        android:id="@+id/action_accounts"
         android:icon="@drawable/pound"
         android:orderInCategory="4"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/quiz"
+        android:id="@+id/action_quiz"
         android:icon="@drawable/quizicon"
         android:orderInCategory="5"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/pet"
+        android:id="@+id/action_pet"
         android:icon="@drawable/dog"
         android:orderInCategory="6"
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/shop"
+        android:id="@+id/action_shop"
         android:icon="@drawable/shop"
         android:orderInCategory="7"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/rewards"
+        android:id="@+id/action_rewards"
         android:icon="@drawable/rewards"
         android:orderInCategory="8"
         app:showAsAction="always"/>
