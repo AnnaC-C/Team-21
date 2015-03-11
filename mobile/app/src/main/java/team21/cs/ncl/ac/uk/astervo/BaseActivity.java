@@ -23,6 +23,8 @@ public class BaseActivity extends ActionBarActivity {
     long lastActivity;
     Globals g;
 
+    final int TIMEOUT_MILLI = 300000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +40,17 @@ public class BaseActivity extends ActionBarActivity {
 
         long now = new Date().getTime();
 
-        if (now - lastActivity > 3000) {
-            HttpClient.reset();
-            g.reset();
-            Intent i = new Intent(this, LoginActivity.class);
-            Toast.makeText(getApplicationContext(), "Logged out due to inactivity.", Toast.LENGTH_LONG).show();
-            finish();
+        if (now - lastActivity > TIMEOUT_MILLI) {
+            inactiveLogout();
         }
+    }
+
+    public void inactiveLogout() {
+        HttpClient.reset();
+        g.reset();
+        Intent i = new Intent(this, LoginActivity.class);
+        Toast.makeText(getApplicationContext(), "Logged out due to inactivity.", Toast.LENGTH_LONG).show();
+        finish();
     }
 
 }

@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -29,6 +30,8 @@ public class DashActivity extends BaseActivity {
 
     //Get global variables
     Globals g;
+
+    long now;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,6 @@ public class DashActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
-
     }
 
    @Override
@@ -69,34 +71,70 @@ public class DashActivity extends BaseActivity {
                 logout();
                 return true;
             case R.id.action_home:
-                Intent dashIntent = new Intent(this, DashActivity.class);
-                startActivity(dashIntent);
-                finish();
+                now = new Date().getTime();
+                if (now - lastActivity > TIMEOUT_MILLI) {
+                    inactiveLogout();
+                }
+                else {
+                    Intent dashIntent = new Intent(this, DashActivity.class);
+                    startActivity(dashIntent);
+                    finish();
+                }
                 return true;
             case R.id.action_accounts:
-                Intent accountIntent = new Intent(this, TransferActivity.class);
-                startActivity(accountIntent);
-                finish();
+                now = new Date().getTime();
+                if (now - lastActivity > TIMEOUT_MILLI) {
+                    inactiveLogout();
+                }
+                else {
+                    Intent accountIntent = new Intent(this, TransferActivity.class);
+                    startActivity(accountIntent);
+                    finish();
+                }
                 return true;
             case R.id.action_quiz:
-                Intent quizIntent = new Intent(this, QuizActivity.class);
-                startActivity(quizIntent);
-                finish();
+                now = new Date().getTime();
+                if (now - lastActivity > TIMEOUT_MILLI) {
+                    inactiveLogout();
+                }
+                else {
+                    Intent quizIntent = new Intent(this, QuizActivity.class);
+                    startActivity(quizIntent);
+                    finish();
+                }
                 return true;
             case R.id.action_pet:
-                Intent petIntent = new Intent(this, PetActivity.class);
-                startActivity(petIntent);
-                finish();
+                now = new Date().getTime();
+                if (now - lastActivity > TIMEOUT_MILLI) {
+                    inactiveLogout();
+                }
+                else {
+                    Intent petIntent = new Intent(this, PetActivity.class);
+                    startActivity(petIntent);
+                    finish();
+                }
                 return true;
             case R.id.action_shop:
-                Intent shopIntent = new Intent(this, ShopActivity.class);
-                startActivity(shopIntent);
-                finish();
+                now = new Date().getTime();
+                if (now - lastActivity > TIMEOUT_MILLI) {
+                    inactiveLogout();
+                }
+                else {
+                    Intent shopIntent = new Intent(this, ShopActivity.class);
+                    startActivity(shopIntent);
+                    finish();
+                }
                 return true;
             case R.id.action_rewards:
-                Intent rewardIntent = new Intent(this, RewardsActivity.class);
-                startActivity(rewardIntent);
-                finish();
+                now = new Date().getTime();
+                if (now - lastActivity > TIMEOUT_MILLI) {
+                    inactiveLogout();
+                }
+                else {
+                    Intent rewardIntent = new Intent(this, RewardsActivity.class);
+                    startActivity(rewardIntent);
+                    finish();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
