@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       delete 'sessions' => 'sessions#destroy', :as => 'logout'
       post "transfers" => "transfers#create", :as => 'transfer'
       get "transfers" => "transfers#retrieve", :as => 'retrieve'
+      get "quiz" => "quiz#get_questions", :as => 'get_questions'
     end
   end
 end
