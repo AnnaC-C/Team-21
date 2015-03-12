@@ -1,6 +1,12 @@
 class Api::QuizController < ApplicationController
   include QuizHelper
 
+  skip_before_filter :verify_authenticity_token, :if => Proc.new { |c|
+    c.request.format == 'application/json'
+  }
+
+  respond_to :json
+
   def get_questions
     render :status => 200,
            :json => { :questions => retrieve_random_questions }
@@ -12,7 +18,7 @@ class Api::QuizController < ApplicationController
     all_correct = true
 
     answers.each do |a|
-      if a.answer == Question.find(a.question).correct
+      if a[:answer] == Question.find(a[:question]).correct
         points += 10
       else
         all_correct = false

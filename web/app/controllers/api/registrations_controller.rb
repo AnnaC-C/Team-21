@@ -21,7 +21,6 @@ class Api::RegistrationsController < Devise::RegistrationsController
     else
       render :status => :unprocessable_entity,
              :json => { :success => false,
-
                         :info => resource.errors.full_messages,
                         :data => {} }
     end
