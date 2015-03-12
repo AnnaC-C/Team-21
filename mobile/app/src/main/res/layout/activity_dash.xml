@@ -74,122 +74,20 @@
         android:layout_height="198dp"
         android:background="#c7858585">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="30dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:weightSum="1"
-            android:id="@+id/linearLayout2">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/dashborder"
+            android:layout_weight="0.64">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="70dp"
-                android:layout_weight="0.83"
-                android:background="@drawable/buttonborder">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/accListView"></ListView>
 
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+        </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="7,763"
-                        android:id="@+id/textView15"
-                        android:textSize="40dp"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="£"
-                        android:id="@+id/textView16"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="20dp" />
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/buttonborder1">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Total balance"
-                    android:id="@+id/textView13" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:weightSum="1"
-            android:layout_alignTop="@+id/linearLayout2"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="36dp">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="70dp"
-                android:layout_weight="0.83"
-                android:background="@drawable/buttonborder" >
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="5,798"
-                        android:id="@+id/textView17"
-                        android:textSize="40dp"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="£"
-                        android:id="@+id/textView18"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="20dp" />
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/buttonborder1" >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Available"
-                    android:id="@+id/textView14" />
-            </LinearLayout>
-        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -203,7 +101,7 @@
             android:layout_height="120dp"
             android:background="@drawable/button1"
             android:layout_marginStart="10dp"
-            android:id="@+id/relativeLayout2"
+            android:id="@+id/dashAccounts"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true">
 
@@ -221,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="4"
-                android:id="@+id/textView22"
+                android:id="@+id/dashNumberOfAccounts"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>
@@ -232,8 +130,8 @@
             android:background="@drawable/button1"
             android:layout_marginStart="37dp"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/relativeLayout2"
-            android:id="@+id/relativeLayout3">
+            android:layout_toEndOf="@+id/dashAccounts"
+            android:id="@+id/dashRewards">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -258,10 +156,11 @@
             android:layout_height="120dp"
             android:background="@drawable/button1"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/relativeLayout3"
+            android:layout_toEndOf="@+id/dashRewards"
             android:layout_alignParentEnd="false"
             android:layout_alignParentStart="false"
-            android:layout_marginLeft="37dp">
+            android:layout_marginLeft="37dp"
+            android:id="@+id/dashPet">
 
             <TextView
                 android:layout_width="wrap_content"
