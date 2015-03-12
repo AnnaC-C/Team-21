@@ -30,8 +30,9 @@ class Api::QuizController < ApplicationController
     end
 
     # TODO: Write method for User to add points to both at once. (Transaction?)
-    current_user.current_points += points
-    current_user.current_points += points
+    current_user.current_points += points.to_i
+    current_user.lifetime_points += points.to_i
+    current_user.save
 
     render :status => 200,
            :json => { :score => points }
