@@ -14,8 +14,8 @@
 
         <ImageButton
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/imageButton3"
+            android:layout_height="121dp"
+            android:id="@+id/dashAvatar"
             android:layout_marginStart="26dp"
             android:background="@drawable/male"
             android:layout_alignParentTop="true"
@@ -28,8 +28,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Current points: 120"
             android:id="@+id/textView8"
-            android:layout_alignTop="@+id/imageButton3"
-            android:layout_toEndOf="@+id/imageButton3"
+            android:layout_alignTop="@+id/dashAvatar"
+            android:layout_toEndOf="@+id/dashAvatar"
             android:layout_marginStart="39dp" />
 
         <TextView
@@ -103,22 +103,23 @@
             android:layout_marginStart="10dp"
             android:id="@+id/dashAccounts"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="3dp">
 
-            <TextView
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Accounts"
                 android:id="@+id/textView19"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:maxLines="1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="4"
                 android:id="@+id/dashNumberOfAccounts"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
@@ -133,14 +134,15 @@
             android:layout_toEndOf="@+id/dashAccounts"
             android:id="@+id/dashRewards">
 
-            <TextView
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Rewards"
                 android:id="@+id/textView20"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:maxLines="1" />
 
             <ImageView
                 android:layout_width="50dp"
@@ -160,16 +162,18 @@
             android:layout_alignParentEnd="false"
             android:layout_alignParentStart="false"
             android:layout_marginLeft="37dp"
-            android:id="@+id/dashPet">
+            android:id="@+id/dashPet"
+            android:layout_marginRight="3dp">
 
-            <TextView
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Branch"
+                android:text="Pet"
                 android:id="@+id/textView21"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:maxLines="1" />
 
             <ImageView
                 android:layout_width="50dp"
@@ -177,7 +181,7 @@
                 android:id="@+id/imageView3"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/location" />
+                android:background="@drawable/dog" />
         </RelativeLayout>
 
     </RelativeLayout>

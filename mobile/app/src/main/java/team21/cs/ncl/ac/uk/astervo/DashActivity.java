@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ShareActionProvider;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -257,11 +258,16 @@ public class DashActivity extends BaseActivity {
             }
         });
 
+        TextView noOfAccounts = (TextView) findViewById(R.id.dashNumberOfAccounts);
+        noOfAccounts.setText(Integer.toString(jsonAccounts.length()));
+
     }
 
     public void setButtons() {
 
         RelativeLayout acc = (RelativeLayout) findViewById(R.id.dashAccounts);
+        RelativeLayout rewards = (RelativeLayout) findViewById(R.id.dashRewards);
+        RelativeLayout pet = (RelativeLayout) findViewById(R.id.dashPet);
 
         acc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -269,6 +275,26 @@ public class DashActivity extends BaseActivity {
 
                 g.setSingleAccountLocation(0);
                 Intent i = new Intent(getApplicationContext(), TransferActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        rewards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(), RewardsActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        pet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(), PetActivity.class);
                 startActivity(i);
 
             }
