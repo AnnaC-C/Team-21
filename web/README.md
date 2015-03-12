@@ -204,3 +204,117 @@ None
     ]
 }
 ```
+
+### Get questions for the Quiz.
+
+**ENDPOINT**: https://astervo.herokuapp.com/api/questions
+
+**TYPE:** GET
+
+**HEADERS:** 
+
+* ` Content-Type: application/json`
+*  `Accept: application/json `
+
+**PAYLOAD:** 
+``` python
+None
+```
+
+**SAMPLE RETURN STRING:** 
+``` javascript
+{
+    "questions": [
+        {
+            "question": "Question?",
+            "answers": [
+                "Answer",
+                "Answer",
+                "Answer",
+                "Answer"
+            ]
+        },
+        {
+            "question": "Question?",
+            "answers": [
+                "Answer",
+                "Answer",
+                "Answer",
+                "Answer"
+            ]
+        },
+        {
+            "question": "Question?",
+            "answers": [
+                "Answer",
+                "Answer",
+                "Answer",
+                "Answer"
+            ]
+        },
+        {
+            "question": "Question?",
+            "answers": [
+                "Answer",
+                "Answer",
+                "Answer",
+                "Answer"
+            ]
+        },
+        {
+            "question": "Question?",
+            "answers": [
+                "Answer",
+                "Answer",
+                "Answer",
+                "Answer"
+            ]
+        }
+    ]
+}
+```
+
+### Submit Quiz answers and get a result.
+
+**ENDPOINT**: https://astervo.herokuapp.com/api/answers
+
+**TYPE:** POST
+
+**HEADERS:** 
+
+* ` Content-Type: application/json`
+*  `Accept: application/json `
+
+**PAYLOAD:** 
+``` javascript
+{ "answers" : [
+  {
+    "question": "Question?",
+    "answer": "Answer"
+  },
+  {
+    "question": "Question?",
+    "answer": "Answer"
+  },
+  {
+    "question": "Question?",
+    "answer": "Answer"
+  },
+  {
+    "question": "Question?",
+    "answer": "Answer"
+  },
+  {
+    "question": "Question?",
+    "answer": "Answer"
+  }
+        ]
+}
+```
+
+**SAMPLE RETURN STRING:** 
+``` javascript
+{
+    "score": 100
+}
+```
