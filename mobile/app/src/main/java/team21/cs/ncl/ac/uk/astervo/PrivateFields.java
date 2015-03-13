@@ -39,4 +39,10 @@ public class PrivateFields {
     public static final String TAG_TRANS_DATE = "date";
     public static final String TAG_TRANS_SENDER = "sender";
     public static final String TAG_TRANS_RECEIVER = "receiver";
+
+    //QUESTIONS RESPONSE
+    public static final String TAG_QUESTIONS = "questions";
+    public static final String TAG_QUESTION = "question";
+    public static final String TAG_ANSWERS = "answers";
+    public static final String TAG_ANSWER = "answer";
 }

@@ -7,11 +7,18 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.Date;
 
@@ -22,12 +29,19 @@ public class QuizActivity extends BaseActivity {
 
     long now;
 
+    JSONArray questions;
+
+    int currentQuestion = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
         g = (Globals) getApplication();
+
+        getQuiz();
+        setupButtons();
     }
 
 
@@ -187,4 +201,149 @@ public class QuizActivity extends BaseActivity {
         });
 
     }
+
+    private void getQuiz() {
+
+        //Start fetching questions
+        final ProgressDialog prgDialog;
+        prgDialog = new ProgressDialog(QuizActivity.this);
+        prgDialog.setMessage("Fetching questions...");
+        prgDialog.setCancelable(false);
+        prgDialog.show();
+
+        //Attempt to return array of questions
+        try {
+
+            //Send the HTTP post request and get JSON object back
+            HttpClient.get(this.getApplicationContext(), "/api/questions", new JsonHttpResponseHandler() {
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+
+                    prgDialog.dismiss();
+
+                    //If successful parse JSON data for questions and answers
+                    if (statusCode == 200) {
+                        if (response != null) {
+                            try {
+                                questions = response.getJSONArray(PrivateFields.TAG_QUESTIONS);
+                                askQuestion();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    //If authorization error, prompt user to check details
+                    else if (statusCode == 401) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Unable to fetch questions. Please try again.";
+                        int duration = Toast.LENGTH_LONG;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                    //Otherwise tell user to try again later
+                    else {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Something went wrong. Please try again later.";
+                        int duration = Toast.LENGTH_LONG;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                }
+
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void askQuestion() {
+
+        Toast.makeText(getApplicationContext(), "HERE", Toast.LENGTH_LONG).show();
+
+            String question = null;
+            String a = null;
+            String b = null;
+            String c = null;
+            String d = null;
+
+            int i = currentQuestion;
+
+            try {
+                question = questions.getJSONObject(i).getString(PrivateFields.TAG_QUESTION);
+                JSONArray answers = questions.getJSONObject(i).getJSONArray(PrivateFields.TAG_ANSWERS);
+                a = answers.getString(0);
+                b = answers.getString(1);
+                c = answers.getString(2);
+                d = answers.getString(3);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            TextView questionText = (TextView) findViewById(R.id.quizQuestion);
+            TextView answerA = (TextView) findViewById(R.id.quizOptionA);
+            TextView answerB = (TextView) findViewById(R.id.quizOptionB);
+            TextView answerC = (TextView) findViewById(R.id.quizOptionC);
+            TextView answerD = (TextView) findViewById(R.id.quizOptionD);
+
+            if(question != null) {
+                questionText.setText(question);
+                answerA.setText(a);
+                answerB.setText(b);
+                answerC.setText(c);
+                answerD.setText(d);
+            }
+
+    }
+
+    public void setupButtons() {
+
+        RelativeLayout a = (RelativeLayout) findViewById(R.id.quizAnswerA);
+        RelativeLayout b = (RelativeLayout) findViewById(R.id.quizAnswerB);
+        RelativeLayout c = (RelativeLayout) findViewById(R.id.quizAnswerC);
+        RelativeLayout d = (RelativeLayout) findViewById(R.id.quizAnswerD);
+
+        a.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                answer(0);
+                currentQuestion++;
+                askQuestion();
+            }
+        });
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                answer(1);
+                currentQuestion++;
+                askQuestion();
+            }
+        });
+        c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                answer(2);
+                currentQuestion++;
+                askQuestion();
+            }
+        });
+        d.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                answer(3);
+                currentQuestion++;
+                askQuestion();
+            }
+        });
+
+    }
+
+    public void answer(int i) {
+
+        Toast.makeText(getApplicationContext(), Integer.toString(i + 1), Toast.LENGTH_LONG).show();
+
+    }
+
 }
