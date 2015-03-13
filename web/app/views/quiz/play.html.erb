@@ -1,10 +1,10 @@
 <h1>QUIZ</h1>
 
 <%= form_tag :play, :url => :play do |f| %>
-  <% retrieve_random_questions.each do |q| %>
-    <%= label_tag q[:question] %>
-    <% q[:answers].each do |a| %>
-      <%= radio_button_tag(q[:question], a) %>
+  <% retrieve_random_questions.each_with_index do |q, i| %>
+      <%= label_tag q[:question] %>
+      <% q[:answers].each do |a| %>
+      <%= radio_button_tag(i+1, a) %>
       <%= label_tag(a, a) %>
     <% end %>
   <br />
