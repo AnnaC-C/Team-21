@@ -2,13 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
 
-  root 'pages#dashboard'
-  get 'pages/dashboard'
-  post 'transfer/transfer' => 'transfer#transfer', :as => :transfers
-
   devise_scope :user do
     get "/login" => "devise/sessions#new"
     get "/signup" => "devise/registrations#new"
+    root 'pages#dashboard'
+    get 'pages/dashboard'
+    post 'transfer/transfer' => 'transfer#transfer', :as => :transfers
+    get 'quiz' => 'quiz#play'
+    post 'quiz' => 'quiz#get_score', :as => :play
   end
 
   namespace :api do
