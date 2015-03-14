@@ -346,11 +346,12 @@ public class QuizActivity extends BaseActivity {
 
         //Try to add the email and password text in as params
         try {
-            JSONArray tempAnswers = questions.getJSONObject(i).getJSONArray(PrivateFields.TAG_ANSWERS);
+            JSONArray tempAnswers = questions.getJSONObject(currentQuestion).getJSONArray(PrivateFields.TAG_ANSWERS);
 
             jsonAnswer.put(PrivateFields.TAG_QUESTION, questions.getJSONObject(i).getString(PrivateFields.TAG_QUESTION));
             jsonAnswer.put(PrivateFields.TAG_ANSWER, tempAnswers.getString(i));
             answers.put(currentQuestion, jsonAnswer);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -381,6 +382,8 @@ public class QuizActivity extends BaseActivity {
 
             //Attempt login
             try {
+
+                Toast.makeText(getApplicationContext(), params.toString(), Toast.LENGTH_LONG).show();
 
                 //Send the HTTP post request and get JSON object back
                 HttpClient.post(this.getApplicationContext(), "/api/answers", params, new JsonHttpResponseHandler() {
