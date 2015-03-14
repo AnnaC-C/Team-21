@@ -1,5 +1,6 @@
 package team21.cs.ncl.ac.uk.astervo;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +26,8 @@ import java.util.Date;
 
 public class QuizActivity extends BaseActivity {
 
+    ConnectionStatus connectionStatus;
+
     Globals g;
 
     long now;
@@ -33,12 +36,16 @@ public class QuizActivity extends BaseActivity {
 
     int currentQuestion = 0;
 
+    JSONArray answers = new JSONArray();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
         g = (Globals) getApplication();
+
+        connectionStatus = new ConnectionStatus(getApplicationContext());
 
         getQuiz();
         setupButtons();
@@ -65,8 +72,7 @@ public class QuizActivity extends BaseActivity {
                 now = new Date().getTime();
                 if (now - lastActivity > TIMEOUT_MILLI) {
                     inactiveLogout();
-                }
-                else {
+                } else {
                     Intent dashIntent = new Intent(this, DashActivity.class);
                     startActivity(dashIntent);
                     finish();
@@ -76,8 +82,7 @@ public class QuizActivity extends BaseActivity {
                 now = new Date().getTime();
                 if (now - lastActivity > TIMEOUT_MILLI) {
                     inactiveLogout();
-                }
-                else {
+                } else {
                     Intent accountIntent = new Intent(this, TransferActivity.class);
                     startActivity(accountIntent);
                     finish();
@@ -87,8 +92,7 @@ public class QuizActivity extends BaseActivity {
                 now = new Date().getTime();
                 if (now - lastActivity > TIMEOUT_MILLI) {
                     inactiveLogout();
-                }
-                else {
+                } else {
                     Intent quizIntent = new Intent(this, QuizActivity.class);
                     startActivity(quizIntent);
                     finish();
@@ -98,8 +102,7 @@ public class QuizActivity extends BaseActivity {
                 now = new Date().getTime();
                 if (now - lastActivity > TIMEOUT_MILLI) {
                     inactiveLogout();
-                }
-                else {
+                } else {
                     Intent petIntent = new Intent(this, PetActivity.class);
                     startActivity(petIntent);
                     finish();
@@ -109,8 +112,7 @@ public class QuizActivity extends BaseActivity {
                 now = new Date().getTime();
                 if (now - lastActivity > TIMEOUT_MILLI) {
                     inactiveLogout();
-                }
-                else {
+                } else {
                     Intent shopIntent = new Intent(this, ShopActivity.class);
                     startActivity(shopIntent);
                     finish();
@@ -120,8 +122,7 @@ public class QuizActivity extends BaseActivity {
                 now = new Date().getTime();
                 if (now - lastActivity > TIMEOUT_MILLI) {
                     inactiveLogout();
-                }
-                else {
+                } else {
                     Intent rewardIntent = new Intent(this, RewardsActivity.class);
                     startActivity(rewardIntent);
                     finish();
@@ -214,7 +215,7 @@ public class QuizActivity extends BaseActivity {
         //Attempt to return array of questions
         try {
 
-            //Send the HTTP post request and get JSON object back
+            //Send the HTTP get request and get JSON object back
             HttpClient.get(this.getApplicationContext(), "/api/questions", new JsonHttpResponseHandler() {
 
                 @Override
@@ -261,40 +262,38 @@ public class QuizActivity extends BaseActivity {
 
     public void askQuestion() {
 
-        Toast.makeText(getApplicationContext(), "HERE", Toast.LENGTH_LONG).show();
+        String question = null;
+        String a = null;
+        String b = null;
+        String c = null;
+        String d = null;
 
-            String question = null;
-            String a = null;
-            String b = null;
-            String c = null;
-            String d = null;
+        int i = currentQuestion;
 
-            int i = currentQuestion;
+        try {
+            question = questions.getJSONObject(i).getString(PrivateFields.TAG_QUESTION);
+            JSONArray answers = questions.getJSONObject(i).getJSONArray(PrivateFields.TAG_ANSWERS);
+            a = answers.getString(0);
+            b = answers.getString(1);
+            c = answers.getString(2);
+            d = answers.getString(3);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-            try {
-                question = questions.getJSONObject(i).getString(PrivateFields.TAG_QUESTION);
-                JSONArray answers = questions.getJSONObject(i).getJSONArray(PrivateFields.TAG_ANSWERS);
-                a = answers.getString(0);
-                b = answers.getString(1);
-                c = answers.getString(2);
-                d = answers.getString(3);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        TextView questionText = (TextView) findViewById(R.id.quizQuestion);
+        TextView answerA = (TextView) findViewById(R.id.quizOptionA);
+        TextView answerB = (TextView) findViewById(R.id.quizOptionB);
+        TextView answerC = (TextView) findViewById(R.id.quizOptionC);
+        TextView answerD = (TextView) findViewById(R.id.quizOptionD);
 
-            TextView questionText = (TextView) findViewById(R.id.quizQuestion);
-            TextView answerA = (TextView) findViewById(R.id.quizOptionA);
-            TextView answerB = (TextView) findViewById(R.id.quizOptionB);
-            TextView answerC = (TextView) findViewById(R.id.quizOptionC);
-            TextView answerD = (TextView) findViewById(R.id.quizOptionD);
-
-            if(question != null) {
-                questionText.setText(question);
-                answerA.setText(a);
-                answerB.setText(b);
-                answerC.setText(c);
-                answerD.setText(d);
-            }
+        if (question != null) {
+            questionText.setText(question);
+            answerA.setText(a);
+            answerB.setText(b);
+            answerC.setText(c);
+            answerD.setText(d);
+        }
 
     }
 
@@ -342,8 +341,127 @@ public class QuizActivity extends BaseActivity {
 
     public void answer(int i) {
 
-        Toast.makeText(getApplicationContext(), Integer.toString(i + 1), Toast.LENGTH_LONG).show();
+        //Create answer JSON object
+        JSONObject jsonAnswer = new JSONObject();
 
+        //Try to add the email and password text in as params
+        try {
+            JSONArray tempAnswers = questions.getJSONObject(i).getJSONArray(PrivateFields.TAG_ANSWERS);
+
+            jsonAnswer.put(PrivateFields.TAG_QUESTION, questions.getJSONObject(i).getString(PrivateFields.TAG_QUESTION));
+            jsonAnswer.put(PrivateFields.TAG_ANSWER, tempAnswers.getString(i));
+            answers.put(currentQuestion, jsonAnswer);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (currentQuestion == 4) {
+            JSONObject params = new JSONObject();
+            try {
+                params.put(PrivateFields.TAG_ANSWERS, answers);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            submit(params);
+        }
+
+    }
+
+    public void submit(JSONObject params) {
+
+        //If phone has data, then attempt login
+        if (connectionStatus.isConnected()) {
+
+            //Start logging in dialog
+            final ProgressDialog prgDialog;
+            prgDialog = new ProgressDialog(QuizActivity.this);
+            prgDialog.setMessage("Submitting...");
+            prgDialog.setCancelable(false);
+            prgDialog.show();
+
+            //Attempt login
+            try {
+
+                //Send the HTTP post request and get JSON object back
+                HttpClient.post(this.getApplicationContext(), "/api/answers", params, new JsonHttpResponseHandler() {
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+
+                        prgDialog.dismiss();
+
+                        //If successful parse JSON data and create dashboard activity
+                        if (statusCode == 200) {
+                            if (response != null) {
+                                try {
+
+                                    Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
+                                    Intent i = new Intent(QuizActivity.this, DashActivity.class);
+                                    startActivity(i);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        //If authorization error, prompt user to check details
+                        else if (statusCode == 401) {
+                            Context context = getApplicationContext();
+                            CharSequence text = "Submission failed. Check your details and try again.";
+                            int duration = Toast.LENGTH_LONG;
+
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                        }
+                        //Otherwise tell user to try again later
+                        else {
+                            Context context = getApplicationContext();
+                            CharSequence text = "Something went wrong. Please try again later.";
+                            int duration = Toast.LENGTH_LONG;
+
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                        }
+                    }
+
+                    //If post request fails, check status code
+                    @Override
+                    public void onFailure(int statusCode, org.apache.http.Header[] headers, java.lang.Throwable throwable, org.json.JSONObject errorResponse) {
+
+                        prgDialog.dismiss();
+
+                        //Create error String
+                        String error = "";
+
+                        try {
+                            error = "\u2022 " + errorResponse.getString(PrivateFields.TAG_ERROR);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            error = "Please Try Again.";
+                        }
+
+                        //Display alert
+                        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(QuizActivity.this);
+                        dlgAlert.setMessage(error);
+                        dlgAlert.setTitle("Something went wrong:");
+                        dlgAlert.setPositiveButton("OK", null);
+                        dlgAlert.create().show();
+                    }
+
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        //If no internet connection, prompt user to check connection
+        else {
+            Context context = getApplicationContext();
+            CharSequence text = "Login requires an internet connection.";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 
 }
