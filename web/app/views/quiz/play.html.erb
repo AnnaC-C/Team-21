@@ -1,0 +1,13 @@
+<h1>QUIZ</h1>
+
+<%= form_for :questions, :url => :play do |f| %>
+  <% retrieve_random_questions.each do |q| %>
+      <%= f.label q[:question], q[:question] %>
+      <% q[:answers].each do |a| %>
+        <%= f.radio_button(q[:question],a) %>
+        <%= f.label(q[:question], a) %>
+      <% end %>
+      <br />
+  <% end %>
+  <%= submit_tag "Submit Answers" %>
+<% end %>
