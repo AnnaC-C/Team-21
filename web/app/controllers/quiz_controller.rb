@@ -5,13 +5,14 @@ class QuizController < ApplicationController
     # ensure login
   end
 
+  # TODO: Handle RecordNotFound
   def get_score
-    #calculate_score(params[:answers])
-    answers = []
-    5.times do |i|
-      logger.info "param:" + params[:"#{i+1}"].to_s
-      answers.push { :question => params}
+    answers_from_params = { :answers => []}
+
+    params[:questions].each do |q,a|
+       answers_from_params[:answers].push({:question => Question.find_by(:id => q)[:question], :answer => a} )
     end
+       logger.info("\NSCORE: " + calculate_score(answers_from_params[:answers]).to_s + "\n")
     redirect_to :root
   end
 

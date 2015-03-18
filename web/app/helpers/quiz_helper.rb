@@ -1,12 +1,18 @@
 module QuizHelper
 
   def retrieve_random_questions
-    return Question.all.map{
-      |x| { :id => x.id,
-            :question => x.question,
-            :answers => [x.correct, x.incorrect_1, x.incorrect_2, x.incorrect_3].shuffle
+    # How many questions should be returned.
+    question_count = 5
+
+    # Get question_count amount of random questions and map them to a hash.
+    questions = Question.all.map.with_index{
+      |x, i| {:question => x.question,
+              :answers => [x.correct, x.incorrect_1, x.incorrect_2, x.incorrect_3].shuffle
           }
-      }.sample(5)
+      }.sample(question_count)
+
+    # Return questions.
+    return questions
   end
 
   def calculate_score(answers)
