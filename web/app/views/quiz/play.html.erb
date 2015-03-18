@@ -1,15 +1,18 @@
 <h1>QUIZ</h1>
 
-<%= form_tag :play, :url => :play do |f| %>
-  <% retrieve_random_questions.each_with_index do |q, i| %>
-      <%= label_tag q[:question] %>
-      <% q[:answers].each do |a| %>
-      <%= radio_button_tag(i+1, a) %>
-      <%= label_tag(a, a) %>
-    <% end %>
+<%= form_for :questions, :url => :play do |f| %>
+  <% retrieve_random_questions.each do |q| %>
+  <br />
+      <%= f.label q[:question] %>
+      <%= form_for :answers do |answers_form| %>
+        <% q[:answers].each_with_index do |a, i| %>
+        <%= answers_form.radio_button(i,a) %>
+        <%= answers_form.label(a, a) %>
+        <% end %>
+
+  <% end %>
   <br />
   <% end %>
-
-
+  <br />
   <%= submit_tag "Submit Answers" %>
 <% end %>
