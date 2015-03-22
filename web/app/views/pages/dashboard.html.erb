@@ -7,6 +7,9 @@
     <li><h3> LIFETIME POINTS: <%= current_user.lifetime_points %> </h2></li>
 </div>
 
+<h2>QUIZ</h2>
+<%= link_to "Play", :quiz %>
+
 <h2>Accounts:</h2>
 <% current_user.accounts.each do |a| %>
 <div style="margin: 5px; border: 3px solid #9EA900;">
@@ -33,7 +36,7 @@
   <%= submit_tag "Transfer" %>
 <% end %>
 
-<h2>Transactions:</h2>
+<h2>Tranfers:</h2>
 <% current_user.transfers.each do |t| %>
 <div style="margin: 5px; border: 3px solid #FFA500;">
   <ul>
