@@ -1,26 +1,25 @@
-<h1>QUIZ</h1>
-
-<!--<%= form_for :questions, :url => :play do |f| %>
+<%= form_for :questions, :url => :play do |f| %>
+  <div class="question-boxes">
+    <ul>
     <% retrieve_random_questions.each do |q| %>
+      <li class="question-container">
         <%= f.label q[:question], q[:question] %>
         <% q[:answers].each do |a| %>
-          <%= f.radio_button(q[:question],a) %>
-          <%= f.label(q[:question], a) %>
+          <p>
+            <%= f.radio_button(q[:question],a) %>
+            <%= f.label(q[:question], a) %>
+          </p>
         <% end %>
-      <% end %>
-  <%= submit_tag "Submit Answers" %>
+      </li>
+    <% end %>
+    <li class="question-container"><h1>Finished!</h1><%= submit_tag "Submit Answers" %></li>
+    </ul>
+  </div>
 <% end %>
--->
-<div class="banner">
-  <ul>
-    <li>This is a slide.</li>
-    <li>This is another slide.</li>
-    <li>This is also a slide.</li>
-  </ul>
-</div>
-
 <script>
-$( document ).ready(function() {
-  $('.banner').unslider();
-});
+  $( document ).ready(function() {
+    $('.question-boxes').unslider({
+      delay: false
+    });
+  });
 </script>
