@@ -10,16 +10,31 @@
             <%= f.label(q[:question], a) %>
           </p>
         <% end %>
+        <p><a href="#" class="unslider-arrow prev">&lt;--</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="unslider-arrow next">--&gt;</a></p>
       </li>
     <% end %>
-    <li class="question-container"><h1>Finished!</h1><%= submit_tag "Submit Answers" %></li>
+      <li class="question-container">
+        <h1>Finished!</h1>
+        <%= submit_tag "Submit Answers" %>
+        <p><a href="#" class="unslider-arrow prev">&lt;--</a></p>
+      </li>
     </ul>
   </div>
 <% end %>
 <script>
   $( document ).ready(function() {
-    $('.question-boxes').unslider({
+    var uS = $('.question-boxes').unslider({
       delay: false
     });
+
+    $('.unslider-arrow').click(function() {
+        var fn = this.className.split(' ')[1];
+
+        //  Either do unslider.data('unslider').next() or .prev() depending on the className
+        uS.data('unslider')[fn]();
+    });
   });
+
+
+
 </script>
