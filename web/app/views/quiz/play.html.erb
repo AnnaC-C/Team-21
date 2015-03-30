@@ -1,21 +1,26 @@
 <h1>QUIZ</h1>
 
-<%= form_for :questions, :url => :play do |f| %>
-  <% retrieve_random_questions.each do |q| %>
-    <div class="question-block">
-      <div class="question">
+<!--<%= form_for :questions, :url => :play do |f| %>
+    <% retrieve_random_questions.each do |q| %>
         <%= f.label q[:question], q[:question] %>
-      </div>
-      <ul class="answers">
         <% q[:answers].each do |a| %>
-          <li class="answer">
           <%= f.radio_button(q[:question],a) %>
           <%= f.label(q[:question], a) %>
-          </li>
         <% end %>
-      </ul>
-      <br />
-    </div>
-  <% end %>
+      <% end %>
   <%= submit_tag "Submit Answers" %>
 <% end %>
+-->
+<div class="banner">
+  <ul>
+    <li>This is a slide.</li>
+    <li>This is another slide.</li>
+    <li>This is also a slide.</li>
+  </ul>
+</div>
+
+<script>
+$( document ).ready(function() {
+  $('.banner').unslider();
+});
+</script>
