@@ -2,12 +2,20 @@
 
 <%= form_for :questions, :url => :play do |f| %>
   <% retrieve_random_questions.each do |q| %>
-      <%= f.label q[:question], q[:question] %>
-      <% q[:answers].each do |a| %>
-        <%= f.radio_button(q[:question],a) %>
-        <%= f.label(q[:question], a) %>
-      <% end %>
+    <div class="question-block">
+      <div class="question">
+        <%= f.label q[:question], q[:question] %>
+      </div>
+      <ul class="answers">
+        <% q[:answers].each do |a| %>
+          <li class="answer">
+          <%= f.radio_button(q[:question],a) %>
+          <%= f.label(q[:question], a) %>
+          </li>
+        <% end %>
+      </ul>
       <br />
+    </div>
   <% end %>
   <%= submit_tag "Submit Answers" %>
 <% end %>
