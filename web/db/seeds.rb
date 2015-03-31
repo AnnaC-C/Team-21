@@ -14,3 +14,10 @@ Question.create(question: "What is interest?", correct: "Money added to your acc
 Question.create(question: "You use a budget to:", correct: "Keep track of your money", incorrect_1: "Change from one provider to another", incorrect_2: "Complain to your bank", incorrect_3: "Gain more interest")
 Question.create(question: "What is a mortgage?", correct: "A type of loan to buy a house", incorrect_1: "A type of home insurance", incorrect_2: "A high interest savings account", incorrect_3: "A deputy branch manager")
 Question.create(question: "What is an offset loan?", correct: "A loan guaranteed against something valuable", incorrect_1: "Borrowing money at a lower rate", incorrect_2: "A high interest savings account", incorrect_3: "A loan used to start a business")
+
+Item.create(description: "Tiara", cost: 1000, consumable: false, image: "rewards/tiara.png")
+Item.create(description: "Crown", cost: 1000, consumable: false, image: "rewards/crown.png")
+Item.create(description: "Lai", cost: 800, consumable: false, image: "rewards/lai.png")
+Item.create(description: "Santa Hat", cost: 1000, consumable: false, image: "rewards/santahat.png")
+Item.create(description: "Shades", cost: 350, consumable: false, image: "rewards/shades.png")
+Item.create(description: "Teddy", cost: 250, consumable: true, image: "rewards/teddy.png")
