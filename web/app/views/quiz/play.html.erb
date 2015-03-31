@@ -1,13 +1,14 @@
 <%= form_for :questions, :url => :play do |f| %>
   <div class="question-boxes">
     <ul>
-    <% retrieve_random_questions.each do |q| %>
+    <% retrieve_random_questions.each.with_index do |q,i| %>
       <li class="question-container">
-        <%= f.label q[:question], q[:question] %>
+        <%= f.label q[:id], q[:question] %>
+        <%= f.hidden_field q[:id], :value => q[:id] %>
         <% q[:answers].each do |a| %>
           <p>
-            <%= f.radio_button(q[:question],a) %>
-            <%= f.label(q[:question], a) %>
+            <%= f.radio_button(q[:id],a) %>
+            <%= f.label(q[:id], a) %>
           </p>
         <% end %>
         <p><a href="#" class="unslider-arrow prev">&lt;--</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="unslider-arrow next">--&gt;</a></p>
