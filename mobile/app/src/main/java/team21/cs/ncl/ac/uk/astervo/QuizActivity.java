@@ -401,6 +401,7 @@ public class QuizActivity extends BaseActivity {
                                     Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
                                     Intent i = new Intent(QuizActivity.this, DashActivity.class);
                                     startActivity(i);
+                                    finish();
 
                                 } catch (Exception e) {
                                     e.printStackTrace();

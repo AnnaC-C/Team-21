@@ -16,6 +16,7 @@ import android.util.TypedValue;
 import android.widget.TextView;
 
 public class AutoResizeTextView extends TextView {
+
     private interface SizeTester {
         /**
          *
