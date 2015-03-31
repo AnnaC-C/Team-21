@@ -3,6 +3,7 @@ package team21.cs.ncl.ac.uk.astervo;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -196,7 +197,7 @@ public class QuizActivity extends BaseActivity {
         try {
             JSONArray tempAnswers = questions.getJSONObject(currentQuestion).getJSONArray(PrivateFields.TAG_ANSWERS);
 
-            jsonAnswer.put(PrivateFields.TAG_QUESTION, questions.getJSONObject(i).getString(PrivateFields.TAG_QUESTION));
+            jsonAnswer.put(PrivateFields.TAG_Q_ID, questions.getJSONObject(currentQuestion).getString(PrivateFields.TAG_Q_ID));
             jsonAnswer.put(PrivateFields.TAG_ANSWER, tempAnswers.getString(i));
             answers.put(currentQuestion, jsonAnswer);
 
@@ -231,8 +232,6 @@ public class QuizActivity extends BaseActivity {
             //Attempt login
             try {
 
-                Toast.makeText(getApplicationContext(), params.toString(), Toast.LENGTH_LONG).show();
-
                 //Send the HTTP post request and get JSON object back
                 HttpClient.post(this.getApplicationContext(), "/api/answers", params, new JsonHttpResponseHandler() {
 
@@ -246,10 +245,28 @@ public class QuizActivity extends BaseActivity {
                             if (response != null) {
                                 try {
 
-                                    Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-                                    Intent i = new Intent(QuizActivity.this, DashActivity.class);
-                                    startActivity(i);
-                                    finish();
+                                    //Display alert
+                                    AlertDialog.Builder dlgAlert = new AlertDialog.Builder(QuizActivity.this);
+                                    dlgAlert.setTitle("Thanks for playing!");
+                                    dlgAlert.setMessage("You scored: " + response.getString(PrivateFields.TAG_SCORE) + "/70");
+                                    dlgAlert.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(QuizActivity.this, DashActivity.class);
+                                            startActivity(i);
+                                            finish();
+                                        }
+                                    });
+                                    dlgAlert.setNegativeButton("Replay", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(QuizActivity.this, QuizActivity.class);
+                                            startActivity(i);
+                                            finish();
+                                        }
+                                    });
+                                    dlgAlert.create().show();
+
 
                                 } catch (Exception e) {
                                     e.printStackTrace();

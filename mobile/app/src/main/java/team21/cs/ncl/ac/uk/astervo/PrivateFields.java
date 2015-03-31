@@ -45,4 +45,8 @@ public class PrivateFields {
     public static final String TAG_QUESTION = "question";
     public static final String TAG_ANSWERS = "answers";
     public static final String TAG_ANSWER = "answer";
+    public static final String TAG_Q_ID = "id";
+
+    //QUIZ RESPONSE
+    public static final String TAG_SCORE = "score";
 }
