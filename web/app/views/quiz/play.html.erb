@@ -3,6 +3,7 @@
     <ul>
     <% retrieve_random_questions.each.with_index do |q,i| %>
       <li class="question-container">
+        <h1>Question <%= i+1 %></h1>
         <%= f.label q[:id], q[:question] %>
         <%= f.hidden_field q[:id], :value => q[:id] %>
         <% q[:answers].each do |a| %>
