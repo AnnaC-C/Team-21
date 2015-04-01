@@ -157,7 +157,7 @@ public class TransferActivity extends BaseActivity {
                 transferAmount = selectPounds;
                 transferAmount += ((float) selectPence) / 100;
 
-                amount.setText("£" + transferAmount);
+                amount.setText("£" + String.format("%.2f", transferAmount));
 
                 dlg.dismiss();
 
@@ -276,6 +276,8 @@ public class TransferActivity extends BaseActivity {
 
             //Attempt transfer
             try {
+                
+                final Intent i = new Intent(this, TransferActivity.class);
 
                 //Send the HTTP post request and get JSON object back
                 HttpClient.post(this.getApplicationContext(), "/api/transfers", params, new JsonHttpResponseHandler() {
@@ -299,7 +301,13 @@ public class TransferActivity extends BaseActivity {
                                         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(TransferActivity.this);
                                         dlgAlert.setMessage("Transferred £" + String.format("%.2f", transferAmount));
                                         dlgAlert.setTitle("Transfer successful:");
-                                        dlgAlert.setPositiveButton("OK", null);
+                                        dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                startActivity(i);
+                                                finish();
+                                            }
+                                        });
                                         dlgAlert.create().show();
                                     }
                                     //If there was an error, tell user to try later
