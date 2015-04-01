@@ -4,7 +4,8 @@
     tools:context="team21.cs.ncl.ac.uk.astervo.DashActivity">
 
     <item android:id="@+id/profile" android:icon="@drawable/profile"
-        android:orderInCategory="2" app:showAsAction="always">
+        android:orderInCategory="2" app:showAsAction="always"
+        android:title="Logout | Settings">
         <menu>
             <item android:id="@+id/action_logout" android:title="@string/action_logout" />
             <item android:id="@+id/action_settings" android:title="Settings" />
@@ -15,33 +16,39 @@
         android:id="@+id/action_home"
         android:icon="@drawable/home"
         android:orderInCategory="3"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:title="Home"/>
 
     <item
         android:id="@+id/action_accounts"
         android:icon="@drawable/pound"
         android:orderInCategory="4"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:title="Accounts"/>
     <item
         android:id="@+id/action_quiz"
         android:icon="@drawable/quizicon"
         android:orderInCategory="5"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:title="Quiz"/>
     <item
         android:id="@+id/action_pet"
         android:icon="@drawable/dog"
         android:orderInCategory="6"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:title="Pet"/>
 
     <item
         android:id="@+id/action_shop"
         android:icon="@drawable/shop"
         android:orderInCategory="7"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:title="Shop"/>
     <item
         android:id="@+id/action_rewards"
         android:icon="@drawable/rewards"
         android:orderInCategory="8"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:title="Rewards"/>
 
 </menu>
