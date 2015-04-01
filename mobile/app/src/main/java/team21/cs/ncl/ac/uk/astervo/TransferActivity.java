@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.NumberPicker;
@@ -34,7 +35,9 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -57,6 +60,9 @@ public class TransferActivity extends BaseActivity {
     private float transferAmount = -1;
     private int toAccID = -1;
 
+    Button seeAll;
+    Button hideExtra;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +77,8 @@ public class TransferActivity extends BaseActivity {
 
         updateShownAccount();
         createAccountSelectArrows();
-        updateTransferHistory();
+        setupFooterButtons();
+        updateTransferHistory(false);
 
         //Get the Array of accounts
         final JSONArray jsonAccounts = g.getAccounts();
@@ -438,7 +445,7 @@ public class TransferActivity extends BaseActivity {
 
     }
 
-    public void updateTransferHistory() {
+    public void updateTransferHistory(boolean showAll) {
 
         //Get the Array of accounts
         final JSONArray jsonTransfers = g.getTransfers();
@@ -447,17 +454,25 @@ public class TransferActivity extends BaseActivity {
         List<String> accounts = new ArrayList<String>();
 
         //Create a for loop to iterate through each account and pull out the relevant data
-        for(int i = 0; i < jsonTransfers.length(); i++) {
+        for(int i = jsonTransfers.length(); i > 0; i--) {
+            //If show all hasn't been clicked, show only 5 transfers
+            if(!showAll && i == jsonTransfers.length() - 6) {
+                break;
+            }
             //Try to get account details from each JSON object
             try {
                 JSONObject currentTrans = jsonTransfers.getJSONObject(i);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                Date transDate = sdf.parse(currentTrans.getString(PrivateFields.TAG_TRANS_DATE));
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(transDate);
                 String details = "";
                 details += "To: " + currentTrans.getString(PrivateFields.TAG_TRANS_SENDER) + "\n";
                 details += "From: " + currentTrans.getString(PrivateFields.TAG_TRANS_RECEIVER) + "\n";
-                details += "Amount: " + currentTrans.getString(PrivateFields.TAG_TRANS_AMOUNT) + "\n";
-                details += "Date: " + currentTrans.getString(PrivateFields.TAG_TRANS_DATE);
+                details += "Amount: £" + currentTrans.getString(PrivateFields.TAG_TRANS_AMOUNT) + "\n";
+                details += "Date: " + calendar.get(Calendar.DAY_OF_MONTH) + "-" + calendar.get(Calendar.MONTH)+ "-" + calendar.get(Calendar.YEAR);
                 accounts.add(details);
-            } catch(JSONException e) {
+            } catch(Exception e) {
                 e.printStackTrace();
             }
         }
@@ -467,5 +482,37 @@ public class TransferActivity extends BaseActivity {
         ListView displayTransHistory = (ListView) findViewById(R.id.transferHistoryList);
         displayTransHistory.setAdapter(adapter);
 
+        //If show all hasn't been clicked add button to end to show all transfers
+        if(!showAll) {
+            displayTransHistory.removeFooterView(hideExtra);
+            displayTransHistory.addFooterView(seeAll);
+        }
+        //Otherwise display button to hide
+        else {
+            displayTransHistory.addFooterView(hideExtra);
+            displayTransHistory.removeFooterView(seeAll);
+        }
+
+    }
+
+    public void setupFooterButtons() {
+        seeAll = new Button(getApplicationContext());
+        hideExtra = new Button(getApplicationContext());
+
+        seeAll.setText("See all");
+        seeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateTransferHistory(true);
+            }
+        });
+
+        hideExtra.setText("Hide");
+        hideExtra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateTransferHistory(false);
+            }
+        });
     }
 }
