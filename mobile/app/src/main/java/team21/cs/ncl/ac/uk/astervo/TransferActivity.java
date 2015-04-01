@@ -1,19 +1,25 @@
 package team21.cs.ncl.ac.uk.astervo;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,8 +50,11 @@ public class TransferActivity extends BaseActivity {
     ImageButton clickLeft;
     ImageButton clickRight;
 
+    int selectPounds = -1;
+    int selectPence = -1;
+
     private int fromAccID = -1;
-    private int transferAmount = -1;
+    private float transferAmount = -1;
     private int toAccID = -1;
 
     @Override
@@ -74,14 +84,9 @@ public class TransferActivity extends BaseActivity {
             //Try to get account details from each JSON object
             try {
                 JSONObject currentAcc = jsonAccounts.getJSONObject(i);
-                int balance = currentAcc.getInt(PrivateFields.TAG_BAL);
-//                if(balance > 0) {
-                String details = currentAcc.getString(PrivateFields.TAG_TYPE) + " Account: £" + balance;
+                float balance = currentAcc.getInt(PrivateFields.TAG_BAL);
+                String details = currentAcc.getString(PrivateFields.TAG_TYPE) + " Account: £" + String.format("%.2f", balance);
                 accounts.add(details);
-//                }
-//                else {
-//                    notDisplayed ++;
-//                }
             } catch(JSONException e) {
                 e.printStackTrace();
             }
@@ -117,38 +122,49 @@ public class TransferActivity extends BaseActivity {
 
     public void getTransferAmount(int bal) {
 
-        final SeekBar amount = (SeekBar) findViewById(R.id.transferAmount);
-        final TextView displayAmount = (TextView) findViewById(R.id.transferDisplayAmount);
+        final TextView amount = (TextView) findViewById(R.id.transferAmount);
 
-        amount.setMax(bal);
-
-        if(bal == 0) {
-            amount.setEnabled(false);
-        }
-        else {
-            amount.setEnabled(true);
-        }
-
-        amount.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
+        amount.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                displayAmount.setText("£" + (int) amount.getProgress());
-                transferAmount = (int) amount.getProgress();
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                displayAmount.setText("£" + (int) amount.getProgress());
-                transferAmount = (int) amount.getProgress();
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                displayAmount.setText("£" + (int) amount.getProgress());
-                transferAmount = (int) amount.getProgress();
+            public void onClick(View v) {
+                showAmountPicker(amount);
             }
         });
+
+    }
+
+    public void showAmountPicker(final TextView amount) {
+
+        final Dialog dlg = new Dialog(TransferActivity.this);
+        dlg.setTitle("Please enter an amount:");
+        dlg.setContentView(R.layout.number_pick_dialog);
+
+        final NumberPicker pounds = (NumberPicker) dlg.findViewById(R.id.pounds);
+        final NumberPicker pence = (NumberPicker) dlg.findViewById(R.id.pence);
+
+        pounds.setMaxValue(100);
+        pence.setMaxValue(99);
+
+        Button okay = (Button) dlg.findViewById(R.id.confirmTransAmount);
+
+        okay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectPounds = pounds.getValue();
+                selectPence = pence.getValue();
+
+                transferAmount = selectPounds;
+                transferAmount += ((float) selectPence) / 100;
+
+                amount.setText("£" + transferAmount);
+
+                dlg.dismiss();
+
+            }
+        });
+
+        dlg.show();
 
     }
 
@@ -170,8 +186,8 @@ public class TransferActivity extends BaseActivity {
                 }
                 else {
                     JSONObject currentAcc = jsonAccounts.getJSONObject(i);
-                    int balance = currentAcc.getInt(PrivateFields.TAG_BAL);
-                    String details = currentAcc.getString(PrivateFields.TAG_TYPE) + " Account: £" + balance;
+                    float balance = currentAcc.getInt(PrivateFields.TAG_BAL);
+                    String details = currentAcc.getString(PrivateFields.TAG_TYPE) + " Account: £" + String.format("%.2f", balance);
                     accounts.add(details);
                 }
             } catch(JSONException e) {
@@ -245,7 +261,7 @@ public class TransferActivity extends BaseActivity {
             try {
                 jsonTransfer.put(PrivateFields.TAG_TRANS_TO, Integer.toString(toAccID));
                 jsonTransfer.put(PrivateFields.TAG_TRANS_FROM, Integer.toString(fromAccID));
-                params.put(PrivateFields.TAG_TRANS_AMOUNT, Integer.toString(transferAmount));
+                params.put(PrivateFields.TAG_TRANS_AMOUNT, Float.toString(transferAmount));
                 params.put(PrivateFields.TAG_TRANS, jsonTransfer);
             } catch(JSONException e) {
                 e.printStackTrace();
@@ -279,11 +295,9 @@ public class TransferActivity extends BaseActivity {
 
                                         g.setAccounts(response.getJSONArray(PrivateFields.TAG_ACC));
 
-                                        finish();
-
                                         //Display alert
                                         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(TransferActivity.this);
-                                        dlgAlert.setMessage("Transferred £" + transferAmount + ".00");
+                                        dlgAlert.setMessage("Transferred £" + String.format("%.2f", transferAmount));
                                         dlgAlert.setTitle("Transfer successful:");
                                         dlgAlert.setPositiveButton("OK", null);
                                         dlgAlert.create().show();
