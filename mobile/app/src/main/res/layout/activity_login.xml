@@ -39,7 +39,8 @@
                 android:singleLine="true"
                 android:text="test@astervo.com"
                 android:textColor="#99CCFF"
-                android:textColorHint="#99CCFF" />
+                android:textColorHint="#99CCFF"
+                android:background="#00000000" />
 
         </RelativeLayout>
 
@@ -61,7 +62,7 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="20dp">
 
             <EditText
@@ -76,7 +77,8 @@
                 android:singleLine="true"
                 android:text="password"
                 android:textColor="#99CCFF"
-                android:textColorHint="#99CCFF"/>
+                android:textColorHint="#99CCFF"
+                android:background="#00000000" />
 
         </RelativeLayout>
 
