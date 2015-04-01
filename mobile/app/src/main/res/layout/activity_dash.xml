@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/background">
 
     <RelativeLayout
         android:orientation="horizontal"
@@ -71,8 +72,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="198dp"
-        android:background="#c7858585">
+        android:layout_height="198dp">
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -84,7 +84,8 @@
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/accListView"></ListView>
+                android:id="@+id/accListView"
+                android:background="#30000000"></ListView>
 
         </RelativeLayout>
 

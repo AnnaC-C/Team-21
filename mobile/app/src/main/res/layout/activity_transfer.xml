@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/background">
 
     <RelativeLayout
         android:orientation="horizontal"
@@ -19,7 +20,8 @@
             android:clickable="false"
             android:weightSum="1"
             android:orientation="vertical"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,11 +42,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="54dp" >
+                    android:layout_height="54dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -70,14 +72,14 @@
                         android:src="@drawable/left1"
                         android:layout_centerVertical="true"
                         android:layout_alignParentStart="true"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible" />
                 </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
+                android:layout_height="fill_parent">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -98,8 +100,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="198dp"
-        android:background="#c7858585">
+        android:layout_height="198dp">
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -111,7 +112,8 @@
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/transferHistoryList"></ListView>
+                android:id="@+id/transferHistoryList"
+                android:background="#30000000"></ListView>
 
         </RelativeLayout>
 
@@ -124,98 +126,105 @@
         android:layout_weight="0.64">
 
         <RelativeLayout
-            android:layout_width="121dp"
-            android:layout_height="75dp"
-            android:background="@drawable/button1"
-            android:layout_marginStart="10dp"
-            android:id="@+id/transFrom"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="3dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FROM"
-                android:id="@+id/transferFromTitle"
-                android:layout_alignParentTop="true"/>
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/transferFrom"
-                android:spinnerMode="dropdown"
-                android:layout_below="@+id/transferFromTitle"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="91dp"
-            android:layout_height="75dp"
-            android:background="@drawable/button1"
-            android:layout_marginStart="7dp"
-            android:layout_toEndOf="@+id/transFrom"
-            android:id="@+id/transAmount"
-            android:layout_marginTop="3dp">
-
-            <SeekBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/transferAmount"
-                android:indeterminate="false"
-                android:maxWidth="200dp"
-                android:minWidth="200dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="£0"
-                android:id="@+id/transferDisplayAmount"
-                android:layout_below="@+id/transferAmount"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="121dp"
-            android:layout_height="75dp"
-            android:background="@drawable/button1"
-            android:layout_toEndOf="@+id/transAmount"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentStart="false"
-            android:layout_marginLeft="7dp"
-            android:id="@+id/transTo"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="3dp"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TO"
-                android:id="@+id/transferToTitle"
-                android:layout_alignParentLeft="true" />
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/transferTo"
-                android:spinnerMode="dropdown"
-                android:layout_below="@+id/transferToTitle"/>
-
-        </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/dashRewards"
-        android:id="@+id/transSub"
-        android:layout_marginTop="80dp"
-        android:gravity="center_horizontal">
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Transfer"
-            android:id="@+id/transferSubmit"
-            android:onClick="submit"/>
+            android:layout_marginTop="30dp">
+
+            <RelativeLayout
+                android:layout_width="121dp"
+                android:layout_height="75dp"
+                android:background="@drawable/button1"
+                android:layout_marginStart="10dp"
+                android:id="@+id/transFrom"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FROM"
+                    android:id="@+id/transferFromTitle"
+                    android:layout_alignParentTop="true" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/transferFrom"
+                    android:spinnerMode="dropdown"
+                    android:layout_below="@+id/transferFromTitle" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="91dp"
+                android:layout_height="75dp"
+                android:background="@drawable/button1"
+                android:layout_marginStart="7dp"
+                android:layout_toEndOf="@+id/transFrom"
+                android:id="@+id/transAmount"
+                android:layout_marginTop="3dp">
+
+                <SeekBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/transferAmount"
+                    android:indeterminate="false"
+                    android:maxWidth="200dp"
+                    android:minWidth="200dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="£0"
+                    android:id="@+id/transferDisplayAmount"
+                    android:layout_below="@+id/transferAmount" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="121dp"
+                android:layout_height="75dp"
+                android:background="@drawable/button1"
+                android:layout_toEndOf="@+id/transAmount"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="false"
+                android:layout_marginLeft="7dp"
+                android:id="@+id/transTo"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="3dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TO"
+                    android:id="@+id/transferToTitle"
+                    android:layout_alignParentLeft="true" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/transferTo"
+                    android:spinnerMode="dropdown"
+                    android:layout_below="@+id/transferToTitle" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/dashRewards"
+                android:id="@+id/transSub"
+                android:layout_marginTop="80dp"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Transfer"
+                    android:id="@+id/transferSubmit"
+                    android:onClick="submit" />
+            </RelativeLayout>
+
         </RelativeLayout>
 
     </RelativeLayout>
