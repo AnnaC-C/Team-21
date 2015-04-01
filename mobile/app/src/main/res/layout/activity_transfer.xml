@@ -164,20 +164,19 @@
                 android:id="@+id/transAmount"
                 android:layout_marginTop="3dp">
 
-                <SeekBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/transferAmount"
-                    android:indeterminate="false"
-                    android:maxWidth="200dp"
-                    android:minWidth="200dp" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="£0"
-                    android:id="@+id/transferDisplayAmount"
-                    android:layout_below="@+id/transferAmount" />
+                    android:text="Amount"
+                    android:id="@+id/transferDisplayAmount"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/transferAmount"
+                    android:hint="£0.00"
+                    android:layout_below="@+id/transferDisplayAmount"
+                    android:layout_alignParentStart="true" />
             </RelativeLayout>
 
             <RelativeLayout
