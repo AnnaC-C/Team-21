@@ -149,8 +149,27 @@ public class TransferActivity extends BaseActivity {
         final NumberPicker pounds = (NumberPicker) dlg.findViewById(R.id.pounds);
         final NumberPicker pence = (NumberPicker) dlg.findViewById(R.id.pence);
 
-        pounds.setMaxValue(100);
+        pounds.setMaxValue(1000);
         pence.setMaxValue(99);
+
+        pounds.setFormatter(new NumberPicker.Formatter() {
+            @Override
+            public String format(int value) {
+                if(value < 10) {
+                    return "0" + value;
+                }
+                return Integer.toString(value);
+            }
+        });
+        pence.setFormatter(new NumberPicker.Formatter() {
+            @Override
+            public String format(int value) {
+                if(value < 10) {
+                    return "0" + value;
+                }
+                return Integer.toString(value);
+            }
+        });
 
         Button okay = (Button) dlg.findViewById(R.id.confirmTransAmount);
 
@@ -311,8 +330,7 @@ public class TransferActivity extends BaseActivity {
                                         dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                startActivity(i);
-                                                finish();
+                                                getTransfers();
                                             }
                                         });
                                         dlgAlert.create().show();
@@ -352,7 +370,7 @@ public class TransferActivity extends BaseActivity {
                         String error = "";
 
                         try {
-                            error = "\u2022 " + errorResponse.getString(PrivateFields.TAG_ERROR);
+                            error = "\u2022 " + errorResponse.getJSONObject(PrivateFields.TAG_TRANS_RESULT).getString(PrivateFields.TAG_MESSAGE);
                         } catch (Exception e) {
                             e.printStackTrace();
                             error = "Please Try Again.";
@@ -514,5 +532,66 @@ public class TransferActivity extends BaseActivity {
                 updateTransferHistory(false);
             }
         });
+    }
+
+    public void getTransfers() {
+
+        //Create an intent to open the Dashboard
+        final Intent i = new Intent(this, TransferActivity.class);
+
+        //Start fetching transfer history dialog
+        final ProgressDialog prgDialog;
+        prgDialog = new ProgressDialog(TransferActivity.this);
+        prgDialog.setMessage("Fetching account info...");
+        prgDialog.setCancelable(false);
+        prgDialog.show();
+
+        //Attempt to return array of transfers
+        try {
+
+            //Send the HTTP post request and get JSON object back
+            HttpClient.get(this.getApplicationContext(), "/api/transfers", new JsonHttpResponseHandler() {
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+
+                    prgDialog.dismiss();
+
+                    //If successful parse JSON data and create dashboard activity
+                    if (statusCode == 200) {
+                        if (response != null) {
+                            try {
+                                g.setTransfers(response.getJSONArray(PrivateFields.TAG_TRANS_ARRAY));
+                                startActivity(i);
+                                finish();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    //If authorization error, prompt user to check details
+                    else if (statusCode == 401) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Unable to fetch account. Please try again.";
+                        int duration = Toast.LENGTH_LONG;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                    //Otherwise tell user to try again later
+                    else {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Something went wrong. Please try again later.";
+                        int duration = Toast.LENGTH_LONG;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                }
+
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
