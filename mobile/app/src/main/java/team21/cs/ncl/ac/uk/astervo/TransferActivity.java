@@ -53,8 +53,8 @@ public class TransferActivity extends BaseActivity {
     ImageButton clickLeft;
     ImageButton clickRight;
 
-    int selectPounds = -1;
-    int selectPence = -1;
+    int selectPounds = 0;
+    int selectPence = 0;
 
     private int fromAccID = -1;
     private float transferAmount = -1;
@@ -150,7 +150,9 @@ public class TransferActivity extends BaseActivity {
         final NumberPicker pence = (NumberPicker) dlg.findViewById(R.id.pence);
 
         pounds.setMaxValue(1000);
+        pounds.setValue(selectPounds);
         pence.setMaxValue(99);
+        pence.setValue(selectPence);
 
         pounds.setFormatter(new NumberPicker.Formatter() {
             @Override
