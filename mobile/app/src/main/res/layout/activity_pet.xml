@@ -1,176 +1,137 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="team21.cs.ncl.ac.uk.astervo.PetActivity"
-    android:background="@drawable/wood">
+    android:weightSum="1"
+    android:background="@drawable/background">
 
-    <LinearLayout
+    <RelativeLayout
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:layout_margin="16dp">
+        android:layout_height="132dp"
+        android:layout_weight="0.41"
+        android:background="@drawable/dashborder">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="259dp">
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@drawable/border">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:id="@+id/imageView"
-                    android:layout_centerVertical="true"
-                    android:layout_centerInParent="true"
-                    android:scaleType="fitXY"
-                    android:background="@drawable/city" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Points: 100"
-                    android:id="@+id/textView7"
-                    android:layout_above="@+id/imageView"
-                    android:layout_alignParentStart="true" />
+    </RelativeLayout>
 
-            </RelativeLayout>
-        </LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="198dp">
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="244dp"
-            android:layout_marginTop="37dp">
+            android:layout_height="fill_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/dashborder"
+            android:layout_weight="0.64">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="70dp"
-                android:background="@drawable/border"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true">
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Give food"
-                        android:id="@+id/textView"
-                        android:layout_gravity="left|top" />
-
-                    <ImageButton
-                        android:layout_width="30dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageButton"
-                        android:layout_gravity="left|center_vertical"
-                        android:background="@drawable/fish"
-                        android:layout_below="@+id/textView"
-                        android:layout_alignParentStart="true" />
-
-                    <ImageButton
-                        android:layout_width="30dp"
-                        android:layout_height="35dp"
-                        android:id="@+id/imageButton2"
-                        android:background="@drawable/bowl"
-                        android:layout_below="@+id/textView"
-                        android:layout_centerHorizontal="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="x2"
-                        android:id="@+id/textView2"
-                        android:layout_alignBottom="@+id/imageButton2"
-                        android:layout_toEndOf="@+id/imageButton" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="x1"
-                        android:id="@+id/textView3"
-                        android:layout_alignBottom="@+id/textView2"
-                        android:layout_toEndOf="@+id/imageButton2" />
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="70dp"
-                android:background="@drawable/border"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"
-                android:id="@+id/linearLayout">
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Play with cat"
-                        android:id="@+id/textView4"
-                        android:layout_gravity="left|top" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:text="Scissors-paper-rock"
-                        android:id="@+id/button8"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Win 2 times"
-                        android:id="@+id/textView6"
-                        android:textColor="#000000"
-                        android:layout_alignBaseline="@+id/textView4"
-                        android:layout_alignBottom="@+id/textView4"
-                        android:layout_alignParentEnd="true" />
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="70dp"
-                android:background="@drawable/border"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true">
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Go for a walk"
-                        android:id="@+id/textView5"
-                        android:layout_gravity="left|top" />
-
-                </RelativeLayout>
-            </LinearLayout>
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/displayPetItems"
+                android:background="#30000000"></ListView>
 
         </RelativeLayout>
 
-    </LinearLayout>
-</ScrollView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="132dp"
+        android:background="@drawable/dashborder"
+        android:layout_weight="0.64">
+
+        <RelativeLayout
+            android:layout_width="91dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button1"
+            android:layout_marginStart="10dp"
+            android:id="@+id/dashAccounts"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="3dp">
+
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Accounts"
+                android:id="@+id/textView19"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:maxLines="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/dashNumberOfAccounts"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="91dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button1"
+            android:layout_marginStart="37dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/dashAccounts"
+            android:id="@+id/dashRewards">
+
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Rewards"
+                android:id="@+id/textView20"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:maxLines="1" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView2"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/trophy" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="91dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button1"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/dashRewards"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_marginLeft="37dp"
+            android:id="@+id/dashPet"
+            android:layout_marginRight="3dp">
+
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Pet"
+                android:id="@+id/textView21"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:maxLines="1" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView3"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/dog" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
