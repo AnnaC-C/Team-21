@@ -119,6 +119,8 @@ public class LoginActivity extends Activity {
                                             g.setAccounts(data.getJSONArray(PrivateFields.TAG_ACC));
 
                                             getTransfers();
+
+                                            Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
                                         }
                                         //If there was an error, tell user to try later
                                         else {

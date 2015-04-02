@@ -35,16 +35,6 @@ public class HttpClient {
         client.post(context, getAbsoluteUrl(url), entity, "application/json", responseHandler);
     }
 
-    public static void delete(String auth_key, String url, AsyncHttpResponseHandler responseHandler) {
-        //Reset the client to avoid connection issues
-        reset();
-        //Set content type to JSON
-        client.addHeader("Accept", "application/json");
-        client.addHeader("Content-Type", "application/json");
-        //Delete and receive response
-        client.delete(getAbsoluteUrl(url + "/?auth_token=" + auth_key), responseHandler);
-    }
-
     //Get base URL plus string extension
     private static String getAbsoluteUrl(String relativeUrl) {
         return PrivateFields.BASE_URL + relativeUrl;

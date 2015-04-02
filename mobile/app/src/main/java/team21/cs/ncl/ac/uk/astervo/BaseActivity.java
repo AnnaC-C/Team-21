@@ -42,9 +42,17 @@ public class BaseActivity extends ActionBarActivity {
 
         now = new Date().getTime();
 
-        if (now - lastActivity > TIMEOUT_MILLI) {
+        if (timeout()) {
             inactiveLogout();
         }
+    }
+
+    public boolean timeout() {
+
+        if (now - lastActivity > TIMEOUT_MILLI) {
+            return true;
+        }
+        return false;
     }
 
     public void inactiveLogout() {
@@ -75,7 +83,7 @@ public class BaseActivity extends ActionBarActivity {
                 return true;
             case R.id.action_home:
                 now = new Date().getTime();
-                if (now - lastActivity > TIMEOUT_MILLI) {
+                if (timeout()) {
                     inactiveLogout();
                 }
                 else {
@@ -86,7 +94,7 @@ public class BaseActivity extends ActionBarActivity {
                 return true;
             case R.id.action_accounts:
                 now = new Date().getTime();
-                if (now - lastActivity > TIMEOUT_MILLI) {
+                if (timeout()) {
                     inactiveLogout();
                 }
                 else {
@@ -97,7 +105,7 @@ public class BaseActivity extends ActionBarActivity {
                 return true;
             case R.id.action_quiz:
                 now = new Date().getTime();
-                if (now - lastActivity > TIMEOUT_MILLI) {
+                if (timeout()) {
                     inactiveLogout();
                 }
                 else {
@@ -108,7 +116,7 @@ public class BaseActivity extends ActionBarActivity {
                 return true;
             case R.id.action_pet:
                 now = new Date().getTime();
-                if (now - lastActivity > TIMEOUT_MILLI) {
+                if (timeout()) {
                     inactiveLogout();
                 }
                 else {
@@ -119,7 +127,7 @@ public class BaseActivity extends ActionBarActivity {
                 return true;
             case R.id.action_shop:
                 now = new Date().getTime();
-                if (now - lastActivity > TIMEOUT_MILLI) {
+                if (timeout()) {
                     inactiveLogout();
                 }
                 else {
@@ -130,7 +138,7 @@ public class BaseActivity extends ActionBarActivity {
                 return true;
             case R.id.action_rewards:
                 now = new Date().getTime();
-                if (now - lastActivity > TIMEOUT_MILLI) {
+                if (timeout()) {
                     inactiveLogout();
                 }
                 else {
@@ -142,73 +150,15 @@ public class BaseActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }public void logout() {
+    }
 
-        //Create a progress dialog to show the app logging out
-        final ProgressDialog prgDialog;
-        prgDialog = new ProgressDialog(BaseActivity.this);
-        prgDialog.setMessage("Logging out...");
-        prgDialog.setCancelable(false);
-        prgDialog.show();
+    public void logout() {
 
-        //Create an intent to return back to the initial activity
-        final Intent i = new Intent(this, MainActivity.class);
-
-        //Send the logout request to the server
-        HttpClient.delete(g.getAuthKey(), "/api/sessions", new JsonHttpResponseHandler() {
-
-            //If successful
-            @Override
-            public void onSuccess(int statusCode, org.apache.http.Header[] headers, org.json.JSONObject response) {
-                //Dismiss the loading dialog
-                prgDialog.dismiss();
-                try {
-                    //Check the status code
-                    if (statusCode == 200 && response.getString(PrivateFields.TAG_INFO).equals("Logged out")) {
-
-                        //If logged out, show logged out toast
-                        Context context = getApplicationContext();
-                        CharSequence text = response.getString(PrivateFields.TAG_INFO);
-                        int duration = Toast.LENGTH_LONG;
-
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
-
-                        //Set global variables to initial state
-                        g.reset();
-
-                        //Return to first activity
-                        startActivity(i);
-                        //Finish this activity
-                        finish();
-                    }
-                    //Something went wrong, prompt user to try again.
-                    else {
-                        Context context = getApplicationContext();
-                        CharSequence text = "Logout failed. Please try again.";
-                        int duration = Toast.LENGTH_LONG;
-
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            //Something went wrong, prompt user to try again
-            @Override
-            public void onFailure(int statusCode, org.apache.http.Header[] headers, java.lang.Throwable throwable, org.json.JSONObject errorResponse) {
-                prgDialog.dismiss();
-                Context context = getApplicationContext();
-                CharSequence text = "Logout failed. Please try again.";
-                int duration = Toast.LENGTH_LONG;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-
-        });
+        HttpClient.reset();
+        g.reset();
+        Intent i = new Intent(this, LoginActivity.class);
+        Toast.makeText(getApplicationContext(), "Logged out.", Toast.LENGTH_LONG).show();
+        finish();
 
     }
 
