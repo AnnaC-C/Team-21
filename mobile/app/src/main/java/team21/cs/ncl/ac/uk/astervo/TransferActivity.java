@@ -100,7 +100,7 @@ public class TransferActivity extends BaseActivity {
         }
 
         //Create an array adapter to set the Spinner view equal to the information of each account
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(((Spinner)findViewById(R.id.transferFrom)).getContext(), android.R.layout.simple_spinner_item, accounts);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>((findViewById(R.id.transferFrom)).getContext(), android.R.layout.simple_spinner_item, accounts);
         Spinner displayFromAcc = (Spinner) findViewById(R.id.transferFrom);
         displayFromAcc.setAdapter(adapter);
 
