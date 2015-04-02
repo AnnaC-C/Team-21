@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'store/browse'
+
   devise_for :users
   resources :users
 
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
     get 'pages/dashboard'
     post 'transfer/transfer' => 'transfer#transfer', :as => :transfers
     get 'quiz' => 'quiz#play'
+    get 'store' => 'store#browse'
     post 'quiz' => 'quiz#get_score', :as => :play
   end
 

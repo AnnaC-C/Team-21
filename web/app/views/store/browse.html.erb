@@ -1,0 +1,5 @@
+<h1>Store</h1>
+<% Item.all.each do |i| %>
+  <%= image_tag(i.image, size: "250x100", alt: "Edit Entry") %>
+  <p><%= i.description%> - £<%= i.cost %></p>
+<% end %>
