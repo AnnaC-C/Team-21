@@ -56,6 +56,8 @@ public class PetItemListAdapter extends ArrayAdapter<PetItem> {
             b.setOnClickListener(use);
         }
 
+        b.setTag(item);
+
         return row;
     }
 

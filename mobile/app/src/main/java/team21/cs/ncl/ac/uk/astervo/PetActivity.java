@@ -48,7 +48,8 @@ public class PetActivity extends BaseActivity {
         OnClickListener use = new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "USE ITEM", Toast.LENGTH_LONG).show();
+                PetItem p = (PetItem) v.getTag();
+                Toast.makeText(getApplicationContext(), p.getName(), Toast.LENGTH_LONG).show();
             }
         };
 
