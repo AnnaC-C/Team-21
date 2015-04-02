@@ -17,7 +17,7 @@ Question.create(question: "What is an offset loan?", correct: "A loan guaranteed
 
 Item.create(description: "Tiara", cost: 1000, consumable: false, image: "rewards/tiara.png")
 Item.create(description: "Crown", cost: 1000, consumable: false, image: "rewards/crown.png")
-Item.create(description: "Lai", cost: 800, consumable: false, image: "rewards/lai.png")
+Item.create(description: "Lei", cost: 800, consumable: false, image: "rewards/lei.png")
 Item.create(description: "Santa Hat", cost: 1000, consumable: false, image: "rewards/santahat.png")
 Item.create(description: "Shades", cost: 350, consumable: false, image: "rewards/shades.png")
 Item.create(description: "Teddy", cost: 250, consumable: true, image: "rewards/teddy.png")

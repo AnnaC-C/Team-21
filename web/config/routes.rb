@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get "transfers" => "transfers#retrieve", :as => 'retrieve'
       get "questions" => "quiz#get_questions", :as => 'questions'
       post "answers" => "quiz#process_answers", :as => 'answers'
+      get "items" => "store#get_items", :as => 'items'
     end
   end
 end

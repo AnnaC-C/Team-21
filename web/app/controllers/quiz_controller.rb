@@ -1,5 +1,3 @@
-require 'json'
-
 class QuizController < ApplicationController
   include QuizHelper
 

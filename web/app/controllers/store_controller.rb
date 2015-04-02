@@ -1,4 +1,6 @@
 class StoreController < ApplicationController
+  include StoreHelper
+
   def browse
   end
 
