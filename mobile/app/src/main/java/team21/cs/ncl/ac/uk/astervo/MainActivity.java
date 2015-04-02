@@ -20,25 +20,22 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        //Check connection status
-//        ConnectionStatus connected = new ConnectionStatus(this);
-//        //If not connected to the internet, display error and app reload button
-//        if (!connected.isConnected()) {
-//            //Get text view and buttons to show/hide
-//            TextView msg = (TextView) findViewById(R.id.welcomeMessage);
-//            Button btnEnt = (Button) findViewById(R.id.welcomeEnter);
-//            Button btnRst = (Button) findViewById(R.id.welcomeReload);
-//
-//            //Display error message, hide continue button and show reload button
-//            msg.setText("Sorry, an internet connection is required to use the app.");
-//            btnEnt.setVisibility(View.INVISIBLE);
-//            btnRst.setVisibility(View.VISIBLE);
-//        }
+        setContentView(R.layout.activity_main);
 
-        Intent i = new Intent(this, PetActivity.class);
-        startActivity(i);
+        //Check connection status
+        ConnectionStatus connected = new ConnectionStatus(this);
+        //If not connected to the internet, display error and app reload button
+        if (!connected.isConnected()) {
+            //Get text view and buttons to show/hide
+            TextView msg = (TextView) findViewById(R.id.welcomeMessage);
+            Button btnEnt = (Button) findViewById(R.id.welcomeEnter);
+            Button btnRst = (Button) findViewById(R.id.welcomeReload);
+
+            //Display error message, hide continue button and show reload button
+            msg.setText("Sorry, an internet connection is required to use the app.");
+            btnEnt.setVisibility(View.INVISIBLE);
+            btnRst.setVisibility(View.VISIBLE);
+        }
     }
 
     //On resume, check if someone is already logged in
