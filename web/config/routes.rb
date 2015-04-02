@@ -11,8 +11,9 @@ Rails.application.routes.draw do
     get 'pages/dashboard'
     post 'transfer/transfer' => 'transfer#transfer', :as => :transfers
     get 'quiz' => 'quiz#play'
-    get 'store' => 'store#browse'
     post 'quiz' => 'quiz#get_score', :as => :play
+    get 'store' => 'store#browse'
+    post 'store' => 'store#buy', :as => :browse
   end
 
   namespace :api do
