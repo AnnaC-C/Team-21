@@ -112,6 +112,7 @@ public class DashActivity extends BaseActivity {
                 g.setSingleAccountLocation(0);
                 Intent i = new Intent(getApplicationContext(), TransferActivity.class);
                 startActivity(i);
+                finish();
 
             }
         });
@@ -122,6 +123,7 @@ public class DashActivity extends BaseActivity {
 
                 Intent i = new Intent(getApplicationContext(), RewardsActivity.class);
                 startActivity(i);
+                finish();
 
             }
         });
@@ -132,6 +134,7 @@ public class DashActivity extends BaseActivity {
 
                 Intent i = new Intent(getApplicationContext(), PetActivity.class);
                 startActivity(i);
+                finish();
 
             }
         });
