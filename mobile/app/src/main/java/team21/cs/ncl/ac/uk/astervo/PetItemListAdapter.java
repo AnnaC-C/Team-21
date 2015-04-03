@@ -28,9 +28,10 @@ public class PetItemListAdapter extends ArrayAdapter<PetItem> {
 
     private List<PetItem> items;
     private Context context;
-    OnClickListener buy;
-    OnClickListener use;
-    Bitmap[] imageArray;
+    private OnClickListener buy;
+    private OnClickListener use;
+    private Bitmap[] imageArray;
+
 
     public PetItemListAdapter(Context context, int layoutResourceId, List<PetItem> items, OnClickListener buy, OnClickListener use) {
         super(context, R.layout.pet_item, items);
@@ -91,6 +92,7 @@ public class PetItemListAdapter extends ArrayAdapter<PetItem> {
                 @Override
                 public void onSuccess(int i, Header[] headers, File file) {
                     setBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()), position);
+                    notifyDataSetChanged();
                 }
             });
         } catch(UnsupportedEncodingException e) {

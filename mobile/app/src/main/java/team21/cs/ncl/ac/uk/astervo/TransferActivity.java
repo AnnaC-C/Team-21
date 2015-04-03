@@ -503,12 +503,12 @@ public class TransferActivity extends BaseActivity {
         displayTransHistory.setAdapter(adapter);
 
         //If show all hasn't been clicked add button to end to show all transfers
-        if(!showAll) {
+        if(!showAll && jsonTransfers.length() > 5) {
             displayTransHistory.removeFooterView(hideExtra);
             displayTransHistory.addFooterView(seeAll);
         }
         //Otherwise display button to hide
-        else {
+        else if(jsonTransfers.length() > 5) {
             displayTransHistory.addFooterView(hideExtra);
             displayTransHistory.removeFooterView(seeAll);
         }

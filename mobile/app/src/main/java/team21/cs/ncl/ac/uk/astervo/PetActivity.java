@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.view.View.OnClickListener;
 
 
@@ -25,6 +27,14 @@ public class PetActivity extends BaseActivity {
     Globals g;
 
     JSONArray allItems;
+
+    private Button cons;
+    private Button wear;
+
+    PetItemListAdapter consumableAdapter;
+    PetItemListAdapter wearableAdapter;
+    ListView consumableListView;
+    ListView wearableListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +71,7 @@ public class PetActivity extends BaseActivity {
                         if (response != null) {
                             try {
                                 allItems = response.getJSONArray(PrivateFields.TAG_ITEMS);
-                                setupListView(false);
+                                setupListView();
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -94,7 +104,7 @@ public class PetActivity extends BaseActivity {
 
     }
 
-    public void setupListView(boolean consumables) {
+    public void setupListView() {
 
         //Setup on click listeners for each item
         OnClickListener buy = new OnClickListener() {
@@ -109,14 +119,14 @@ public class PetActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 PetItem p = (PetItem) v.getTag();
-                Toast.makeText(getApplicationContext(), p.getId(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), Integer.toString(p.getId()), Toast.LENGTH_LONG).show();
             }
         };
 
         List<PetItem> consumableItems = new ArrayList<>();
         List<PetItem> wearableItems = new ArrayList<>();
 
-        for(int i = 0; i < allItems.length(); i++) {
+        for (int i = 0; i < allItems.length(); i++) {
             try {
                 //Get current object
                 JSONObject currentItem = allItems.getJSONObject(i);
@@ -129,17 +139,53 @@ public class PetActivity extends BaseActivity {
                 //Create object
                 PetItem item = new PetItem(name, quantity, resource, id, consumable);
                 //Add the object
-                consumableItems.add(item);
-            } catch(JSONException e) {
+                if (consumable) {
+                    consumableItems.add(item);
+                } else {
+                    wearableItems.add(item);
+                }
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
         }
 
-        PetItemListAdapter adapter = new PetItemListAdapter(getApplicationContext(), R.layout.pet_item, consumableItems, buy, use);
-        ListView atomPaysListView = (ListView)findViewById(R.id.displayPetItems);
-        adapter.notifyDataSetChanged();
-        atomPaysListView.setAdapter(adapter);
+        consumableAdapter = new PetItemListAdapter(getApplicationContext(), R.layout.pet_item, consumableItems, buy, use);
+        wearableAdapter = new PetItemListAdapter(getApplicationContext(), R.layout.pet_item, wearableItems, buy, use);
+        wearableListView = (ListView) findViewById(R.id.displayWearableItems);
+        consumableListView = (ListView) findViewById(R.id.displayConsumableItems);
+
+        wearableListView.setAdapter(wearableAdapter);
+        consumableListView.setAdapter(consumableAdapter);
+
+        setupHeaderButtons();
+
+        wearableListView.addFooterView(wear);
+        consumableListView.addFooterView(cons);
 
     }
+
+    public void setupHeaderButtons() {
+        cons = new Button(getApplicationContext());
+        wear = new Button(getApplicationContext());
+
+        cons.setText("See wearables.");
+        cons.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                consumableListView.setVisibility(View.INVISIBLE);
+                wearableListView.setVisibility(View.VISIBLE);
+            }
+        });
+
+        wear.setText("See consumables.");
+        wear.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                consumableListView.setVisibility(View.VISIBLE);
+                wearableListView.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
 }
