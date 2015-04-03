@@ -31,8 +31,15 @@
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/displayPetItems"
+                android:id="@+id/displayConsumableItems"
                 android:background="#30000000"></ListView>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/displayWearableItems"
+                android:background="#30000000"
+                android:visibility="invisible"></ListView>
 
         </RelativeLayout>
 
