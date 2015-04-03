@@ -16,5 +16,6 @@
     <string name="title_activity_shop">ShopActivity</string>
     <string name="title_activity_rewards">RewardsActivity</string>
     <string name="title_activity_base">BaseActivity</string>
+    <string name="title_activity_stroke_pet">StrokePetActivity</string>
 
 </resources>
