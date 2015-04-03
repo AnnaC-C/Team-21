@@ -25,6 +25,11 @@ public class HttpClient {
         client.get(context, getAbsoluteUrl(url), responseHandler);
     }
 
+    public static void get(String url, AsyncHttpResponseHandler responseHandler) throws UnsupportedEncodingException {
+        //Post and receive response
+        client.get(getAbsoluteUrl(url), responseHandler);
+    }
+
     public static void post(Context context, String url, JSONObject params, AsyncHttpResponseHandler responseHandler) throws UnsupportedEncodingException {
         //Create an entity to send as parameters
         StringEntity entity = new StringEntity(params.toString());

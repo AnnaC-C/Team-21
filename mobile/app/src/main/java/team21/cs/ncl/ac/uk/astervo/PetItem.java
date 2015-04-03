@@ -8,12 +8,16 @@ public class PetItem {
 
     private String name = "";
     private int quantity = 0;
+    private int id = 0;
     private String resource = "";
+    private boolean consumable = false;
 
-    public PetItem(String name, int quantity, String resource) {
+    public PetItem(String name, int quantity, String resource, int id, boolean consumable) {
         this.setName(name);
         this.setQuantity(quantity);
         this.setResource(resource);
+        this.setId(id);
+        this.setConsumable(consumable);
     }
 
     public String getName() {
@@ -38,5 +42,21 @@ public class PetItem {
 
     public void setResource(String resource) {
         this.resource = resource;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isConsumable() {
+        return consumable;
+    }
+
+    public void setConsumable(boolean consumable) {
+        this.consumable = consumable;
     }
 }
