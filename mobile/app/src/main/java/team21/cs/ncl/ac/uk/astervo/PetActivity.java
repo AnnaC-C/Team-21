@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -40,6 +41,8 @@ public class PetActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet);
+
+        setupMiniGames();
 
         g = (Globals) getApplication();
 
@@ -110,9 +113,8 @@ public class PetActivity extends BaseActivity {
         OnClickListener buy = new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), ShopActivity.class);
-                startActivity(i);
-                finish();
+                PetItem p = (PetItem) v.getTag();
+                Toast.makeText(getApplicationContext(), "Buy " + p.getName(), Toast.LENGTH_LONG).show();
             }
         };
         OnClickListener use = new OnClickListener() {
@@ -186,6 +188,20 @@ public class PetActivity extends BaseActivity {
                 wearableListView.setVisibility(View.INVISIBLE);
             }
         });
+    }
+
+    public void setupMiniGames() {
+
+        final Intent strokeIntent = new Intent(this, StrokePetActivity.class);
+
+        RelativeLayout strokeGame = (RelativeLayout) findViewById(R.id.startStrokePet);
+        strokeGame.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(strokeIntent);
+            }
+        });
+
     }
 
 }

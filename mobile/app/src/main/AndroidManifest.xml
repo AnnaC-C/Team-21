@@ -56,6 +56,10 @@
             android:name=".BaseActivity"
             android:label="@string/title_activity_base" >
         </activity>
+        <activity
+            android:name=".StrokePetActivity"
+            android:label="@string/title_activity_stroke_pet" >
+        </activity>
     </application>
 
 </manifest>
