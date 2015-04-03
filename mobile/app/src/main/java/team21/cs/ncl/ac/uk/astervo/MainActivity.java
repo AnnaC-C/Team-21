@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -48,6 +49,8 @@ public class MainActivity extends Activity {
 
         //Check if already logged in
         if(g.isLoggedIn()) {
+            //Prompt user to logout
+            Toast.makeText(getApplicationContext(), "Please logout before exiting.", Toast.LENGTH_LONG).show();
             //If logged in, start Dash activity
             Intent i = new Intent(this, DashActivity.class);
             startActivity(i);
