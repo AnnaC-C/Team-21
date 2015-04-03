@@ -119,7 +119,7 @@ public class PetActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 PetItem p = (PetItem) v.getTag();
-                Toast.makeText(getApplicationContext(), p.getId(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), Integer.toString(p.getId()), Toast.LENGTH_LONG).show();
             }
         };
 
