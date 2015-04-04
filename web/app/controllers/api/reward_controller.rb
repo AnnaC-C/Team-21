@@ -25,12 +25,15 @@ class Api::RewardController < ApplicationController
   def get_inventory
     inventory = []
 
-    current_user.owned_items.each do |i|
-      item = Item.find(i)
-      inventory << { :description => item.description,
-                     :image => item.image,
-                     :consumable => item.consumable }
+    current_user.owned_items.each do |o|
+      item = Item.find(o.item_id)
+      inventory << { :id => item.id,
+                     :description => item.description,
+                     :consumable => item.consumable,
+                     :image => view_context.image_path(item.image)
+                   }
     end
+
 
     render :status => 200,
            :json => { :inventory => inventory }
