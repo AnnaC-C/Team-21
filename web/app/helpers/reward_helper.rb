@@ -12,7 +12,7 @@ module RewardHelper
       return {:success => false, :message => "You don't have enough points to buy this item."}
     end
 
-    if(current_user.owned_items.find_by_item_id(i) && !i.consumable)
+    if(current_user.owned_items.find_by_item_id(item) && !item.consumable)
       return {:success => false, :message => "This item can only be unlocked once."}
     end
 

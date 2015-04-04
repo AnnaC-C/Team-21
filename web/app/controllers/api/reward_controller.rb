@@ -22,6 +22,20 @@ class Api::RewardController < ApplicationController
 
   end
 
+  def get_inventory
+    inventory = []
+
+    current_user.owned_items.each do |i|
+      item = Item.find(i)
+      inventory << { :description => item.description,
+                     :image => item.image,
+                     :consumable => item.consumable }
+    end
+
+    render :status => 200,
+           :json => { :inventory => inventory }
+  end
+
   def buy
 
   end
