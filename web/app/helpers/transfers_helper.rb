@@ -12,6 +12,9 @@ module TransfersHelper
       return {:success => false, :message => "Invalid input."}
     end
 
+    # Round the amount to 2 decimal places.
+    amount = (amount.to_f).round(2)
+
     to_user_id = Account.find(to).user_id.to_i
     from_user_id = Account.find(from).user_id.to_i
     current_user_id = current_user.id.to_i
