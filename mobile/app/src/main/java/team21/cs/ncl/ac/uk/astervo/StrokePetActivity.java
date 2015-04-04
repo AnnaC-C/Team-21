@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -27,11 +28,14 @@ public class StrokePetActivity extends BaseActivity {
         dlgAlert.setPositiveButton("OK", null);
         dlgAlert.create().show();
 
+        final ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+
         RelativeLayout r = (RelativeLayout) findViewById(R.id.strokePet);
         r.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 strokeCount++;
+                pb.setProgress(strokeCount * 10);
                 if(strokeCount == strokes) {
                     Toast.makeText(getApplicationContext(), "HAPPY++", Toast.LENGTH_LONG).show();
                     finish();

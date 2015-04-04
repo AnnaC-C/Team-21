@@ -17,5 +17,7 @@
     <string name="title_activity_rewards">RewardsActivity</string>
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_stroke_pet">StrokePetActivity</string>
+    <string name="title_activity_rock_paper_scissors">RockPaperScissorsActivity</string>
+    <string name="rock_paper_scissors_intro">To play please select either rock, paper or scissors below.</string>
 
 </resources>
