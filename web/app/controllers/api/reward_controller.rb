@@ -1,5 +1,5 @@
-class Api::StoreController < ApplicationController
-  include StoreHelper
+class Api::RewardController < ApplicationController
+  include RewardHelper
 
   skip_before_filter :verify_authenticity_token, :if => Proc.new { |c|
     c.request.format == 'application/json'

@@ -1,0 +1,10 @@
+<h1>Inventory</h1>
+<h2>POINTS: <%= current_user.current_points %></h2>
+<% current_user.owned_items.each do |i| %>
+  <% item = Item.find(i.item_id) %>
+  <%= image_tag(item.image, size: "250x100", alt: "TODO: REPLACE THIS") %>
+  <h3><%= item.description %></h3>
+  <% if item.consumable %>
+  <%= button_to "Consume", store_path(:selected_item => i.id), :method => :post %>
+  <% end %>
+<% end %>

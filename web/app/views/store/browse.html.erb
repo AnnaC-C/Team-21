@@ -1,6 +1,0 @@
-<h1>Store</h1>
-<% Item.all.each do |i| %>
-  <%= image_tag(i.image, size: "250x100", alt: "TODO: REPLACE THIS") %>
-  <%= button_to "Buy", store_path(:selected_item => i.id), :method => :post %>
-  <p><%= i.description%> - £<%= i.cost %></p>
-<% end %>

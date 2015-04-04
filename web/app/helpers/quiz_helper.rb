@@ -23,13 +23,13 @@ module QuizHelper
 
       answers.each do |a|
         if a[:answer] == Question.find(a[:id]).correct
-          points += 10
+          points += 100
           correct += 1
         end
       end
 
     if correct == @@question_count
-      points += 20
+      points += 200
     end
 
     # TODO: Write method for User to add points to both at once. (Transaction?)

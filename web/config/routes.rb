@@ -12,8 +12,9 @@ Rails.application.routes.draw do
     post 'transfer/transfer' => 'transfer#transfer', :as => :transfers
     get 'quiz' => 'quiz#play'
     post 'quiz' => 'quiz#get_score', :as => :play
-    get 'store' => 'store#browse'
-    post 'store' => 'store#buy', :as => :browse
+    get 'store' => 'reward#browse'
+    get 'inventory' => 'reward#inventory'
+    post 'store' => 'reward#buy', :as => :browse
   end
 
   namespace :api do
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
       get "transfers" => "transfers#retrieve", :as => 'retrieve'
       get "questions" => "quiz#get_questions", :as => 'questions'
       post "answers" => "quiz#process_answers", :as => 'answers'
-      get "items" => "store#get_items", :as => 'items'
+      get "items" => "reward#get_items", :as => 'items'
     end
   end
 end
