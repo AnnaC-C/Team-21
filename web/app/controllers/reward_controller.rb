@@ -1,4 +1,4 @@
-class RewardController < ApplicationController
+class RewardController < AuthController
   include RewardHelper
 
   def browse_store

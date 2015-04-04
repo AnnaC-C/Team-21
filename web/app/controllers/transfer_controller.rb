@@ -1,4 +1,4 @@
-class TransferController < ApplicationController
+class TransferController < AuthController
   include TransfersHelper
 
   def transfer
