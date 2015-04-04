@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@drawable/background">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/dashborder"
+        android:padding="10dp"
+        android:layout_weight="0.15">
+
+        <RelativeLayout
+            android:layout_width="91dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button1"
+            android:layout_marginStart="10dp"
+            android:id="@+id/petRock"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="3dp">
+
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Rock"
+                android:id="@+id/petRockText"
+                android:maxLines="1" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/petRockImage"
+                android:src="@drawable/rock" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="91dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button1"
+            android:layout_marginStart="37dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/petRock"
+            android:id="@+id/petPaper">
+
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Paper"
+                android:id="@+id/petPaperText"
+                android:maxLines="1" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/petPaperImage"
+                android:src="@drawable/paper" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="91dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button1"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/petPaper"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_marginLeft="37dp"
+            android:id="@+id/petScissors"
+            android:layout_marginRight="3dp">
+
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Scissors"
+                android:id="@+id/petScissorsText"
+                android:maxLines="1" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/petScissorsImage"
+                android:src="@drawable/scissors" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="198dp"
+        android:layout_weight="0.7"
+        android:background="@drawable/dashborder"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cat" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginTop="40dp">
+
+            <RelativeLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/speechbubble"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:textSize="15dp"
+                    android:text="@string/rock_paper_scissors_intro"
+                    android:id="@+id/petSpeechBubble"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Play Again"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="invisible"
+                    android:onClick="replay"
+                    android:id="@+id/petSpeechButton"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/dashborder"
+        android:paddingTop="10dp"
+        android:layout_weight="0.15">
+
+        <RelativeLayout
+            android:layout_width="91dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button1"
+            android:layout_marginStart="10dp"
+            android:id="@+id/rock"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="3dp">
+
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Rock"
+                android:id="@+id/rockText"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:maxLines="1" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/imageView"
+                android:src="@drawable/rock" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="91dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button1"
+            android:layout_marginStart="37dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/rock"
+            android:id="@+id/paper">
+
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Paper"
+                android:id="@+id/paperText"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:maxLines="1" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/imageView2"
+                android:src="@drawable/paper" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="91dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button1"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/paper"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_marginLeft="37dp"
+            android:id="@+id/scissors"
+            android:layout_marginRight="3dp">
+
+            <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Scissors"
+                android:id="@+id/scissorsText"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:maxLines="1" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/imageView3"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/scissors" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
