@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get "questions" => "quiz#get_questions", :as => 'questions'
       post "answers" => "quiz#process_answers", :as => 'answers'
       get "items" => "reward#get_items", :as => 'items'
+      post "buy" => "reward#buy_item", :as => 'buy'
       get "inventory" => "reward#get_inventory", :as => 'inventory'
     end
   end

@@ -36,7 +36,11 @@ class Api::RewardController < ApplicationController
            :json => { :inventory => inventory }
   end
 
-  def buy
+  def buy_item
+    result = process_sale(params[:id])
+
+    render :status => 200,
+           :json => { :info => result }
 
   end
 end

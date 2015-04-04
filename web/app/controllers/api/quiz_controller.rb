@@ -16,7 +16,7 @@ class Api::QuizController < ApplicationController
     answers = params[:answers]
     points = calculate_score(answers)
 
-    # Other renders for erroneous submissions.
+    # TODO: Other renders for erroneous submissions.
     render :status => 200,
            :json => { :score => points }
   end
