@@ -130,12 +130,12 @@
                 android:maxLines="1" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="70dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:id="@+id/imageView3"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/cat" />
+                android:background="@drawable/cat"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"/>
         </RelativeLayout>
 
     </RelativeLayout>
