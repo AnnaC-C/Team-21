@@ -5,7 +5,7 @@ class StoreController < ApplicationController
   end
 
   def buy
-    logger.info("\n\n\n\n\nHELLO FROM BUY : ITEM: " + params[:selected_item] +  "\n\n\n\n\n")
+    process_sale(params[:selected_item])
     redirect_to :browse
   end
 end
