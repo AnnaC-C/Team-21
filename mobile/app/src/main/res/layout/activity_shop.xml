@@ -9,19 +9,12 @@
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-<<<<<<< HEAD
-        android:layout_height="fill_parent"
-        android:id="@+id/relativeLayout6"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
-=======
         android:layout_height="132dp"
         android:layout_weight="0.78"
         android:background="@drawable/dashborder"
         android:id="@+id/top"
         android:gravity="center_horizontal">
 
->>>>>>> setup-shop
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
