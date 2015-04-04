@@ -60,6 +60,10 @@
             android:name=".StrokePetActivity"
             android:label="@string/title_activity_stroke_pet" >
         </activity>
+        <activity
+            android:name=".RockPaperScissorsActivity"
+            android:label="@string/title_activity_rock_paper_scissors" >
+        </activity>
     </application>
 
 </manifest>
