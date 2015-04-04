@@ -1,6 +1,4 @@
-require 'json'
-
-class QuizController < ApplicationController
+class QuizController < AuthController
   include QuizHelper
 
   def play

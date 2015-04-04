@@ -1,5 +1,7 @@
 <h1>DASHBOARD</h1>
 
+<!-- TODO: sprintf account balance and transfer amount to 2 decimal places. -->
+
 <h2>Points: </h2>
 <div style="margin: 5px; border: 3px solid #F00;">
   <ul>
@@ -9,6 +11,10 @@
 
 <h2>QUIZ</h2>
 <%= link_to "Play", :quiz %>
+
+<h2>REWARDS</h2>
+<%= link_to "Store", :store %><br/>
+<%= link_to "Inventory", :inventory %>
 
 <h2>Accounts:</h2>
 <% current_user.accounts.each do |a| %>

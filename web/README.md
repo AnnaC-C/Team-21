@@ -1,8 +1,7 @@
 # Team 21 Backend README
 
 
-
-## API Documentation v3
+## API Documentation v6
 ###### Luke Whiteley
 
 Be wary when copying directly from here into something such as curl or Postman, it may change the formatting.
@@ -321,5 +320,147 @@ None
 ``` javascript
 {
     "score": 100
+}
+```
+
+### Get all available items.
+
+**ENDPOINT**: https://astervo.herokuapp.com/api/items
+
+**TYPE:** GET
+
+**HEADERS:** 
+
+* ` Content-Type: application/json`
+*  `Accept: application/json `
+
+**PAYLOAD:** 
+``` Python
+None
+```
+
+**SAMPLE RETURN STRING:** 
+``` javascript
+{
+    "items": [
+        {
+            "id": 1,
+            "description": "Tiara",
+            "image": "/assets/rewards/tiara-14caa68e5eef44060551095e4ac1000d.png",
+            "cost": 1000,
+            "consumable": false
+        },
+        {
+            "id": 2,
+            "description": "Crown",
+            "image": "/assets/rewards/crown-fd90a9ea32701bbe6274c983ad1e3902.png",
+            "cost": 1000,
+            "consumable": false
+        },
+        {
+            "id": 3,
+            "description": "Lei",
+            "image": "/assets/rewards/lei-4bd524d8fcdcf80a528050e369523bd9.png",
+            "cost": 800,
+            "consumable": false
+        },
+        {
+            "id": 4,
+            "description": "Santa Hat",
+            "image": "/assets/rewards/santahat-960b0f6e818b5fb56f75445fec801314.png",
+            "cost": 1000,
+            "consumable": false
+        },
+        {
+            "id": 5,
+            "description": "Shades",
+            "image": "/assets/rewards/shades-8710ee7155b5a0a2dcbc61b9b5101999.png",
+            "cost": 350,
+            "consumable": false
+        },
+        {
+            "id": 6,
+            "description": "Teddy",
+            "image": "/assets/rewards/teddy-67005257cd8e624095f93c0968312bfd.png",
+            "cost": 250,
+            "consumable": true
+        }
+    ]
+}
+```
+
+### Get a user's inventory.
+
+**ENDPOINT**: https://astervo.herokuapp.com/api/inventory
+
+**TYPE:** GET
+
+**HEADERS:** 
+
+* ` Content-Type: application/json`
+*  `Accept: application/json `
+
+**PAYLOAD:** 
+``` Python
+None
+```
+
+**SAMPLE RETURN STRING:** 
+``` javascript
+{
+    "inventory": [
+        {
+            "id": 2,
+            "description": "Crown",
+            "consumable": false,
+            "image": "/assets/rewards/crown-fd90a9ea32701bbe6274c983ad1e3902.png"
+        },
+        {
+            "id": 3,
+            "description": "Lei",
+            "consumable": false,
+            "image": "/assets/rewards/lei-4bd524d8fcdcf80a528050e369523bd9.png"
+        },
+        {
+            "id": 6,
+            "description": "Teddy",
+            "consumable": true,
+            "image": "/assets/rewards/teddy-67005257cd8e624095f93c0968312bfd.png"
+        },
+        {
+            "id": 6,
+            "description": "Teddy",
+            "consumable": true,
+            "image": "/assets/rewards/teddy-67005257cd8e624095f93c0968312bfd.png"
+        }
+    ]
+}
+```
+
+### Purchase an item from the store.
+
+**ENDPOINT**: https://astervo.herokuapp.com/api/buy
+
+**TYPE:** POST
+
+**HEADERS:** 
+
+* ` Content-Type: application/json`
+*  `Accept: application/json `
+
+**PAYLOAD:** 
+``` javascript
+{
+  "id" : "6" // Item ID.
+}
+```
+
+**SAMPLE RETURN STRING:** 
+``` javascript
+{
+    "info": {
+        "success": true,
+        "message": "You bought a Teddy for £250."
+    }
 }
 ```

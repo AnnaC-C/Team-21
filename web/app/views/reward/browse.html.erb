@@ -1,0 +1,11 @@
+<h1>Store</h1>
+<h2>POINTS: <%= current_user.current_points %></h2>
+<% Item.all.each do |i| %>
+  <%= image_tag(i.image, size: "250x100", alt: "TODO: REPLACE THIS") %>
+  <% if current_user.owned_items.find_by_item_id(i) && !i.consumable %>
+    <h5> UNLOCKED </h5>
+  <% else %>
+    <%= button_to "Buy", store_path(:selected_item => i.id), :method => :post %>
+  <% end %>
+  <p><%= i.description%> - £<%= i.cost %></p>
+<% end %>
