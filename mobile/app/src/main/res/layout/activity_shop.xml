@@ -59,17 +59,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/displayConsumableItems"
-                android:background="#30000000"></ListView>
+                android:background="#30000000"
+                android:visibility="invisible"/>
 
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/displayWearableItems"
-                android:background="#30000000"
-                android:visibility="invisible"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="81dp"></ListView>
+                android:background="#30000000"/>
+
+
 
         </RelativeLayout>
 
