@@ -28,19 +28,17 @@ public class PetItemListAdapter extends ArrayAdapter<PetItem> {
 
     private List<PetItem> items;
     private Context context;
-    private OnClickListener buy;
     private OnClickListener use;
     private Bitmap[] imageArray;
 
 
-    public PetItemListAdapter(Context context, int layoutResourceId, List<PetItem> items, OnClickListener buy, OnClickListener use) {
+    public PetItemListAdapter(Context context, int layoutResourceId, List<PetItem> items, OnClickListener use) {
         super(context, R.layout.pet_item, items);
         this.context = context;
         this.items = items;
-        this.buy = buy;
-        this. use = use;
+        this.use = use;
         imageArray = new Bitmap[items.size()];
-        for(int i = 0; i < items.size(); i++) {
+        for (int i = 0; i < items.size(); i++) {
             getImage(items.get(i).getResource(), i);
         }
     }
@@ -59,19 +57,12 @@ public class PetItemListAdapter extends ArrayAdapter<PetItem> {
 
         //Set image
         Bitmap thisImage = imageArray[position];
-        if(thisImage != null) {
+        if (thisImage != null) {
             image.setImageBitmap(thisImage);
         }
 
-        if(item.getQuantity() <= 0) {
-            name.setText(item.getName() + " X " + Integer.toString(item.getQuantity()));
-            b.setText("BUY");
-            b.setOnClickListener(buy);
-        }
-        else {
-            name.setText(item.getName() + " X " + Integer.toString(item.getQuantity()));
-            b.setOnClickListener(use);
-        }
+        name.setText(item.getName());
+        b.setOnClickListener(use);
 
         b.setTag(item);
 
@@ -95,7 +86,7 @@ public class PetItemListAdapter extends ArrayAdapter<PetItem> {
                     notifyDataSetChanged();
                 }
             });
-        } catch(UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 

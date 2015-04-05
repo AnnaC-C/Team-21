@@ -7,14 +7,12 @@ package team21.cs.ncl.ac.uk.astervo;
 public class PetItem {
 
     private String name = "";
-    private int quantity = 0;
     private int id = 0;
     private String resource = "";
     private boolean consumable = false;
 
-    public PetItem(String name, int quantity, String resource, int id, boolean consumable) {
+    public PetItem(String name, String resource, int id, boolean consumable) {
         this.setName(name);
-        this.setQuantity(quantity);
         this.setResource(resource);
         this.setId(id);
         this.setConsumable(consumable);
@@ -26,14 +24,6 @@ public class PetItem {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public String getResource() {
