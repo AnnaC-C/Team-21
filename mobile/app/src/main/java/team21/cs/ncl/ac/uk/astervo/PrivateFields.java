@@ -51,7 +51,8 @@ public class PrivateFields {
     //QUIZ RESPONSE
     public static final String TAG_SCORE = "score";
 
-    //PET RESPONSE
+    //ITEM RESPONSE
+    public static final String TAG_INVENTORY = "inventory";
     public static final String TAG_ITEMS = "items";
     public static final String TAG_ITEMS_NAME = "description";
     public static final String TAG_ITEMS_ID = "id";

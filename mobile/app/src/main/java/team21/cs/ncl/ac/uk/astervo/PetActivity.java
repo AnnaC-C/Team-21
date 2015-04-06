@@ -62,7 +62,7 @@ public class PetActivity extends BaseActivity {
         try {
 
             //Send the HTTP get request and get JSON object back
-            HttpClient.get(this.getApplicationContext(), "/api/items", new JsonHttpResponseHandler() {
+            HttpClient.get(this.getApplicationContext(), "/api/inventory", new JsonHttpResponseHandler() {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -73,7 +73,8 @@ public class PetActivity extends BaseActivity {
                     if (statusCode == 200) {
                         if (response != null) {
                             try {
-                                allItems = response.getJSONArray(PrivateFields.TAG_ITEMS);
+                                allItems = response.getJSONArray(PrivateFields.TAG_INVENTORY);
+                                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
                                 setupListView();
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -110,13 +111,6 @@ public class PetActivity extends BaseActivity {
     public void setupListView() {
 
         //Setup on click listeners for each item
-        OnClickListener buy = new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PetItem p = (PetItem) v.getTag();
-                Toast.makeText(getApplicationContext(), "Buy " + p.getName(), Toast.LENGTH_LONG).show();
-            }
-        };
         OnClickListener use = new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,12 +128,11 @@ public class PetActivity extends BaseActivity {
                 JSONObject currentItem = allItems.getJSONObject(i);
                 //Set the fields of the object
                 String name = currentItem.getString(PrivateFields.TAG_ITEMS_NAME);
-                int quantity = currentItem.getInt(PrivateFields.TAG_ITEMS_COST);
                 String resource = currentItem.getString(PrivateFields.TAG_ITEMS_IMAGE);
-                int id = currentItem.getInt(PrivateFields.TAG_ITEMS_ID);
+                //int id = currentItem.getInt(PrivateFields.TAG_ITEMS_ID);
                 boolean consumable = currentItem.getBoolean(PrivateFields.TAG_ITEMS_CONSUMABLE);
                 //Create object
-                PetItem item = new PetItem(name, quantity, resource, id, consumable);
+                PetItem item = new PetItem(name, resource, 1, consumable);
                 //Add the object
                 if (consumable) {
                     consumableItems.add(item);
@@ -152,8 +145,8 @@ public class PetActivity extends BaseActivity {
 
         }
 
-        consumableAdapter = new PetItemListAdapter(getApplicationContext(), R.layout.pet_item, consumableItems, buy, use);
-        wearableAdapter = new PetItemListAdapter(getApplicationContext(), R.layout.pet_item, wearableItems, buy, use);
+        consumableAdapter = new PetItemListAdapter(getApplicationContext(), R.layout.pet_item, consumableItems, use);
+        wearableAdapter = new PetItemListAdapter(getApplicationContext(), R.layout.pet_item, wearableItems, use);
         wearableListView = (ListView) findViewById(R.id.displayWearableItems);
         consumableListView = (ListView) findViewById(R.id.displayConsumableItems);
 

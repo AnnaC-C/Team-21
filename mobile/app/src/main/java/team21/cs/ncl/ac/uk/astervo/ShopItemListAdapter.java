@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
 
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 
@@ -21,22 +20,21 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
- * Created by thebillington on 02/04/2015.
+ * Created by thebillington on 05/04/2015.
  */
+public class ShopItemListAdapter extends ArrayAdapter<ShopItem> {
 
-public class PetItemListAdapter extends ArrayAdapter<PetItem> {
-
-    private List<PetItem> items;
+    private List<ShopItem> items;
     private Context context;
-    private OnClickListener use;
+    private View.OnClickListener buy;
     private Bitmap[] imageArray;
 
 
-    public PetItemListAdapter(Context context, int layoutResourceId, List<PetItem> items, OnClickListener use) {
+    public ShopItemListAdapter(Context context, int layoutResourceId, List<ShopItem> items, View.OnClickListener buy) {
         super(context, R.layout.pet_item, items);
         this.context = context;
         this.items = items;
-        this.use = use;
+        this.buy = buy;
         imageArray = new Bitmap[items.size()];
         for (int i = 0; i < items.size(); i++) {
             getImage(items.get(i).getResource(), i);
@@ -50,7 +48,7 @@ public class PetItemListAdapter extends ArrayAdapter<PetItem> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.pet_item, parent, false);
 
-        PetItem item = items.get(position);
+        ShopItem item = items.get(position);
         TextView name = (TextView) row.findViewById(R.id.petItemName);
         ImageView image = (ImageView) row.findViewById(R.id.petItemImage);
         Button b = (Button) row.findViewById(R.id.petItemUse);
@@ -61,8 +59,9 @@ public class PetItemListAdapter extends ArrayAdapter<PetItem> {
             image.setImageBitmap(thisImage);
         }
 
-        name.setText(item.getName());
-        b.setOnClickListener(use);
+        name.setText(item.getName() + " £" + Integer.toString(item.getCost()));
+        b.setText("BUY");
+        b.setOnClickListener(buy);
 
         b.setTag(item);
 
