@@ -219,7 +219,7 @@ public class QuizActivity extends BaseActivity {
 
     public void submit(JSONObject params) {
 
-        //If phone has data, then attempt login
+        //If phone has data, then attempt submission
         if (connectionStatus.isConnected()) {
 
             //Start logging in dialog
@@ -248,7 +248,7 @@ public class QuizActivity extends BaseActivity {
                                     //Display alert
                                     AlertDialog.Builder dlgAlert = new AlertDialog.Builder(QuizActivity.this);
                                     dlgAlert.setTitle("Thanks for playing!");
-                                    dlgAlert.setMessage("You scored: " + response.getString(PrivateFields.TAG_SCORE) + "/70");
+                                    dlgAlert.setMessage("You scored: " + response.getString(PrivateFields.TAG_SCORE) + "/700");
                                     dlgAlert.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
