@@ -92,7 +92,7 @@ public class DashActivity extends BaseActivity {
     public void setButtons() {
 
         RelativeLayout acc = (RelativeLayout) findViewById(R.id.dashAccounts);
-        RelativeLayout rewards = (RelativeLayout) findViewById(R.id.dashRewards);
+        RelativeLayout quiz = (RelativeLayout) findViewById(R.id.dashQuiz);
         RelativeLayout pet = (RelativeLayout) findViewById(R.id.dashPet);
 
         acc.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +107,7 @@ public class DashActivity extends BaseActivity {
             }
         });
 
-        rewards.setOnClickListener(new View.OnClickListener() {
+        quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
