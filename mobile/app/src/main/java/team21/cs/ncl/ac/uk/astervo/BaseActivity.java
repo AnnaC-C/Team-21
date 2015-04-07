@@ -1,19 +1,11 @@
 package team21.cs.ncl.ac.uk.astervo;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.widget.Toast;
-
-import com.loopj.android.http.JsonHttpResponseHandler;
-
-import org.json.JSONException;
 
 import java.util.Date;
 
@@ -142,7 +134,7 @@ public class BaseActivity extends ActionBarActivity {
                     inactiveLogout();
                 }
                 else {
-                    Intent rewardIntent = new Intent(this, RewardsActivity.class);
+                    Intent rewardIntent = new Intent(this, HelpActivity.class);
                     startActivity(rewardIntent);
                     finish();
                 }

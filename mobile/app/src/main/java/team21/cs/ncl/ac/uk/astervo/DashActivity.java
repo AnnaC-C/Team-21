@@ -1,30 +1,20 @@
 package team21.cs.ncl.ac.uk.astervo;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.ShareActionProvider;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -121,7 +111,7 @@ public class DashActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(getApplicationContext(), RewardsActivity.class);
+                Intent i = new Intent(getApplicationContext(), HelpActivity.class);
                 startActivity(i);
                 finish();
 
