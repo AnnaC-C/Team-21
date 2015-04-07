@@ -199,6 +199,7 @@ public class PetActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(strokeIntent);
+                finish();
             }
         });
 
@@ -207,6 +208,7 @@ public class PetActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(rpsIntent);
+                finish();
             }
         });
 
