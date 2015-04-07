@@ -14,26 +14,26 @@
     </item>
     <item
         android:id="@+id/action_home"
-        android:icon="@drawable/home"
+        android:icon="@drawable/house"
         android:orderInCategory="3"
         app:showAsAction="always"
         android:title="Home"/>
 
     <item
         android:id="@+id/action_accounts"
-        android:icon="@drawable/pound"
+        android:icon="@drawable/accounts"
         android:orderInCategory="4"
         app:showAsAction="always"
         android:title="Accounts"/>
     <item
         android:id="@+id/action_quiz"
-        android:icon="@drawable/quizicon"
+        android:icon="@drawable/quiz"
         android:orderInCategory="5"
         app:showAsAction="always"
         android:title="Quiz"/>
     <item
         android:id="@+id/action_pet"
-        android:icon="@drawable/dog"
+        android:icon="@drawable/pet"
         android:orderInCategory="6"
         app:showAsAction="always"
         android:title="Pet"/>
@@ -46,7 +46,7 @@
         android:title="Shop"/>
     <item
         android:id="@+id/action_rewards"
-        android:icon="@drawable/rewards"
+        android:icon="@drawable/help"
         android:orderInCategory="8"
         app:showAsAction="always"
         android:title="Rewards"/>
