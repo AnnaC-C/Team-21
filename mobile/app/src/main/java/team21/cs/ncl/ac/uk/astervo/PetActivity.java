@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -19,8 +20,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import android.view.View.OnClickListener;
 
 
 public class PetActivity extends BaseActivity {
@@ -74,7 +73,6 @@ public class PetActivity extends BaseActivity {
                         if (response != null) {
                             try {
                                 allItems = response.getJSONArray(PrivateFields.TAG_INVENTORY);
-                                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
                                 setupListView();
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -155,8 +153,16 @@ public class PetActivity extends BaseActivity {
 
         setupHeaderButtons();
 
-        wearableListView.addFooterView(wear);
-        consumableListView.addFooterView(cons);
+        if(consumableItems.size() != 0) {
+            if(wearableItems.size() != 0) {
+                wearableListView.addFooterView(wear);
+                consumableListView.addFooterView(cons);
+            }
+            else {
+                wearableListView.setVisibility(View.INVISIBLE);
+                consumableListView.setVisibility(View.VISIBLE);
+            }
+        }
 
     }
 

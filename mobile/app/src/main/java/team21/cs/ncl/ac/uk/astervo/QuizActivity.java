@@ -25,8 +25,6 @@ public class QuizActivity extends BaseActivity {
 
     Globals g;
 
-    long now;
-
     JSONArray questions;
 
     int currentQuestion = 0;

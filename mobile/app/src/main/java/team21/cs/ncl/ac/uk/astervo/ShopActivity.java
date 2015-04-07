@@ -154,8 +154,16 @@ public class ShopActivity extends BaseActivity {
 
         setupHeaderButtons();
 
-        wearableListView.addFooterView(wear);
-        consumableListView.addFooterView(cons);
+        if(consumableItems.size() != 0) {
+            if(wearableItems.size() != 0) {
+                wearableListView.addFooterView(wear);
+                consumableListView.addFooterView(cons);
+            }
+            else {
+                wearableListView.setVisibility(View.INVISIBLE);
+                consumableListView.setVisibility(View.VISIBLE);
+            }
+        }
 
     }
 
