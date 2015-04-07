@@ -111,7 +111,7 @@ public class DashActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(getApplicationContext(), HelpActivity.class);
+                Intent i = new Intent(getApplicationContext(), QuizActivity.class);
                 startActivity(i);
                 finish();
 

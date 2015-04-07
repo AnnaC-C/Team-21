@@ -133,13 +133,13 @@
             android:layout_marginStart="37dp"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/dashAccounts"
-            android:id="@+id/dashRewards">
+            android:id="@+id/dashQuiz">
 
             <team21.cs.ncl.ac.uk.astervo.AutoResizeTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Rewards"
+                android:text="Quiz"
                 android:id="@+id/textView20"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
@@ -151,7 +151,7 @@
                 android:id="@+id/imageView2"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/trophy" />
+                android:background="@drawable/quiz" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -159,7 +159,7 @@
             android:layout_height="120dp"
             android:background="@drawable/button1"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/dashRewards"
+            android:layout_toEndOf="@+id/dashQuiz"
             android:layout_alignParentEnd="false"
             android:layout_alignParentStart="false"
             android:layout_marginLeft="37dp"
@@ -182,7 +182,7 @@
                 android:id="@+id/imageView3"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/dog" />
+                android:background="@drawable/pet" />
         </RelativeLayout>
 
     </RelativeLayout>
