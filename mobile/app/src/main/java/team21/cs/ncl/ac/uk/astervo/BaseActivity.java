@@ -50,7 +50,6 @@ public class BaseActivity extends ActionBarActivity {
     public void inactiveLogout() {
         HttpClient.reset();
         g.reset();
-        Intent i = new Intent(this, LoginActivity.class);
         Toast.makeText(getApplicationContext(), "Logged out due to inactivity.", Toast.LENGTH_LONG).show();
         finish();
     }
@@ -148,7 +147,6 @@ public class BaseActivity extends ActionBarActivity {
 
         HttpClient.reset();
         g.reset();
-        Intent i = new Intent(this, LoginActivity.class);
         Toast.makeText(getApplicationContext(), "Logged out.", Toast.LENGTH_LONG).show();
         finish();
 

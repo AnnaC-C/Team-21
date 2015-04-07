@@ -191,14 +191,23 @@ public class PetActivity extends BaseActivity {
 
     public void setupMiniGames() {
 
-        final Intent strokeIntent = new Intent(this, StrokePetActivity.class);
-        final Intent rpsIntent = new Intent(this, RockPaperScissorsActivity.class);
+        RelativeLayout quiz = (RelativeLayout) findViewById(R.id.petQuiz);
+        quiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(), QuizActivity.class);
+                startActivity(i);
+                finish();
+
+            }
+        });
 
         RelativeLayout strokeGame = (RelativeLayout) findViewById(R.id.startStrokePet);
         strokeGame.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(strokeIntent);
+                startActivity(new Intent(getApplicationContext(), StrokePetActivity.class));
                 finish();
             }
         });
@@ -207,7 +216,7 @@ public class PetActivity extends BaseActivity {
         rpsGame.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(rpsIntent);
+                startActivity(new Intent(getApplicationContext(), RockPaperScissorsActivity.class));
                 finish();
             }
         });
